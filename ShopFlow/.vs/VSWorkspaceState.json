@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\API",
+    "\\Application",
+    "\\Domain",
+    "\\Domain\\Interfaces",
+    "\\Infrastructure",
+    "\\Infrastructure\\Persistence"
+  ],
+  "SelectedNode": "\\ShopFlow.http",
+  "PreviewInSolutionExplorer": false
+}
