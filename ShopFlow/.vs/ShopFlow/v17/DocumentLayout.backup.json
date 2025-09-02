@@ -3,44 +3,176 @@
   "WorkspaceRootPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\DependencyInjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\DependencyInjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_sku.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cat_sku.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\Persistence\\ModelBuilderExtensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Persistence\\ModelBuilderExtensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\ord_order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\ord_order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Domain\\Interfaces\\IEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Domain\\Interfaces\\IEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_campaign.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\promo_campaign.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\Persistence\\ShopFlowDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Persistence\\ShopFlowDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_rule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\promo_rule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\sys_webhook_event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\sys_webhook_event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\inv_reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\inv_reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_application_log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\promo_application_log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart_applied_promo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cart_applied_promo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart_item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cart_item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_category_i18n.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cat_category_i18n.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\GlobalUsings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Infrastructure\\GlobalUsings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\Services\\BaseService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Infrastructure\\Services\\BaseService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\DependencyInjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Infrastructure\\DependencyInjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\CreateProduct\\CreateProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Products\\CreateProduct\\CreateProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cat_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\GetProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Products\\GetProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\DependencyInjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\DependencyInjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\GetUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Users\\GetUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\ICreateProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Products\\ICreateProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\ICreateUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Users\\ICreateUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\IGetProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Products\\IGetProductUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\IGetUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Users\\IGetUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\GlobalUsings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\GlobalUsings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\Services\\PasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Infrastructure\\Services\\PasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\Abstractions\\Security\\IPasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\Abstractions\\Security\\IPasswordHasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_product_i18n.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cat_product_i18n.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\cat_category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_user_role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\core_user_role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\core_role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\role_customer_profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\role_customer_profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\BaseEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\BaseEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Domain\\Entities\\core_user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.sln||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.sln||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.API\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\API\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\Controllers\\UsersController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.API\\Controllers\\UsersController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserUseCase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommandValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommandValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,84 +190,474 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\DependencyInjection.cs",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\DependencyInjection.cs",
-              "RelativeToolTip": "Infrastructure\\DependencyInjection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Title": "cat_sku.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_sku.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cat_sku.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_sku.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cat_sku.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T22:35:50.778Z",
+              "WhenOpened": "2025-09-02T10:55:57.063Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ModelBuilderExtensions.cs",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\Persistence\\ModelBuilderExtensions.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\ModelBuilderExtensions.cs",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\Persistence\\ModelBuilderExtensions.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\ModelBuilderExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAnAAAAAAAAAA==",
+              "Title": "ord_order.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\ord_order.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\ord_order.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\ord_order.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\ord_order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T22:35:23.338Z"
+              "WhenOpened": "2025-09-02T10:55:52.933Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IEntity.cs",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Domain\\Interfaces\\IEntity.cs",
-              "RelativeDocumentMoniker": "Domain\\Interfaces\\IEntity.cs",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Domain\\Interfaces\\IEntity.cs",
-              "RelativeToolTip": "Domain\\Interfaces\\IEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Title": "promo_campaign.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_campaign.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\promo_campaign.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_campaign.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\promo_campaign.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T22:34:21.995Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T21:35:56.616Z"
+              "WhenOpened": "2025-09-02T10:54:04.559Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ShopFlowDbContext.cs",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\Persistence\\ShopFlowDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\ShopFlowDbContext.cs",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Infrastructure\\Persistence\\ShopFlowDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\ShopFlowDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABGAAAAAAAAAA==",
+              "Title": "promo_rule.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_rule.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\promo_rule.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_rule.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\promo_rule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T21:35:44.866Z"
+              "WhenOpened": "2025-09-02T10:54:01.04Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ShopFlow.http",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.http",
-              "RelativeDocumentMoniker": "ShopFlow.http",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.http",
-              "RelativeToolTip": "ShopFlow.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-08-30T21:35:28.805Z"
+              "DocumentIndex": 4,
+              "Title": "sys_webhook_event.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\sys_webhook_event.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\sys_webhook_event.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\sys_webhook_event.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\sys_webhook_event.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:55.719Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "inv_reservation.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\inv_reservation.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\inv_reservation.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\inv_reservation.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\inv_reservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:51.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "promo_application_log.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_application_log.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\promo_application_log.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\promo_application_log.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\promo_application_log.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:48.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "cart_applied_promo.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart_applied_promo.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cart_applied_promo.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart_applied_promo.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cart_applied_promo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:45.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "cart_item.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart_item.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cart_item.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart_item.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cart_item.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:42.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "cart.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cart.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cart.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:37.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "cat_category_i18n.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_category_i18n.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cat_category_i18n.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_category_i18n.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cat_category_i18n.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:28.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GlobalUsings.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\GlobalUsings.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Infrastructure\\GlobalUsings.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\GlobalUsings.cs",
+              "RelativeToolTip": "ShopFlow.Infrastructure\\GlobalUsings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:53:23.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ShopFlow.Infrastructure.csproj",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj",
+              "RelativeToolTip": "ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-02T10:43:59.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BaseService.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\Services\\BaseService.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Infrastructure\\Services\\BaseService.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\Services\\BaseService.cs",
+              "RelativeToolTip": "ShopFlow.Infrastructure\\Services\\BaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:40:09.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CreateProductUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\CreateProduct\\CreateProductUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Products\\CreateProduct\\CreateProductUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\CreateProduct\\CreateProductUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Products\\CreateProduct\\CreateProductUseCase.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAlwD0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:27:13.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "ShopFlow.Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAD4vwAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:33:03.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GetProductUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\GetProductUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Products\\GetProductUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\GetProductUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Products\\GetProductUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:14:11.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "cat_product.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_product.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cat_product.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_product.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cat_product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:08:45.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\DependencyInjection.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\DependencyInjection.cs",
+              "RelativeToolTip": "ShopFlow.Application\\DependencyInjection.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAWwBAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:32:59.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "GetUserUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\GetUserUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Users\\GetUserUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\GetUserUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Users\\GetUserUseCase.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAWwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:14:03.544Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ICreateProductUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\ICreateProductUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Products\\ICreateProductUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\ICreateProductUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Products\\ICreateProductUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:19:31.667Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ICreateUserUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\ICreateUserUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Users\\ICreateUserUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\ICreateUserUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Users\\ICreateUserUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:19:20.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IGetProductUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\IGetProductUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Products\\IGetProductUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Products\\IGetProductUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Products\\IGetProductUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:19:08.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IGetUserUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\IGetUserUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Users\\IGetUserUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\IGetUserUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Users\\IGetUserUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:18:55.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "GlobalUsings.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\GlobalUsings.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\GlobalUsings.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\GlobalUsings.cs",
+              "RelativeToolTip": "ShopFlow.Application\\GlobalUsings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:18:50.471Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IPasswordHasher.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\Abstractions\\Security\\IPasswordHasher.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\Abstractions\\Security\\IPasswordHasher.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\Abstractions\\Security\\IPasswordHasher.cs",
+              "RelativeToolTip": "ShopFlow.Application\\Abstractions\\Security\\IPasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:32:28.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\Services\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Infrastructure\\Services\\PasswordHasher.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\Services\\PasswordHasher.cs",
+              "RelativeToolTip": "ShopFlow.Infrastructure\\Services\\PasswordHasher.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:32:34.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "cat_product_i18n.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_product_i18n.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cat_product_i18n.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_product_i18n.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cat_product_i18n.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:08:48.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "cat_category.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_category.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\cat_category.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\cat_category.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\cat_category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:08:42.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "core_user_role.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_user_role.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\core_user_role.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_user_role.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\core_user_role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:08:39.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "core_role.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_role.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\core_role.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_role.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\core_role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:08:36.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "role_customer_profile.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\role_customer_profile.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\role_customer_profile.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\role_customer_profile.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\role_customer_profile.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:08:32.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "core_user.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_user.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\core_user.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\core_user.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\core_user.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:08:22.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Domain\\Entities\\BaseEntity.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\Entities\\BaseEntity.cs",
+              "RelativeToolTip": "ShopFlow.Domain\\Entities\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T10:01:10.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ShopFlow.sln",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.sln",
+              "RelativeDocumentMoniker": "ShopFlow.sln",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.sln",
+              "RelativeToolTip": "ShopFlow.sln",
+              "ViewState": "AgIAABgAAAAAAAAAAAAQwCIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002855|",
+              "WhenOpened": "2025-09-02T09:16:55.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\Program.cs",
+              "RelativeDocumentMoniker": "ShopFlow.API\\Program.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\Program.cs",
+              "RelativeToolTip": "ShopFlow.API\\Program.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAAC4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T09:05:19.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\appsettings.json",
+              "RelativeDocumentMoniker": "ShopFlow.API\\appsettings.json",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\appsettings.json",
+              "RelativeToolTip": "ShopFlow.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-02T09:02:36.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -143,42 +665,67 @@
               "RelativeToolTip": "appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-30T10:27:01.056Z"
+              "WhenOpened": "2025-09-02T09:02:12.632Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ShopFlow.csproj",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.csproj",
-              "RelativeDocumentMoniker": "ShopFlow.csproj",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.csproj",
-              "RelativeToolTip": "ShopFlow.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-30T10:26:11.41Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\Program.cs",
-              "RelativeToolTip": "Program.cs",
+              "DocumentIndex": 38,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "ShopFlow.API\\Controllers\\UsersController.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "ShopFlow.API\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAoAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T10:16:40.401Z"
+              "WhenOpened": "2025-09-02T07:33:13.824Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-30T10:16:13.985Z"
+              "DocumentIndex": 39,
+              "Title": "CreateUserUseCase.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserUseCase.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserUseCase.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserUseCase.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:32:55.365Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "CreateUserCommandValidator.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommandValidator.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommandValidator.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommandValidator.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommandValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:32:51.923Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "CreateUserResponse.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserResponse.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserResponse.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserResponse.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:32:48.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "CreateUserCommand.cs",
+              "DocumentMoniker": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommand.cs",
+              "RelativeDocumentMoniker": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommand.cs",
+              "ToolTip": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommand.cs",
+              "RelativeToolTip": "ShopFlow.Application\\UseCases\\Users\\CreateUser\\CreateUserCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T07:32:45.578Z"
             }
           ]
         }

@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopFlow.Application\ShopFlow.Application.csproj" />
+    <ProjectReference Include="..\ShopFlow.Domain\ShopFlow.Domain.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
+  <!-- Loại các EFModels bị trùng / gây xung đột với Domain -->
+  <ItemGroup>
+    <Compile Remove="Persistence\EFModels\BaseEntity.cs" />
+    <Compile Remove="Persistence\EFModels\BaseAuditableEntity.cs" />
+    <Compile Remove="Persistence\EFModels\cat_product.cs" />
+    <Compile Remove="Persistence\EFModels\cat_product_i18n.cs" />
+    <Compile Remove="Persistence\EFModels\cat_category.cs" />
+    <Compile Remove="Persistence\EFModels\cat_category_i18n.cs" />
+    <Compile Remove="Persistence\EFModels\core_user.cs" />
+    <Compile Remove="Persistence\EFModels\core_role.cs" />
+    <Compile Remove="Persistence\EFModels\core_user_role.cs" />
+    <Compile Remove="Persistence\EFModels\role_customer_profile.cs" />
+  </ItemGroup>
+
+</Project>

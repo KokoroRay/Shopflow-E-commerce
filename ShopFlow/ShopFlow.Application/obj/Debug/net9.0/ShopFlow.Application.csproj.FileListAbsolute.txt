@@ -1,0 +1,16 @@
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\bin\Debug\net9.0\ShopFlow.Application.deps.json
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\bin\Debug\net9.0\ShopFlow.Application.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\bin\Debug\net9.0\ShopFlow.Application.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\bin\Debug\net9.0\ShopFlow.Domain.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\bin\Debug\net9.0\ShopFlow.Domain.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.csproj.AssemblyReference.cache
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.AssemblyInfoInputs.cache
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.AssemblyInfo.cs
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.csproj.CoreCompileInputs.cache
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.sourcelink.json
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.762C8C07.Up2Date
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\refint\ShopFlow.Application.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ref\ShopFlow.Application.dll

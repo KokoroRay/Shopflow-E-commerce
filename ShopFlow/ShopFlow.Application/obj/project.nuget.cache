@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "t1/I9M1TtMs=",
+  "success": true,
+  "projectFilePath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\ShopFlow.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\namng\\.nuget\\packages\\fluentvalidation\\11.8.1\\fluentvalidation.11.8.1.nupkg.sha512",
+    "C:\\Users\\namng\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.1\\fluentvalidation.dependencyinjectionextensions.11.8.1.nupkg.sha512",
+    "C:\\Users\\namng\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

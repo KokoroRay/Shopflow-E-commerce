@@ -1,0 +1,40 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopFlow.Domain", "ShopFlow.Domain\ShopFlow.Domain.csproj", "{75CE94DA-8376-46B8-8B48-7DD5E34A3E14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopFlow.Application", "ShopFlow.Application\ShopFlow.Application.csproj", "{6A8775B1-CD13-44EA-B25F-A56D719A589D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopFlow.Infrastructure", "ShopFlow.Infrastructure\ShopFlow.Infrastructure.csproj", "{46BC2526-3CD3-4A96-BE1A-F96CAA8B7823}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75CE94DA-8376-46B8-8B48-7DD5E34A3E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75CE94DA-8376-46B8-8B48-7DD5E34A3E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75CE94DA-8376-46B8-8B48-7DD5E34A3E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75CE94DA-8376-46B8-8B48-7DD5E34A3E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A8775B1-CD13-44EA-B25F-A56D719A589D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A8775B1-CD13-44EA-B25F-A56D719A589D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A8775B1-CD13-44EA-B25F-A56D719A589D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A8775B1-CD13-44EA-B25F-A56D719A589D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46BC2526-3CD3-4A96-BE1A-F96CAA8B7823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46BC2526-3CD3-4A96-BE1A-F96CAA8B7823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46BC2526-3CD3-4A96-BE1A-F96CAA8B7823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46BC2526-3CD3-4A96-BE1A-F96CAA8B7823}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75CE94DA-8376-46B8-8B48-7DD5E34A3E14} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{6A8775B1-CD13-44EA-B25F-A56D719A589D} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{46BC2526-3CD3-4A96-BE1A-F96CAA8B7823} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+	EndGlobalSection
+EndGlobal

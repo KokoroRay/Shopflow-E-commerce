@@ -1,0 +1,1 @@
+global using ShopFlow.Domain.Entities;
