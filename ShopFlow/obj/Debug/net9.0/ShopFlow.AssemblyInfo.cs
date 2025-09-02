@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShopFlow")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba0145a04c0ca88919445eda4a65e5c0eae8bcf7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c020e8f8262447085e9c5530a1776f3b29c2fc3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShopFlow")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShopFlow")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
