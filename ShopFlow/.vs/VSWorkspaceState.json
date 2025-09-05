@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ShopFlow.Application",
-    "\\ShopFlow.Application\\UseCases",
-    "\\ShopFlow.Application\\UseCases\\Products",
-    "\\ShopFlow.Application\\UseCases\\Products\\CreateProduct",
+    "\\ShopFlow.API",
+    "\\ShopFlow.API\\Controllers",
+    "\\ShopFlow.Domain",
+    "\\ShopFlow.Domain\\DomainServices",
+    "\\ShopFlow.Domain\\Entities",
     "\\ShopFlow.Infrastructure",
-    "\\ShopFlow.Infrastructure\\Mappings",
-    "\\ShopFlow.Infrastructure\\Persistence",
-    "\\ShopFlow.Infrastructure\\Persistence\\EFModels",
-    "\\ShopFlow.Infrastructure\\Services"
+    "\\ShopFlow.Infrastructure\\Persistence"
   ],
-  "SelectedNode": "\\ShopFlow.Infrastructure\\Persistence\\EFModels\\cart_applied_promo.cs",
+  "SelectedNode": "\\ShopFlow.API\\Filters",
   "PreviewInSolutionExplorer": false
 }

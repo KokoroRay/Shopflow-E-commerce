@@ -1,0 +1,42 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using ShopFlow.Application.Abstractions.Repositories;
+using ShopFlow.Application.Abstractions.Security;
+using ShopFlow.Application.Abstractions.Mappings;
+using ShopFlow.Application.Abstractions.Messaging;
+using ShopFlow.Infrastructure.Persistence;
+using ShopFlow.Infrastructure.Repositories;
+using ShopFlow.Infrastructure.Services;
+using ShopFlow.Infrastructure.Mappings;
+
+namespace ShopFlow.Infrastructure;
+
+public static class DependencyInjection
+{
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
+    {
+        var cs = config.GetConnectionString("Default");
+        services.AddDbContext<ShopFlowDbContext>(opt => opt.UseSqlServer(cs));
+
+        // Generic Repositories & UnitOfWork (keep for backward compatibility)
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Domain-specific Repositories
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+
+        // Domain Event Publisher
+        services.AddScoped<IDomainEventPublisher, DomainEventPublisher>();
+
+        // Security
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+        // Mappers
+        services.AddScoped<IUserMapper, UserMapper>();
+        services.AddScoped<IProductMapper, ProductMapper>();
+
+        return services;
+    }
+}
