@@ -1,11 +1,5 @@
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\.msCoverageSourceRootsMapping_ShopFlow.Application.Tests
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_ShopFlow.Application.Tests
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.csproj.AssemblyReference.cache
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.GeneratedMSBuildEditorConfig.editorconfig
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.AssemblyInfoInputs.cache
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.AssemblyInfo.cs
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.csproj.CoreCompileInputs.cache
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.sourcelink.json
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\testhost.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\testhost.exe
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\xunit.runner.visualstudio.testadapter.dll
@@ -115,6 +109,12 @@ D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\ShopFlow.Domain.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\ShopFlow.Application.pdb
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\ShopFlow.Domain.pdb
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.csproj.AssemblyReference.cache
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.AssemblyInfoInputs.cache
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.AssemblyInfo.cs
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.csproj.CoreCompileInputs.cache
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.sourcelink.json
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.E6526E5F.Up2Date
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\refint\ShopFlow.Application.Tests.dll
