@@ -14,3 +14,6 @@ D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\Sho
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\refint\ShopFlow.Application.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.pdb
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ref\ShopFlow.Application.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\bin\Debug\net9.0\ShopFlow.Application.xml
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\bin\Debug\net9.0\ShopFlow.Domain.xml
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Application\obj\Debug\net9.0\ShopFlow.Application.xml

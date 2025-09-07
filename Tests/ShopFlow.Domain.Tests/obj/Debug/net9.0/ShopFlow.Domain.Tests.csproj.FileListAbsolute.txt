@@ -113,3 +113,6 @@ D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\refin
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.pdb
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.genruntimeconfig.cache
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ref\ShopFlow.Domain.Tests.dll
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.Tests.xml
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.xml
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.xml

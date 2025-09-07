@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "+g4MHveg8Xc=",
+  "dgSpecHash": "kUnG7L0uSk4=",
   "success": true,
   "projectFilePath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\namng\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
+    "C:\\Users\\namng\\.nuget\\packages\\microsoft.codeanalysis.netanalyzers\\8.0.0\\microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512",
+    "C:\\Users\\namng\\.nuget\\packages\\securitycodescan.vs2019\\5.6.7\\securitycodescan.vs2019.5.6.7.nupkg.sha512",
+    "C:\\Users\\namng\\.nuget\\packages\\sonaranalyzer.csharp\\9.12.0.78982\\sonaranalyzer.csharp.9.12.0.78982.nupkg.sha512"
+  ],
   "logs": []
 }

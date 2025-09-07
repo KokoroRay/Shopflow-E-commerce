@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShopFlow.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventDispatcher">
+            <summary>
+            Abstraction for publishing domain events without external dependencies
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventHandler`1">
+            <summary>
+            Abstraction for handling domain events without external dependencies
+            </summary>
+            <typeparam name="TDomainEvent">The type of domain event to handle</typeparam>
+        </member>
+    </members>
+</doc>
