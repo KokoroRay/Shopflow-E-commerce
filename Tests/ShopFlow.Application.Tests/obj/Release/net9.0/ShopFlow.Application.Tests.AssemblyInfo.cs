@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShopFlow.Application.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de08e6f3e07488a3b9aa36bb696de589da0ce2a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e20614834b61f08b67b525e4361418abb8e06605")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShopFlow.Application.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShopFlow.Application.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
