@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [main, develop]
 
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  actions: read
+
 env:
   DOTNET_VERSION: "9.0.x"
   BUILD_CONFIGURATION: "Release"
@@ -96,6 +102,9 @@ jobs:
     name: Quality Gate
     runs-on: ubuntu-latest
     needs: build-and-test
+    permissions:
+      issues: write
+      pull-requests: write
 
     steps:
       - name: Quality Gate Check
@@ -110,16 +119,18 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '**Quality Gate Passed**\n\n' +
-                    '- Build: Success\n' +
-                    '- Tests: All passed\n' +
-                    '- Code Quality: Verified\n' +
-                    '- Security: Scan completed'
-            })
+            try {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '**Quality Gate Passed**\n\n- Build: Success\n- Tests: All passed\n- Code Quality: Verified\n- Security: Scan completed'
+              });
+              console.log('PR comment created successfully');
+            } catch (error) {
+              console.log('Failed to create PR comment:', error.message);
+              // Don't fail the job if commenting fails
+            }
 
   # Job 4: Performance Test (only on main branch)
   performance-test:
