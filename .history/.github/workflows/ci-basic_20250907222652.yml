@@ -1,0 +1,76 @@
+name: 🧪 ShopFlow CI - Basic
+
+on:
+  push:
+    branches: [main, develop, Ray]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  DOTNET_VERSION: "9.0.x"
+  SOLUTION_FILE: "ShopFlow.sln"
+  BUILD_CONFIGURATION: "Release"
+  WORKING_DIRECTORY: "ShopFlow"
+
+jobs:
+  # Job 1: Build and Test
+  build-and-test:
+    name: 🏗️ Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 📦 Cache NuGet packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: 🔄 Restore Dependencies
+        run: |
+          cd ${{ env.WORKING_DIRECTORY }}
+          dotnet restore ${{ env.SOLUTION_FILE }}
+
+      - name: 🏗️ Build Solution
+        run: |
+          cd ${{ env.WORKING_DIRECTORY }}
+          dotnet build ${{ env.SOLUTION_FILE }} \
+            --configuration ${{ env.BUILD_CONFIGURATION }} \
+            --no-restore
+
+      - name: 🧪 Run Unit Tests
+        run: |
+          cd ${{ env.WORKING_DIRECTORY }}
+          dotnet test ${{ env.SOLUTION_FILE }} \
+            --configuration ${{ env.BUILD_CONFIGURATION }} \
+            --no-build \
+            --verbosity normal \
+            --logger trx \
+            --results-directory TestResults/
+
+      - name: 📊 Publish Test Results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: 🧪 Test Results
+          path: "ShopFlow/TestResults/*.trx"
+          reporter: dotnet-trx
+          fail-on-error: false
+
+      - name: ✅ Build Summary
+        if: always()
+        run: |
+          echo "## 🏗️ Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Solution**: ${{ env.SOLUTION_FILE }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Configuration**: ${{ env.BUILD_CONFIGURATION }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Platform**: ${{ runner.os }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY

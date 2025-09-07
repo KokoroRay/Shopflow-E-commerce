@@ -1,0 +1,29 @@
+name: "ShopFlow CodeQL Configuration"
+
+disable-default-queries: false
+
+query-filters:
+- exclude:
+    id: cs/call-to-unmanaged-code
+- exclude:
+    id: cs/weak-crypto-algorithm
+    
+queries:
+- name: security-and-quality
+  uses: security-and-quality
+- name: security-extended  
+  uses: security-extended
+
+paths:
+- ShopFlow/ShopFlow.API
+- ShopFlow/ShopFlow.Application  
+- ShopFlow/ShopFlow.Domain
+- ShopFlow/ShopFlow.Infrastructure
+
+paths-ignore:
+- ShopFlow/**/bin/**
+- ShopFlow/**/obj/**
+- Tests/**
+- ShopFlow/**/Migrations/**
+- "**/*.Designer.cs"
+- "**/*.generated.cs"
