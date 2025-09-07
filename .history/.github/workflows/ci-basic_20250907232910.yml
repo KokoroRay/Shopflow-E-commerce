@@ -116,7 +116,7 @@ jobs:
       - name: Quality Gate Check
         run: |
           echo "Quality Gate: Analyzing build and test results..."
-
+          
           # Check if test results exist
           if find TestResults -name "*.trx" -type f | read; then
             echo "✅ Test results found"
