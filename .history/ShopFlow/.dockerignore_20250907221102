@@ -1,0 +1,58 @@
+# .NET
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/TestResults/
+**/CoverageReports/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+docs/
+
+# CI/CD
+.github/
+azure-pipelines.yml
+Jenkinsfile
+
+# IDE
+**/*.user
+**/*.suo
+**/*.cache
+**/.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+**/logs/
+*.log
+
+# Temporary files
+**/tmp/
+**/temp/
+
+# Docker
+**/Dockerfile*
+**/docker-compose*
+**/.dockerignore
+
+# Node.js (if any frontend exists)
+**/node_modules/
+**/npm-debug.log
+
+# Test files
+**/coverage/
+**/.nyc_output/
+
+# Configuration (keep only templates)
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/*.secrets.json

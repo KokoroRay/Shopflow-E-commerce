@@ -1,0 +1,150 @@
+version: '3.8'
+
+services:
+  # ShopFlow API Service
+  shopflow-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIGURATION: Release
+    container_name: shopflow-api
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080;https://+:8081
+      - ConnectionStrings__DefaultConnection=Host=shopflow-db;Port=5432;Database=shopflow_dev;Username=shopflow;Password=shopflow_password_123
+      - ConnectionStrings__RedisConnection=shopflow-redis:6379
+    depends_on:
+      shopflow-db:
+        condition: service_healthy
+      shopflow-redis:
+        condition: service_healthy
+    networks:
+      - shopflow-network
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # PostgreSQL Database
+  shopflow-db:
+    image: postgres:15-alpine
+    container_name: shopflow-db
+    environment:
+      POSTGRES_DB: shopflow_dev
+      POSTGRES_USER: shopflow
+      POSTGRES_PASSWORD: shopflow_password_123
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - shopflow_postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - shopflow-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shopflow -d shopflow_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  shopflow-redis:
+    image: redis:7-alpine
+    container_name: shopflow-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - shopflow_redis_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - shopflow-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Nginx Reverse Proxy (for production-like setup)
+  shopflow-proxy:
+    image: nginx:alpine
+    container_name: shopflow-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - shopflow-api
+    networks:
+      - shopflow-network
+    restart: unless-stopped
+
+  # Monitoring with Prometheus (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: shopflow-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - shopflow_prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    networks:
+      - shopflow-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Grafana Dashboard (optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: shopflow-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    volumes:
+      - shopflow_grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - shopflow-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+networks:
+  shopflow-network:
+    driver: bridge
+    name: shopflow-network
+
+volumes:
+  shopflow_postgres_data:
+    name: shopflow_postgres_data
+  shopflow_redis_data:
+    name: shopflow_redis_data
+  shopflow_prometheus_data:
+    name: shopflow_prometheus_data
+  shopflow_grafana_data:
+    name: shopflow_grafana_data

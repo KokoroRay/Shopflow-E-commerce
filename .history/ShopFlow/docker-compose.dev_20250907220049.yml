@@ -1,0 +1,38 @@
+# Development override for docker-compose
+version: '3.8'
+
+services:
+  shopflow-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIGURATION: Debug
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - Logging__LogLevel__Default=Debug
+      - Logging__LogLevel__Microsoft.AspNetCore=Information
+    volumes:
+      - ./logs:/app/logs
+      - .:/src
+    ports:
+      - "5000:8080"
+    # Enable hot reload for development
+    command: dotnet watch run --project ShopFlow.API/ShopFlow.API.csproj
+
+  shopflow-db:
+    environment:
+      POSTGRES_DB: shopflow_dev
+      POSTGRES_USER: shopflow_dev
+      POSTGRES_PASSWORD: dev_password_123
+    ports:
+      - "5433:5432"
+
+  shopflow-redis:
+    ports:
+      - "6380:6379"
+
+# Remove monitoring services for development
+profiles:
+  - "" # Override default profile

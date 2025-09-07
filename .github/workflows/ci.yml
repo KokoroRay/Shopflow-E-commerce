@@ -1,0 +1,322 @@
+name: 🚀 ShopFlow CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop, feature/*, hotfix/*]
+  pull_request:
+    branches: [main, develop]
+    types: [opened, synchronize, reopened]
+
+env:
+  DOTNET_VERSION: "9.0.x"
+  SOLUTION_FILE: "ShopFlow/ShopFlow.sln"
+  BUILD_CONFIGURATION: "Release"
+  ARTIFACT_NAME: "shopflow-build"
+
+jobs:
+  # Job 1: Code Analysis & Quality Gates
+  code-analysis:
+    name: 🔍 Code Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for better analysis
+
+      - name: 🔧 Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 📦 Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: 🔍 Install dotnet format
+        run: dotnet tool install -g dotnet-format
+
+      - name: 📋 Check Code Formatting
+        run: |
+          cd ShopFlow
+          dotnet format --verify-no-changes --verbosity diagnostic
+
+      - name: 📊 Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp
+          config-file: ./.github/codeql/codeql-config.yml
+
+      - name: 🏗️ Build for Analysis
+        run: |
+          cd ShopFlow
+          dotnet restore ${{ env.SOLUTION_FILE }}
+          dotnet build ${{ env.SOLUTION_FILE }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+
+      - name: 🔒 Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # Job 2: Build & Compile
+  build:
+    name: 🏗️ Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 📦 Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: 🔄 Restore Dependencies
+        run: |
+          cd ShopFlow
+          dotnet restore ${{ env.SOLUTION_FILE }}
+
+      - name: 🏗️ Build Solution
+        run: |
+          cd ShopFlow
+          dotnet build ${{ env.SOLUTION_FILE }} \
+            --configuration ${{ env.BUILD_CONFIGURATION }} \
+            --no-restore \
+            --verbosity normal
+
+      - name: 📦 Publish API
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cd ShopFlow
+          dotnet publish ShopFlow.API/ShopFlow.API.csproj \
+            --configuration ${{ env.BUILD_CONFIGURATION }} \
+            --no-build \
+            --output ./publish/api
+
+      - name: 📤 Upload Build Artifacts
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}-${{ github.sha }}
+          path: ShopFlow/publish/
+          retention-days: 7
+
+  # Job 3: Comprehensive Testing
+  test:
+    name: 🧪 Test Suite
+    runs-on: ubuntu-latest
+    needs: build
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: shopflow_test
+          POSTGRES_PASSWORD: test_password_123
+          POSTGRES_DB: shopflow_test_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 📦 Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: 🔄 Restore Dependencies
+        run: |
+          cd ShopFlow
+          dotnet restore ${{ env.SOLUTION_FILE }}
+
+      - name: 🏗️ Build for Testing
+        run: |
+          cd ShopFlow
+          dotnet build ${{ env.SOLUTION_FILE }} \
+            --configuration Debug \
+            --no-restore
+
+      - name: 🧪 Run Unit Tests
+        run: |
+          cd ShopFlow
+          dotnet test \
+            --configuration Debug \
+            --no-build \
+            --verbosity normal \
+            --collect:"XPlat Code Coverage" \
+            --results-directory ./TestResults \
+            --logger trx \
+            --logger "console;verbosity=detailed"
+
+      - name: 📊 Generate Coverage Report
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          cd ShopFlow
+          reportgenerator \
+            -reports:"TestResults/**/coverage.cobertura.xml" \
+            -targetdir:"CoverageReports" \
+            -reporttypes:"Html;Cobertura;JsonSummary"
+
+      - name: 📈 Coverage Summary
+        run: |
+          cd ShopFlow/CoverageReports
+          echo "## 📊 Test Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+
+          # Extract coverage percentage from summary
+          if [ -f "Summary.json" ]; then
+            COVERAGE=$(cat Summary.json | jq -r '.summary.linecoverage')
+            echo "| Line Coverage | ${COVERAGE}% |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 📤 Upload Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ github.sha }}
+          path: |
+            ShopFlow/TestResults/
+            ShopFlow/CoverageReports/
+          retention-days: 7
+
+      - name: 📋 Publish Test Results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: 🧪 Test Results
+          path: "ShopFlow/TestResults/**/*.trx"
+          reporter: dotnet-trx
+
+      - name: 📊 Coverage Check
+        run: |
+          cd ShopFlow/CoverageReports
+          if [ -f "Summary.json" ]; then
+            COVERAGE=$(cat Summary.json | jq -r '.summary.linecoverage' | sed 's/%//')
+            echo "Current coverage: ${COVERAGE}%"
+            
+            if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+              echo "❌ Coverage ${COVERAGE}% is below minimum threshold of 80%"
+              exit 1
+            else
+              echo "✅ Coverage ${COVERAGE}% meets minimum threshold"
+            fi
+          fi
+
+  # Job 4: Security Scanning
+  security:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 🔍 Run Snyk Security Scan
+        uses: snyk/actions/dotnet@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: 📋 Upload Snyk Results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: snyk.sarif
+
+  # Job 5: Quality Gate
+  quality-gate:
+    name: ✅ Quality Gate
+    runs-on: ubuntu-latest
+    needs: [code-analysis, build, test, security]
+    if: always()
+
+    steps:
+      - name: 📊 Check Job Results
+        run: |
+          echo "## 🎯 Quality Gate Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Code Analysis | ${{ needs.code-analysis.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build | ${{ needs.build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Tests | ${{ needs.test.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security | ${{ needs.security.result == 'success' && '✅ Passed' || '⚠️ Review Required' }} |" >> $GITHUB_STEP_SUMMARY
+
+          # Fail if critical jobs failed
+          if [[ "${{ needs.code-analysis.result }}" != "success" ]] || \
+             [[ "${{ needs.build.result }}" != "success" ]] || \
+             [[ "${{ needs.test.result }}" != "success" ]]; then
+            echo "❌ Quality gate failed!"
+            exit 1
+          else
+            echo "✅ All quality gates passed!"
+          fi
+
+  # Job 6: Development Deployment (only on main/develop)
+  deploy-dev:
+    name: 🚀 Deploy to Development
+    runs-on: ubuntu-latest
+    needs: [quality-gate]
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    environment: development
+
+    steps:
+      - name: 📥 Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}-${{ github.sha }}
+          path: ./artifacts
+
+      - name: 🚀 Deploy to Development
+        run: |
+          echo "🚀 Deploying to Development Environment..."
+          echo "📦 Artifact path: ./artifacts"
+          echo "🔗 Deployment URL: https://dev.shopflow.example.com"
+          # Add actual deployment logic here
+
+      - name: 📋 Deployment Summary
+        run: |
+          echo "## 🚀 Development Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Successful" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment**: Development" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployed by**: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **URL**: https://dev.shopflow.example.com" >> $GITHUB_STEP_SUMMARY

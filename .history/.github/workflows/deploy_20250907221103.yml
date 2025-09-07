@@ -1,0 +1,263 @@
+name: 🚀 ShopFlow Deployment Pipeline
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment Environment"
+        required: true
+        default: "development"
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/shopflow-api
+
+jobs:
+  # Build and push Docker image
+  build-and-push:
+    name: 🏗️ Build & Push Image
+    runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+      image-digest: ${{ steps.build.outputs.digest }}
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Login to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏷️ Extract Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix={{branch}}-
+
+      - name: 🏗️ Build and Push Image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: ./ShopFlow
+          file: ./ShopFlow/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            BUILD_CONFIGURATION=Release
+
+  # Deploy to Development
+  deploy-development:
+    name: 🚀 Deploy to Development
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: |
+      github.ref == 'refs/heads/main' || 
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'development')
+    environment:
+      name: development
+      url: https://dev.shopflow.example.com
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: "latest"
+
+      - name: 🔐 Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: 🚀 Deploy to EKS Development
+        run: |
+          # Update kubeconfig
+          aws eks update-kubeconfig --region us-east-1 --name shopflow-dev-cluster
+
+          # Update deployment with new image
+          kubectl set image deployment/shopflow-api \
+            shopflow-api=${{ needs.build-and-push.outputs.image-tag }} \
+            -n shopflow-dev
+
+          # Wait for rollout
+          kubectl rollout status deployment/shopflow-api -n shopflow-dev --timeout=300s
+
+      - name: 🧪 Run Smoke Tests
+        run: |
+          echo "Running smoke tests against development environment..."
+          # Add actual smoke tests here
+          curl -f https://dev.shopflow.example.com/health || exit 1
+
+      - name: 📋 Deployment Summary
+        run: |
+          echo "## 🚀 Development Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment**: Development" >> $GITHUB_STEP_SUMMARY
+          echo "- **Image**: ${{ needs.build-and-push.outputs.image-tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **URL**: https://dev.shopflow.example.com" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Deployed Successfully" >> $GITHUB_STEP_SUMMARY
+
+  # Deploy to Staging (manual approval)
+  deploy-staging:
+    name: 🎭 Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [build-and-push, deploy-development]
+    if: |
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging') ||
+      (github.event_name == 'release' && github.event.action == 'published')
+    environment:
+      name: staging
+      url: https://staging.shopflow.example.com
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: 🔐 Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: 🎭 Deploy to Staging
+        run: |
+          aws eks update-kubeconfig --region us-east-1 --name shopflow-staging-cluster
+
+          kubectl set image deployment/shopflow-api \
+            shopflow-api=${{ needs.build-and-push.outputs.image-tag }} \
+            -n shopflow-staging
+
+          kubectl rollout status deployment/shopflow-api -n shopflow-staging --timeout=300s
+
+      - name: 🧪 Run Integration Tests
+        run: |
+          echo "Running integration tests against staging..."
+          # Add comprehensive integration tests
+          cd ShopFlow
+          dotnet test Tests/ --filter "Category=Integration" \
+            --environment SHOPFLOW_BASE_URL=https://staging.shopflow.example.com
+
+  # Deploy to Production (manual approval + additional checks)
+  deploy-production:
+    name: 🏭 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build-and-push, deploy-staging]
+    if: |
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production') ||
+      (github.event_name == 'release' && github.event.action == 'published')
+    environment:
+      name: production
+      url: https://shopflow.example.com
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: 🔐 Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+          aws-region: us-east-1
+
+      - name: 📊 Pre-deployment Health Check
+        run: |
+          echo "Checking production health before deployment..."
+          curl -f https://shopflow.example.com/health || echo "Service currently down"
+
+      - name: 🏭 Blue-Green Deployment to Production
+        run: |
+          aws eks update-kubeconfig --region us-east-1 --name shopflow-prod-cluster
+
+          # Create new deployment with blue-green strategy
+          kubectl apply -f k8s/production/
+
+          # Update deployment
+          kubectl set image deployment/shopflow-api-green \
+            shopflow-api=${{ needs.build-and-push.outputs.image-tag }} \
+            -n shopflow-prod
+
+          # Wait for green deployment
+          kubectl rollout status deployment/shopflow-api-green -n shopflow-prod --timeout=600s
+
+          # Switch traffic to green (implement your blue-green logic)
+          kubectl patch service shopflow-api-service \
+            -p '{"spec":{"selector":{"version":"green"}}}' \
+            -n shopflow-prod
+
+      - name: 🧪 Production Smoke Tests
+        run: |
+          echo "Running production smoke tests..."
+          sleep 30  # Wait for DNS propagation
+          curl -f https://shopflow.example.com/health || exit 1
+          curl -f https://shopflow.example.com/api/health || exit 1
+
+      - name: 📈 Update Monitoring Dashboards
+        run: |
+          echo "Updating monitoring dashboards with new deployment..."
+          # Add logic to update Grafana/Datadog dashboards
+
+      - name: 📢 Notify Teams
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: |
+            🚀 *ShopFlow Production Deployment*
+
+            *Status*: ${{ job.status == 'success' && '✅ Success' || '❌ Failed' }}
+            *Version*: ${{ github.ref_name }}
+            *Image*: ${{ needs.build-and-push.outputs.image-tag }}
+            *Deployed by*: ${{ github.actor }}
+
+            🔗 *Links*:
+            • [Production Site](https://shopflow.example.com)
+            • [Monitoring Dashboard](https://monitoring.shopflow.example.com)
+            • [Commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+
+      - name: 📋 Production Deployment Summary
+        run: |
+          echo "## 🏭 Production Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment**: Production" >> $GITHUB_STEP_SUMMARY
+          echo "- **Image**: ${{ needs.build-and-push.outputs.image-tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **URL**: https://shopflow.example.com" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployment Strategy**: Blue-Green" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Deployed Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployed by**: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
