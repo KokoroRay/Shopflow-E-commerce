@@ -111,15 +111,6 @@ jobs:
         run: |
           echo "Quality Gate: Checking results from previous jobs..."
           echo "Build and Test job completed successfully"
-
-          # Check if test results directory exists
-          if [ -d "TestResults" ]; then
-            echo "✅ Test results directory found"
-            ls -la TestResults/
-          else
-            echo "ℹ️ No test results directory found (tests may run in different job)"
-          fi
-
           echo "All quality checks passed"
           echo "Quality gate: PASSED"
 
