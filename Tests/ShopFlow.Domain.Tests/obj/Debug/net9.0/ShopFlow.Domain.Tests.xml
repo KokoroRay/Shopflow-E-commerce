@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShopFlow.Domain.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:ShopFlow.Domain.Tests.Entities.CatProductTests">
+            <summary>
+            Comprehensive tests for CatProduct entity business logic and product lifecycle management
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.Tests.Entities.CoreUserTests">
+            <summary>
+            Comprehensive tests for CoreUser entity business logic and domain behavior
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase">
+            <summary>
+            Base class for all domain unit tests providing common test infrastructure
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.ConfigureEntityCustomizations">
+            <summary>
+            Configure AutoFixture to avoid circular references in entities
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.ConfigureFixture">
+            <summary>
+            Override this method to configure AutoFixture for specific test scenarios
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.AssertThrows``1(System.Action,System.String)">
+            <summary>
+            Helper method to assert that an action throws a specific exception with expected message
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.AssertThrowsAsync``1(System.Func{System.Threading.Tasks.Task},System.String)">
+            <summary>
+            Helper method to assert that an async action throws a specific exception with expected message
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.GenerateValidEmail">
+            <summary>
+            Generate a random valid email for testing
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.GenerateValidPhoneNumber">
+            <summary>
+            Generate a random valid Vietnamese phone number for testing
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.GenerateDecimal(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Generate a random decimal with specified precision
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.CreateSimpleSku(System.Boolean,System.Decimal)">
+            <summary>
+            Creates a simple CatSku for testing without circular references
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Tests.TestFixtures.DomainTestBase.CreateSimpleCategory(System.String)">
+            <summary>
+            Creates a simple CatCategory for testing
+            </summary>
+        </member>
+    </members>
+</doc>

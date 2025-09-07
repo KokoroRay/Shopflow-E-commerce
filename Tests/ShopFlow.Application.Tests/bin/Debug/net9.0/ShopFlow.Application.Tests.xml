@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShopFlow.Application.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:ShopFlow.Application.Tests.Behaviors.ValidationBehaviorTests">
+            <summary>
+            Comprehensive tests for ValidationBehavior ensuring proper MediatR pipeline validation
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Tests.TestFixtures.ApplicationTestBase">
+            <summary>
+            Base class for all application unit tests providing common test infrastructure
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.TestFixtures.ApplicationTestBase.ConfigureFixture">
+            <summary>
+            Override this method to configure AutoFixture for specific test scenarios
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.TestFixtures.ApplicationTestBase.ConfigureMocks">
+            <summary>
+            Override this method to configure mocks for specific test scenarios
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.TestFixtures.ApplicationTestBase.VerifyMockCall``1(Moq.Mock{``0})">
+            <summary>
+            Helper method to verify that a mock was called
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.TestFixtures.ApplicationTestBase.ResetMocks">
+            <summary>
+            Helper method to reset all mocks
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.TestFixtures.ApplicationTestBase.GenerateCancellationToken(System.Int32)">
+            <summary>
+            Generate a cancellation token for testing
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Tests.Validators.Users.CreateUserCommandValidatorTests">
+            <summary>
+            Comprehensive tests for CreateUserCommandValidator ensuring all validation rules work correctly
+            </summary>
+        </member>
+    </members>
+</doc>

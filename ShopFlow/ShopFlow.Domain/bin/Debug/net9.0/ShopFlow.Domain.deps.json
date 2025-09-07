@@ -7,10 +7,20 @@
   "targets": {
     ".NETCoreApp,Version=v9.0": {
       "ShopFlow.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "3.3.4",
+          "Microsoft.CodeAnalysis.NetAnalyzers": "8.0.0",
+          "SecurityCodeScan.VS2019": "5.6.7",
+          "SonarAnalyzer.CSharp": "9.12.0.78982"
+        },
         "runtime": {
           "ShopFlow.Domain.dll": {}
         }
-      }
+      },
+      "Microsoft.CodeAnalysis.Analyzers/3.3.4": {},
+      "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {},
+      "SecurityCodeScan.VS2019/5.6.7": {},
+      "SonarAnalyzer.CSharp/9.12.0.78982": {}
     }
   },
   "libraries": {
@@ -18,6 +28,34 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Microsoft.CodeAnalysis.Analyzers/3.3.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AxkxcPR+rheX0SmvpLVIGLhOUXAKG56a64kV9VQZ4y9gR9ZmPXnqZvHJnmwLSwzrEP6junUF11vuc+aqo5r68g==",
+      "path": "microsoft.codeanalysis.analyzers/3.3.4",
+      "hashPath": "microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512"
+    },
+    "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DxiTgkCl3CGq1rYmBX2wjY7XGbxiBdL4J+/AJIAFLKy5z70NxhnVRnPghnicXZ8oF6JKVXlW3xwznRbI3ioEKg==",
+      "path": "microsoft.codeanalysis.netanalyzers/8.0.0",
+      "hashPath": "microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512"
+    },
+    "SecurityCodeScan.VS2019/5.6.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WIE9RJswdSc2j+rLz2gW6U+gMUjMHzY2j7C/CL8/R2olXNM/+twarfMnWqm+rZodDBvaYDApJyxM8mVYf9FGrQ==",
+      "path": "securitycodescan.vs2019/5.6.7",
+      "hashPath": "securitycodescan.vs2019.5.6.7.nupkg.sha512"
+    },
+    "SonarAnalyzer.CSharp/9.12.0.78982": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QxhfMFCNeZWP3gP/R8QM3MuDWm+Esj8Lt3oD61tid5TPuqsaKJtwMZNZWE2FOqqGuKlu3805o8MlkTWBL75skA==",
+      "path": "sonaranalyzer.csharp/9.12.0.78982",
+      "hashPath": "sonaranalyzer.csharp.9.12.0.78982.nupkg.sha512"
     }
   }
 }
