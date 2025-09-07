@@ -98,12 +98,34 @@ jobs:
     needs: build-and-test
 
     steps:
+      - name: Download Test Results
+        uses: actions/download-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/
+
+      - name: Debug - Check Downloaded Files
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "All files in current directory:"
+          ls -la
+          echo "TestResults directory contents:"
+          ls -la TestResults/ || echo "TestResults directory not found"
+          echo "Finding .trx files:"
+          find . -name "*.trx" -type f || echo "No .trx files found"
+
       - name: Quality Gate Check
         run: |
-          echo "Quality Gate: Checking results from previous jobs..."
-          echo "Build and Test job completed successfully"
-          echo "All quality checks passed"
-          echo "Quality gate: PASSED"
+          echo "Checking quality gates..."
+          ls -la TestResults/ || echo "TestResults directory not found"
+          if find TestResults/ -name "*.trx" -type f | grep -q .; then
+            echo "Tests found and executed successfully"
+          else
+            echo "No test results found"
+            exit 1
+          fi
+          echo "Quality gate passed"
 
       - name: Comment PR
         if: github.event_name == 'pull_request'

@@ -98,12 +98,23 @@ jobs:
     needs: build-and-test
 
     steps:
+      - name: Download Test Results
+        uses: actions/download-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/
+
       - name: Quality Gate Check
         run: |
-          echo "Quality Gate: Checking results from previous jobs..."
-          echo "Build and Test job completed successfully"
-          echo "All quality checks passed"
-          echo "Quality gate: PASSED"
+          echo "Checking quality gates..."
+          ls -la TestResults/ || echo "TestResults directory not found"
+          if find TestResults/ -name "*.trx" -type f | grep -q .; then
+            echo "Tests found and executed successfully"
+          else
+            echo "No test results found"
+            exit 1
+          fi
+          echo "Quality gate passed"
 
       - name: Comment PR
         if: github.event_name == 'pull_request'
@@ -114,7 +125,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '**Quality Gate Passed**\n\n' +
+              body: '✅ **Quality Gate Passed**\n\n' +
                     '- Build: Success\n' +
                     '- Tests: All passed\n' +
                     '- Code Quality: Verified\n' +
