@@ -77,10 +77,10 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           echo "🧪 Running tests with coverage collection..."
-
+          
           # Create TestResults directory if it doesn't exist
           mkdir -p TestResults
-
+          
           # Run tests with comprehensive logging
           dotnet test ${{ env.SOLUTION_PATH }} \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
@@ -90,7 +90,7 @@ jobs:
             --collect:"XPlat Code Coverage" \
             --results-directory TestResults/ \
             || echo "⚠️ Test execution completed with warnings/failures"
-
+          
           # Verify test results were created
           echo ""
           echo "📊 Test execution summary:"
@@ -144,18 +144,18 @@ jobs:
           # List all files for comprehensive debugging
           echo "📁 TestResults directory structure:"
           find TestResults -type f -exec ls -la {} \; 2>/dev/null || echo "No files found in TestResults"
-
+          
           echo ""
           echo "🔍 Searching for test result files:"
-
+          
           # Count TRX files (test results)
           TRX_COUNT=$(find TestResults -name "*.trx" -type f 2>/dev/null | wc -l)
           echo "📊 TRX files found: $TRX_COUNT"
-
+          
           # Count coverage files
           COVERAGE_COUNT=$(find TestResults -name "*coverage*" -type f 2>/dev/null | wc -l)
           echo "📋 Coverage files found: $COVERAGE_COUNT"
-
+          
           # List specific files found
           if [ "$TRX_COUNT" -gt 0 ]; then
             echo "✅ Test result files:"
@@ -185,22 +185,16 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            try {
-              await github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: '✅ **Quality Gate Passed**\\n\\n' +
-                      '- Build: Success\\n' +
-                      '- Tests: All passed\\n' +
-                      '- Code Quality: Verified\\n' +
-                      '- Security: Scan completed'
-              });
-              console.log('PR comment created successfully');
-            } catch (error) {
-              console.log('Failed to create PR comment:', error.message);
-              // Don't fail the job if commenting fails
-            }
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **Quality Gate Passed**\n\n' +
+                    '- Build: Success\n' +
+                    '- Tests: All passed\n' +
+                    '- Code Quality: Verified\n' +
+                    '- Security: Scan completed'
+            })
 
   # Job 4: Performance Test (only on main branch)
   performance-test:
