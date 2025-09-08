@@ -1,6 +1,7 @@
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\bin\Debug\net9.0\ShopFlow.Domain.deps.json
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\bin\Debug\net9.0\ShopFlow.Domain.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\bin\Debug\net9.0\ShopFlow.Domain.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\bin\Debug\net9.0\ShopFlow.Domain.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.GeneratedMSBuildEditorConfig.editorconfig
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.AssemblyInfoInputs.cache
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.AssemblyInfo.cs
@@ -8,7 +9,6 @@ D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.sourcelink.json
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\refint\ShopFlow.Domain.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.pdb
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ref\ShopFlow.Domain.dll
-D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\bin\Debug\net9.0\ShopFlow.Domain.xml
-D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Domain\obj\Debug\net9.0\ShopFlow.Domain.xml

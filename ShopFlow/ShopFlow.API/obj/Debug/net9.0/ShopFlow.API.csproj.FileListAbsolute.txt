@@ -6,6 +6,7 @@ D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.AP
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.API.runtimeconfig.json
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.API.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.API.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.API.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\Asp.Versioning.Abstractions.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\Asp.Versioning.Http.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\Asp.Versioning.Mvc.dll
@@ -188,8 +189,11 @@ D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Ap
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Domain.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Infrastructure.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Domain.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Domain.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Application.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Application.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Infrastructure.pdb
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\bin\Debug\net9.0\ShopFlow.Infrastructure.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ShopFlow.API.csproj.AssemblyReference.cache
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\rpswa.dswa.cache.json
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ShopFlow.API.GeneratedMSBuildEditorConfig.editorconfig
@@ -210,6 +214,7 @@ D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\staticwebas
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ShopFlow.C9CC3753.Up2Date
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ShopFlow.API.dll
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\refint\ShopFlow.API.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ShopFlow.API.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ShopFlow.API.pdb
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ShopFlow.API.genruntimeconfig.cache
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.API\obj\Debug\net9.0\ref\ShopFlow.API.dll

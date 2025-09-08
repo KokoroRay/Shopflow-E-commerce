@@ -15,10 +15,13 @@
           "AspNetCore.HealthChecks.UI.InMemory.Storage": "9.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.5",
           "Microsoft.AspNetCore.OpenApi": "9.0.5",
+          "Microsoft.CodeAnalysis.Analyzers": "3.3.4",
+          "Microsoft.CodeAnalysis.NetAnalyzers": "8.0.0",
           "Microsoft.EntityFrameworkCore.Design": "9.0.8",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.8",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "9.0.5",
           "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "9.0.5",
+          "SecurityCodeScan.VS2019": "5.6.7",
           "Serilog": "4.0.0",
           "Serilog.AspNetCore": "8.0.0",
           "Serilog.Enrichers.Environment": "3.0.1",
@@ -29,6 +32,7 @@
           "ShopFlow.Application": "1.0.0",
           "ShopFlow.Domain": "1.0.0",
           "ShopFlow.Infrastructure": "1.0.0",
+          "SonarAnalyzer.CSharp": "9.12.0.78982",
           "Swashbuckle.AspNetCore": "6.6.2",
           "System.IdentityModel.Tokens.Jwt": "8.0.1"
         },
@@ -503,6 +507,7 @@
           }
         }
       },
+      "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {},
       "Microsoft.CodeAnalysis.Workspaces.Common/4.8.0": {
         "dependencies": {
           "Humanizer.Core": "2.14.1",
@@ -1201,6 +1206,7 @@
           }
         }
       },
+      "SecurityCodeScan.VS2019/5.6.7": {},
       "Serilog/4.0.0": {
         "runtime": {
           "lib/net8.0/Serilog.dll": {
@@ -1348,6 +1354,7 @@
           }
         }
       },
+      "SonarAnalyzer.CSharp/9.12.0.78982": {},
       "StackExchange.Redis/2.7.27": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "9.0.8",
@@ -1939,6 +1946,13 @@
       "path": "microsoft.codeanalysis.csharp.workspaces/4.8.0",
       "hashPath": "microsoft.codeanalysis.csharp.workspaces.4.8.0.nupkg.sha512"
     },
+    "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DxiTgkCl3CGq1rYmBX2wjY7XGbxiBdL4J+/AJIAFLKy5z70NxhnVRnPghnicXZ8oF6JKVXlW3xwznRbI3ioEKg==",
+      "path": "microsoft.codeanalysis.netanalyzers/8.0.0",
+      "hashPath": "microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512"
+    },
     "Microsoft.CodeAnalysis.Workspaces.Common/4.8.0": {
       "type": "package",
       "serviceable": true,
@@ -2331,6 +2345,13 @@
       "path": "prometheus-net/8.0.1",
       "hashPath": "prometheus-net.8.0.1.nupkg.sha512"
     },
+    "SecurityCodeScan.VS2019/5.6.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WIE9RJswdSc2j+rLz2gW6U+gMUjMHzY2j7C/CL8/R2olXNM/+twarfMnWqm+rZodDBvaYDApJyxM8mVYf9FGrQ==",
+      "path": "securitycodescan.vs2019/5.6.7",
+      "hashPath": "securitycodescan.vs2019.5.6.7.nupkg.sha512"
+    },
     "Serilog/4.0.0": {
       "type": "package",
       "serviceable": true,
@@ -2414,6 +2435,13 @@
       "sha512": "sha512-z5ig56/qzjkX6Fj4U/9m1g8HQaQiYPMZS4Uevtjg1I+WWzoGSf5t/E+6JbMP/jbZYhU63bA5NJN5y0x+qqx2Bw==",
       "path": "serilog.sinks.seq/8.0.0",
       "hashPath": "serilog.sinks.seq.8.0.0.nupkg.sha512"
+    },
+    "SonarAnalyzer.CSharp/9.12.0.78982": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QxhfMFCNeZWP3gP/R8QM3MuDWm+Esj8Lt3oD61tid5TPuqsaKJtwMZNZWE2FOqqGuKlu3805o8MlkTWBL75skA==",
+      "path": "sonaranalyzer.csharp/9.12.0.78982",
+      "hashPath": "sonaranalyzer.csharp.9.12.0.78982.nupkg.sha512"
     },
     "StackExchange.Redis/2.7.27": {
       "type": "package",

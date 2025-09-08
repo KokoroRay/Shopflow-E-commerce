@@ -9,6 +9,7 @@ D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopF
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.Tests.runtimeconfig.json
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.Tests.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.Tests.pdb
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.Tests.xml
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\AutoFixture.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\AutoFixture.Xunit2.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\Castle.Core.dll
@@ -101,6 +102,7 @@ D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\runti
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.pdb
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.xml
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.csproj.AssemblyReference.cache
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.GeneratedMSBuildEditorConfig.editorconfig
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.AssemblyInfoInputs.cache
@@ -110,9 +112,7 @@ D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopF
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.DE595E34.Up2Date
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.dll
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\refint\ShopFlow.Domain.Tests.dll
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.xml
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.pdb
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.genruntimeconfig.cache
 D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ref\ShopFlow.Domain.Tests.dll
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.Tests.xml
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\bin\Debug\net9.0\ShopFlow.Domain.xml
-D:\Code\.Net\project_shopflow\Tests\ShopFlow.Domain.Tests\obj\Debug\net9.0\ShopFlow.Domain.Tests.xml
