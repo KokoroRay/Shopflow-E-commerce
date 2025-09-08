@@ -11,7 +11,7 @@
           "BCrypt.Net-Next": "4.0.3",
           "Microsoft.AspNetCore.Http": "2.3.0",
           "Microsoft.CodeAnalysis.Analyzers": "3.3.4",
-          "Microsoft.CodeAnalysis.NetAnalyzers": "8.0.0",
+          "Microsoft.CodeAnalysis.NetAnalyzers": "9.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.8",
           "Microsoft.Extensions.Caching.Memory": "9.0.8",
@@ -172,7 +172,7 @@
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/3.3.4": {},
-      "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {},
+      "Microsoft.CodeAnalysis.NetAnalyzers/9.0.0": {},
       "Microsoft.CSharp/4.5.0": {},
       "Microsoft.Data.SqlClient/5.1.6": {
         "dependencies": {
@@ -967,12 +967,12 @@
       "path": "microsoft.codeanalysis.analyzers/3.3.4",
       "hashPath": "microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512"
     },
-    "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {
+    "Microsoft.CodeAnalysis.NetAnalyzers/9.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DxiTgkCl3CGq1rYmBX2wjY7XGbxiBdL4J+/AJIAFLKy5z70NxhnVRnPghnicXZ8oF6JKVXlW3xwznRbI3ioEKg==",
-      "path": "microsoft.codeanalysis.netanalyzers/8.0.0",
-      "hashPath": "microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512"
+      "sha512": "sha512-JajbvkrBgtdRghavIjcJuNHMOja4lqBmEezbhZyqWPYh2cpLhT5mPpfC7NQVDO4IehWQum9t/nwF4v+qQGtYWg==",
+      "path": "microsoft.codeanalysis.netanalyzers/9.0.0",
+      "hashPath": "microsoft.codeanalysis.netanalyzers.9.0.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",
