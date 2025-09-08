@@ -225,9 +225,10 @@ jobs:
 
       - name: Build for Performance
         run: |
+          echo "🚀 Building for performance testing..."
           dotnet build ${{ env.SOLUTION_PATH }} \
             --configuration Release \
-            --runtime linux-x64
+            --verbosity normal
 
       - name: Performance Benchmark
         run: |
