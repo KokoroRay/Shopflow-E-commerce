@@ -6,12 +6,21 @@ using ShopFlow.Application.Behaviors;
 
 namespace ShopFlow.Application;
 
-public static class DependencyInjection
+/// <summary>
+/// Extension methods for IServiceCollection to configure Application services
+/// </summary>
+public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Adds Application layer services to the DI container
+    /// </summary>
+    /// <param name="services">The service collection to add services to</param>
+    /// <returns>The service collection for chaining</returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         // MediatR
-        services.AddMediatR(cfg => {
+        services.AddMediatR(cfg =>
+        {
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         });
 
@@ -21,7 +30,7 @@ public static class DependencyInjection
 
         // FluentValidation
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
         return services;
     }
 }

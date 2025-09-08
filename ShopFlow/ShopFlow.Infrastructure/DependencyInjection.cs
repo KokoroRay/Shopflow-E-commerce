@@ -14,8 +14,17 @@ using ShopFlow.Infrastructure.Mappings;
 
 namespace ShopFlow.Infrastructure;
 
-public static class DependencyInjection
+/// <summary>
+/// Extension methods for IServiceCollection to configure Infrastructure services
+/// </summary>
+public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Adds Infrastructure layer services to the DI container
+    /// </summary>
+    /// <param name="services">The service collection to add services to</param>
+    /// <param name="config">The configuration instance</param>
+    /// <returns>The service collection for chaining</returns>
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
         var cs = config.GetConnectionString("Default");

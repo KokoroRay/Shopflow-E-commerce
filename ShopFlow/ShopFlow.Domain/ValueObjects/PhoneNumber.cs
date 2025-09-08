@@ -25,10 +25,10 @@ public sealed class PhoneNumber : IEquatable<PhoneNumber>
     {
         if (string.IsNullOrWhiteSpace(value))
             throw new ArgumentException("Phone number cannot be empty", nameof(value));
-        
+
         if (!PhoneRegex.IsMatch(value))
             throw new ArgumentException("Invalid phone number format", nameof(value));
-        
+
         Value = NormalizePhoneNumber(value);
     }
 
@@ -36,19 +36,19 @@ public sealed class PhoneNumber : IEquatable<PhoneNumber>
     {
         // Remove all non-digit characters
         var digits = new string(phone.Where(char.IsDigit).ToArray());
-        
+
         // If starts with 84, remove it
         if (digits.StartsWith("84", StringComparison.Ordinal) && digits.Length == 11)
         {
             digits = digits.Substring(2);
         }
-        
+
         // If starts with 0, remove it
         if (digits.StartsWith('0'))
         {
             digits = digits.Substring(1);
         }
-        
+
         return digits;
     }
 
@@ -57,12 +57,12 @@ public sealed class PhoneNumber : IEquatable<PhoneNumber>
     /// </summary>
     /// <param name="phone">The phone number to convert</param>
     /// <returns>The phone number string value</returns>
-    public static implicit operator string(PhoneNumber? phone) 
+    public static implicit operator string(PhoneNumber? phone)
     {
         ArgumentNullException.ThrowIfNull(phone);
         return phone.Value;
     }
-    
+
     /// <summary>
     /// Explicitly converts string to PhoneNumber
     /// </summary>

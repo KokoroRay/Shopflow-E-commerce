@@ -4,6 +4,81 @@
         <name>ShopFlow.Domain</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Domain.Entities.Cart">
+            <summary>
+            Represents a shopping cart entity
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.Id">
+            <summary>
+            Gets or sets the cart identifier
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.UserId">
+            <summary>
+            Gets or sets the user identifier (null for guest carts)
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.GuestToken">
+            <summary>
+            Gets or sets the guest token for anonymous carts
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.Currency">
+            <summary>
+            Gets or sets the cart currency
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.WarehouseId">
+            <summary>
+            Gets or sets the warehouse identifier
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.TotalsJson">
+            <summary>
+            Gets or sets the JSON representation of cart totals
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.LastActivityAt">
+            <summary>
+            Gets or sets the last activity timestamp
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.CartAppliedPromos">
+            <summary>
+            Gets the collection of applied promotional codes
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.CartItems">
+            <summary>
+            Gets the collection of cart items
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.InvReservations">
+            <summary>
+            Gets the collection of inventory reservations
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.PromoApplicationLogs">
+            <summary>
+            Gets the collection of promotion application logs
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.SysWebhookEvents">
+            <summary>
+            Gets the collection of webhook events
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.User">
+            <summary>
+            Gets or sets the associated user
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Entities.Cart.Warehouse">
+            <summary>
+            Gets or sets the associated warehouse
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventDispatcher">
             <summary>
             Abstraction for publishing domain events without external dependencies
@@ -14,6 +89,92 @@
             Abstraction for handling domain events without external dependencies
             </summary>
             <typeparam name="TDomainEvent">The type of domain event to handle</typeparam>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.PhoneNumber">
+            <summary>
+            Value object representing a Vietnamese phone number
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.ValueObjects.PhoneNumber.Value">
+            <summary>
+            Gets the normalized phone number value
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the PhoneNumber class
+            </summary>
+            <param name="value">The phone number string to validate and normalize</param>
+            <exception cref="T:System.ArgumentException">Thrown when phone number is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.op_Implicit(ShopFlow.Domain.ValueObjects.PhoneNumber)~System.String">
+            <summary>
+            Implicitly converts PhoneNumber to string
+            </summary>
+            <param name="phone">The phone number to convert</param>
+            <returns>The phone number string value</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.op_Explicit(System.String)~ShopFlow.Domain.ValueObjects.PhoneNumber">
+            <summary>
+            Explicitly converts string to PhoneNumber
+            </summary>
+            <param name="value">The string value to convert</param>
+            <returns>A new PhoneNumber instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.FromString(System.String)">
+            <summary>
+            Converts string to PhoneNumber - alternative to explicit operator
+            </summary>
+            <param name="value">The string value to convert</param>
+            <returns>A new PhoneNumber instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.ToPhoneNumber">
+            <summary>
+            Converts PhoneNumber to string - alternative to implicit operator
+            </summary>
+            <returns>The phone number string value</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.Equals(ShopFlow.Domain.ValueObjects.PhoneNumber)">
+            <summary>
+            Determines whether the specified PhoneNumber is equal to the current PhoneNumber
+            </summary>
+            <param name="other">The PhoneNumber to compare with the current PhoneNumber</param>
+            <returns>true if the specified PhoneNumber is equal to the current PhoneNumber; otherwise, false</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current PhoneNumber
+            </summary>
+            <param name="obj">The object to compare with the current PhoneNumber</param>
+            <returns>true if the specified object is equal to the current PhoneNumber; otherwise, false</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.GetHashCode">
+            <summary>
+            Serves as the hash function for PhoneNumber
+            </summary>
+            <returns>A hash code for the current PhoneNumber</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.ToString">
+            <summary>
+            Returns a string representation of the phone number
+            </summary>
+            <returns>The phone number string value</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.op_Equality(ShopFlow.Domain.ValueObjects.PhoneNumber,ShopFlow.Domain.ValueObjects.PhoneNumber)">
+            <summary>
+            Determines whether two PhoneNumber instances are equal
+            </summary>
+            <param name="left">The first PhoneNumber to compare</param>
+            <param name="right">The second PhoneNumber to compare</param>
+            <returns>true if the PhoneNumbers are equal; otherwise, false</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.PhoneNumber.op_Inequality(ShopFlow.Domain.ValueObjects.PhoneNumber,ShopFlow.Domain.ValueObjects.PhoneNumber)">
+            <summary>
+            Determines whether two PhoneNumber instances are not equal
+            </summary>
+            <param name="left">The first PhoneNumber to compare</param>
+            <param name="right">The second PhoneNumber to compare</param>
+            <returns>true if the PhoneNumbers are not equal; otherwise, false</returns>
         </member>
     </members>
 </doc>

@@ -4,5 +4,17 @@
         <name>ShopFlow.Application</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Application.ServiceCollectionExtensions">
+            <summary>
+            Extension methods for IServiceCollection to configure Application services
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.ServiceCollectionExtensions.AddApplication(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds Application layer services to the DI container
+            </summary>
+            <param name="services">The service collection to add services to</param>
+            <returns>The service collection for chaining</returns>
+        </member>
     </members>
 </doc>
