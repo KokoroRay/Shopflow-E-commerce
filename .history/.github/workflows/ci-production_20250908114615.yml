@@ -76,37 +76,13 @@ jobs:
 
       - name: Run Tests with Coverage
         run: |
-          echo "🧪 Running tests with coverage collection..."
-
-          # Create TestResults directory if it doesn't exist
-          mkdir -p TestResults
-
-          # Run tests with comprehensive logging
           dotnet test ${{ env.SOLUTION_PATH }} \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
             --no-build \
             --verbosity normal \
             --logger trx \
             --collect:"XPlat Code Coverage" \
-            --results-directory TestResults/ \
-            || echo "⚠️ Test execution completed with warnings/failures"
-
-          # Verify test results were created
-          echo ""
-          echo "📊 Test execution summary:"
-          if [ -d "TestResults" ]; then
-            echo "✅ TestResults directory created"
-            TRX_COUNT=$(find TestResults -name "*.trx" -type f 2>/dev/null | wc -l)
-            echo "📋 TRX files created: $TRX_COUNT"
-            
-            if [ "$TRX_COUNT" -eq 0 ]; then
-              echo "⚠️ No TRX files found - creating placeholder for Quality Gate"
-              echo "<?xml version=\"1.0\" encoding=\"utf-8\"?><TestRun><Results></Results></TestRun>" > TestResults/placeholder.trx
-            fi
-          else
-            echo "❌ TestResults directory not found"
-            exit 1
-          fi
+            --results-directory TestResults/
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
@@ -144,18 +120,18 @@ jobs:
           # List all files for comprehensive debugging
           echo "📁 TestResults directory structure:"
           find TestResults -type f -exec ls -la {} \; 2>/dev/null || echo "No files found in TestResults"
-
+          
           echo ""
           echo "🔍 Searching for test result files:"
-
+          
           # Count TRX files (test results)
           TRX_COUNT=$(find TestResults -name "*.trx" -type f 2>/dev/null | wc -l)
           echo "📊 TRX files found: $TRX_COUNT"
-
+          
           # Count coverage files
           COVERAGE_COUNT=$(find TestResults -name "*coverage*" -type f 2>/dev/null | wc -l)
           echo "📋 Coverage files found: $COVERAGE_COUNT"
-
+          
           # List specific files found
           if [ "$TRX_COUNT" -gt 0 ]; then
             echo "✅ Test result files:"
