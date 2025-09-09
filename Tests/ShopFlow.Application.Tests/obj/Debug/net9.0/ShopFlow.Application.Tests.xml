@@ -9,6 +9,11 @@
             Comprehensive tests for ValidationBehavior ensuring proper MediatR pipeline validation
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Tests.Handlers.Users.RegisterUserCommandHandlerTests">
+            <summary>
+            Unit tests for RegisterUserCommandHandler
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Tests.TestFixtures.ApplicationTestBase">
             <summary>
             Base class for all application unit tests providing common test infrastructure
@@ -42,6 +47,11 @@
         <member name="T:ShopFlow.Application.Tests.Validators.Users.CreateUserCommandValidatorTests">
             <summary>
             Comprehensive tests for CreateUserCommandValidator ensuring all validation rules work correctly
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Tests.Validators.Users.RegisterUserCommandValidatorTests">
+            <summary>
+            Unit tests for RegisterUserCommandValidator
             </summary>
         </member>
     </members>

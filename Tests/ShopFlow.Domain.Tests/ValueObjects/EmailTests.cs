@@ -88,9 +88,11 @@ public class EmailTests : DomainTestBase
         // Arrange
         var emailWithSpaces = " test@example.com ";
 
-        // Act & Assert
-        // Should throw because email validation happens before trimming
-        AssertThrows<ArgumentException>(() => new Email(emailWithSpaces), "Invalid email format");
+        // Act
+        var email = new Email(emailWithSpaces);
+
+        // Assert
+        email.Value.Should().Be("TEST@EXAMPLE.COM"); // Should be trimmed and normalized to uppercase
     }
 
     [Theory]

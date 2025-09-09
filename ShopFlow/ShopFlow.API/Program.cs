@@ -26,7 +26,7 @@ try
     // 4) Web stuff
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
-    
+
     // API Versioning
     builder.Services.AddApiVersioningConfiguration();
     builder.Services.AddSwaggerWithVersioning();
@@ -37,17 +37,17 @@ try
     // 6) Caching
     builder.Services.AddCachingConfiguration(builder.Configuration);
 
-// (tuỳ chọn) CORS mặc định
-builder.Services.AddCors(o =>
-{
-    o.AddPolicy("Default", p => p
-        .AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod());
-});
+    // (tuỳ chọn) CORS mặc định
+    builder.Services.AddCors(o =>
+    {
+        o.AddPolicy("Default", p => p
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+    });
 
-// (tuỳ chọn) ProblemDetails .NET 8/9
-builder.Services.AddProblemDetails();
+    // (tuỳ chọn) ProblemDetails .NET 8/9
+    builder.Services.AddProblemDetails();
 
     var app = builder.Build();
 
@@ -57,21 +57,21 @@ builder.Services.AddProblemDetails();
     // 3) Pipeline
     app.UseSwaggerWithVersioning();
 
-app.UseHttpsRedirection();
-app.UseCors("Default");
+    app.UseHttpsRedirection();
+    app.UseCors("Default");
 
-// Authentication & Authorization
-app.UseAuthentication();
-app.UseAuthorization();
+    // Authentication & Authorization
+    app.UseAuthentication();
+    app.UseAuthorization();
 
-// Global exception handler (middleware của bạn)
-app.UseMiddleware<GlobalExceptionHandler>();
+    // Global exception handler (middleware của bạn)
+    app.UseMiddleware<GlobalExceptionHandler>();
 
-// 4) Endpoints
-app.MapControllers();
+    // 4) Endpoints
+    app.MapControllers();
 
-// Health checks
-app.UseHealthChecksConfiguration();
+    // Health checks
+    app.UseHealthChecksConfiguration();
 
     app.Run();
 }
@@ -83,3 +83,8 @@ finally
 {
     Log.CloseAndFlush();
 }
+
+/// <summary>
+/// Program class for integration tests
+/// </summary>
+public partial class Program { }

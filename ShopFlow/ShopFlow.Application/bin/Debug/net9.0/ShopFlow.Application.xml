@@ -4,6 +4,51 @@
         <name>ShopFlow.Application</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Application.Commands.Users.RegisterUserCommand">
+            <summary>
+            Command to register a new user
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Users.RegisterUserCommand.#ctor(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Command to register a new user
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Contracts.Requests.RegisterUserRequest">
+            <summary>
+            Request model for user registration
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.RegisterUserRequest.Email">
+            <summary>
+            Gets or sets the email address
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.RegisterUserRequest.Password">
+            <summary>
+            Gets or sets the password
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.RegisterUserRequest.Phone">
+            <summary>
+            Gets or sets the phone number (optional)
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.RegisterUserRequest.FullName">
+            <summary>
+            Gets or sets the full name (optional)
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.RegisterUserRequest.Gender">
+            <summary>
+            Gets or sets the gender (optional)
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.RegisterUserRequest.DateOfBirth">
+            <summary>
+            Gets or sets the date of birth (optional)
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.ServiceCollectionExtensions">
             <summary>
             Extension methods for IServiceCollection to configure Application services
@@ -15,6 +60,54 @@
             </summary>
             <param name="services">The service collection to add services to</param>
             <returns>The service collection for chaining</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Exceptions.EmailAlreadyExistsException">
+            <summary>
+            Exception thrown when attempting to register with an email that already exists
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Exceptions.EmailAlreadyExistsException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the EmailAlreadyExistsException class
+            </summary>
+            <param name="email">The email that already exists</param>
+        </member>
+        <member name="P:ShopFlow.Application.Exceptions.EmailAlreadyExistsException.Email">
+            <summary>
+            Gets the email that already exists
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Users.RegisterUserCommandHandler">
+            <summary>
+            Handler for RegisterUserCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.RegisterUserCommandHandler.#ctor(ShopFlow.Application.Abstractions.Repositories.IUserRepository,ShopFlow.Application.Abstractions.Security.IPasswordHasher,ShopFlow.Application.Abstractions.Messaging.IDomainEventPublisher,Microsoft.Extensions.Logging.ILogger{ShopFlow.Application.Handlers.Users.RegisterUserCommandHandler})">
+            <summary>
+            Initializes a new instance of the RegisterUserCommandHandler class
+            </summary>
+            <param name="userRepository">User repository</param>
+            <param name="passwordHasher">Password hasher service</param>
+            <param name="domainEventPublisher">Domain event publisher</param>
+            <param name="logger">Logger instance</param>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.RegisterUserCommandHandler.Handle(ShopFlow.Application.Commands.Users.RegisterUserCommand,System.Threading.CancellationToken)">
+            <summary>
+            Handles the RegisterUserCommand
+            </summary>
+            <param name="request">The registration command</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>User response</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Validators.Users.RegisterUserCommandValidator">
+            <summary>
+            Validator for RegisterUserCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.RegisterUserCommandValidator.#ctor">
+            <summary>
+            Initializes a new instance of the RegisterUserCommandValidator class
+            </summary>
         </member>
     </members>
 </doc>
