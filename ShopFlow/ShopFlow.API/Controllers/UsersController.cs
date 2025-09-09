@@ -82,4 +82,53 @@ public class UsersController : ControllerBase
 
         return Ok(result);
     }
+
+    /// <summary>
+    /// Initiates a password reset process by sending OTP to user's email
+    /// </summary>
+    /// <param name="request">Forgot password request</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>Forgot password response</returns>
+    [HttpPost("forgot-password")]
+    public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request, CancellationToken cancellationToken)
+    {
+        if (request == null)
+            return BadRequest("Request cannot be null");
+
+        var command = new ForgotPasswordCommand(request.Email);
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+
+        return Ok(new ShopFlow.Application.Contracts.Response.ForgotPasswordResponse
+        {
+            Success = result.Success,
+            Message = result.Message,
+            ExpiresInMinutes = result.ExpiresInMinutes
+        });
+    }
+
+    /// <summary>
+    /// Resets user password using OTP verification
+    /// </summary>
+    /// <param name="request">Reset password request</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>Reset password response</returns>
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request, CancellationToken cancellationToken)
+    {
+        if (request == null)
+            return BadRequest("Request cannot be null");
+
+        var command = new ResetPasswordCommand(
+            request.Email,
+            request.OtpCode,
+            request.NewPassword);
+
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+
+        return Ok(new ShopFlow.Application.Contracts.Response.ResetPasswordResponse
+        {
+            Success = result.Success,
+            Message = result.Message
+        });
+    }
 }

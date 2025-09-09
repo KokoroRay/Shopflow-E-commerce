@@ -4,6 +4,87 @@
         <name>ShopFlow.Domain</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Domain.DomainEvents.PasswordResetConfirmedEvent">
+            <summary>
+            Domain event raised when a user successfully resets their password
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.PasswordResetConfirmedEvent.UserId">
+            <summary>
+            Gets the ID of the user who reset their password
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.PasswordResetConfirmedEvent.Email">
+            <summary>
+            Gets the email address of the user
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.PasswordResetConfirmedEvent.ResetAt">
+            <summary>
+            Gets the timestamp when the password was reset
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.PasswordResetConfirmedEvent.#ctor(System.Int64,System.String,System.DateTime)">
+            <summary>
+            Initializes a new instance of the PasswordResetConfirmedEvent
+            </summary>
+            <param name="userId">The ID of the user who reset their password</param>
+            <param name="email">The email address of the user</param>
+            <param name="resetAt">The timestamp when the password was reset</param>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.PasswordResetConfirmedEvent.ToString">
+            <summary>
+            Returns a string representation of the event
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent">
+            <summary>
+            Domain event raised when a user requests a password reset
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent.UserId">
+            <summary>
+            Gets the ID of the user who requested password reset
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent.Email">
+            <summary>
+            Gets the email address of the user
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent.OtpCode">
+            <summary>
+            Gets the OTP code for password reset
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent.ExpiresAt">
+            <summary>
+            Gets the expiration time for the OTP
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent.#ctor(System.Int64,System.String,System.String,System.DateTime)">
+            <summary>
+            Initializes a new instance of the PasswordResetRequestedEvent
+            </summary>
+            <param name="userId">The ID of the user requesting password reset</param>
+            <param name="email">The email address of the user</param>
+            <param name="otpCode">The OTP code for verification</param>
+            <param name="expiresAt">The expiration time for the OTP</param>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent.#ctor(System.Int64,ShopFlow.Domain.ValueObjects.Email,System.String,System.DateTime)">
+            <summary>
+            Initializes a new instance with Email value object
+            </summary>
+            <param name="userId">The ID of the user requesting password reset</param>
+            <param name="email">The email value object of the user</param>
+            <param name="otpCode">The OTP code for verification</param>
+            <param name="expiresAt">The expiration time for the OTP</param>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.PasswordResetRequestedEvent.ToString">
+            <summary>
+            Returns a string representation of the event
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.DomainEvents.UserEmailVerifiedEvent">
             <summary>
             Domain event raised when a user's email is verified
@@ -140,103 +221,129 @@
             Gets or sets the associated warehouse
             </summary>
         </member>
-        <member name="T:ShopFlow.Domain.Exceptions.DomainException">
+        <member name="T:ShopFlow.Domain.Entities.PasswordResetToken">
             <summary>
-            Base class for all domain-specific exceptions
+            Entity representing a password reset token with OTP verification
             </summary>
         </member>
-        <member name="T:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.Id">
             <summary>
-            Exception thrown when attempting to register with an email that already exists
+            Gets the unique identifier for the password reset token
             </summary>
         </member>
-        <member name="P:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.Email">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.UserId">
             <summary>
-            Gets the email that already exists
+            Gets the ID of the user requesting password reset
             </summary>
         </member>
-        <member name="M:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.#ctor(System.String)">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.Email">
             <summary>
-            Initializes a new instance of the EmailAlreadyExistsException
-            </summary>
-            <param name="email">The email that already exists</param>
-        </member>
-        <member name="M:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a new instance of the EmailAlreadyExistsException with custom message
-            </summary>
-            <param name="email">The email that already exists</param>
-            <param name="message">Custom error message</param>
-        </member>
-        <member name="M:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the EmailAlreadyExistsException with custom message and inner exception
-            </summary>
-            <param name="email">The email that already exists</param>
-            <param name="message">Custom error message</param>
-            <param name="innerException">Inner exception</param>
-        </member>
-        <member name="T:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException">
-            <summary>
-            Exception thrown when attempting to register with a phone number that already exists
+            Gets the email address for which the reset was requested
             </summary>
         </member>
-        <member name="P:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.PhoneNumber">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.OtpCode">
             <summary>
-            Gets the phone number that already exists
+            Gets the OTP code for verification
             </summary>
         </member>
-        <member name="M:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.#ctor(System.String)">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.CreatedAt">
             <summary>
-            Initializes a new instance of the PhoneNumberAlreadyExistsException
-            </summary>
-            <param name="phoneNumber">The phone number that already exists</param>
-        </member>
-        <member name="M:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a new instance of the PhoneNumberAlreadyExistsException with custom message
-            </summary>
-            <param name="phoneNumber">The phone number that already exists</param>
-            <param name="message">Custom error message</param>
-        </member>
-        <member name="M:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the PhoneNumberAlreadyExistsException with custom message and inner exception
-            </summary>
-            <param name="phoneNumber">The phone number that already exists</param>
-            <param name="message">Custom error message</param>
-            <param name="innerException">Inner exception</param>
-        </member>
-        <member name="T:ShopFlow.Domain.Exceptions.UserRegistrationException">
-            <summary>
-            Exception thrown when user registration fails due to business rule violations
+            Gets when the token was created
             </summary>
         </member>
-        <member name="P:ShopFlow.Domain.Exceptions.UserRegistrationException.Reason">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.ExpiresAt">
             <summary>
-            Gets the registration failure reason
+            Gets when the token expires
             </summary>
         </member>
-        <member name="M:ShopFlow.Domain.Exceptions.UserRegistrationException.#ctor(System.String)">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.IsUsed">
             <summary>
-            Initializes a new instance of the UserRegistrationException
+            Gets whether the token has been used
             </summary>
-            <param name="reason">The reason for registration failure</param>
         </member>
-        <member name="M:ShopFlow.Domain.Exceptions.UserRegistrationException.#ctor(System.String,System.String)">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.UsedAt">
             <summary>
-            Initializes a new instance of the UserRegistrationException with custom message
+            Gets when the token was used (if applicable)
             </summary>
-            <param name="reason">The reason for registration failure</param>
-            <param name="message">Custom error message</param>
         </member>
-        <member name="M:ShopFlow.Domain.Exceptions.UserRegistrationException.#ctor(System.String,System.String,System.Exception)">
+        <member name="P:ShopFlow.Domain.Entities.PasswordResetToken.AttemptCount">
             <summary>
-            Initializes a new instance of the UserRegistrationException with custom message and inner exception
+            Gets the number of verification attempts
             </summary>
-            <param name="reason">The reason for registration failure</param>
-            <param name="message">Custom error message</param>
-            <param name="innerException">Inner exception</param>
+        </member>
+        <member name="F:ShopFlow.Domain.Entities.PasswordResetToken.MaxAttempts">
+            <summary>
+            Gets the maximum allowed attempts before token is locked
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.#ctor">
+            <summary>
+            Private constructor for EF Core
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.#ctor(System.Int64,ShopFlow.Domain.ValueObjects.Email,ShopFlow.Domain.ValueObjects.OtpCode)">
+            <summary>
+            Initializes a new instance of the PasswordResetToken class
+            </summary>
+            <param name="userId">The ID of the user requesting password reset</param>
+            <param name="email">The email address for the reset request</param>
+            <param name="otpCode">The OTP code for verification</param>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.IsValid">
+            <summary>
+            Checks if the token is valid for use
+            </summary>
+            <returns>True if valid, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.IsExpired">
+            <summary>
+            Checks if the token is expired
+            </summary>
+            <returns>True if expired, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.IsLocked">
+            <summary>
+            Checks if the token is locked due to too many attempts
+            </summary>
+            <returns>True if locked, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.VerifyOtp(System.String)">
+            <summary>
+            Verifies the provided OTP code against this token
+            </summary>
+            <param name="providedOtp">The OTP code to verify</param>
+            <returns>True if the OTP matches and token is valid</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.MarkAsUsed">
+            <summary>
+            Marks the token as used
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.GetRemainingTime">
+            <summary>
+            Gets the remaining time until expiration
+            </summary>
+            <returns>TimeSpan representing remaining time</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.GetRemainingAttempts">
+            <summary>
+            Gets the remaining number of attempts
+            </summary>
+            <returns>Number of remaining attempts</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.Create(System.Int64,ShopFlow.Domain.ValueObjects.Email,System.Int32)">
+            <summary>
+            Creates a new password reset token for the specified user
+            </summary>
+            <param name="userId">The ID of the user</param>
+            <param name="email">The email address</param>
+            <param name="expirationMinutes">The expiration time in minutes (default: 15)</param>
+            <returns>A new PasswordResetToken instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.Entities.PasswordResetToken.ToString">
+            <summary>
+            Returns a string representation of the token
+            </summary>
         </member>
         <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventDispatcher">
             <summary>
@@ -335,6 +442,116 @@
             <param name="left">Left operand</param>
             <param name="right">Right operand</param>
             <returns>True if not equal, false otherwise</returns>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.OtpCode">
+            <summary>
+            Value object representing an OTP (One-Time Password) code
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.ValueObjects.OtpCode.Value">
+            <summary>
+            Gets the OTP code value
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.ValueObjects.OtpCode.GeneratedAt">
+            <summary>
+            Gets when the OTP was generated
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.ValueObjects.OtpCode.ExpiresAt">
+            <summary>
+            Gets when the OTP expires
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.ValueObjects.OtpCode.DefaultExpirationMinutes">
+            <summary>
+            Gets the default OTP expiration time in minutes
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the OtpCode class
+            </summary>
+            <param name="value">The OTP code value</param>
+            <param name="expirationMinutes">The expiration time in minutes (default: 15)</param>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.Generate(System.Int32)">
+            <summary>
+            Generates a new random 6-digit OTP code
+            </summary>
+            <param name="expirationMinutes">The expiration time in minutes (default: 15)</param>
+            <returns>A new OtpCode instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.IsExpired">
+            <summary>
+            Checks if the OTP code is expired
+            </summary>
+            <returns>True if expired, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.IsValid">
+            <summary>
+            Checks if the OTP code is valid (not expired)
+            </summary>
+            <returns>True if valid, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.GetRemainingTime">
+            <summary>
+            Gets the remaining time until expiration
+            </summary>
+            <returns>TimeSpan representing remaining time, or TimeSpan.Zero if expired</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.IsValidFormat(System.String)">
+            <summary>
+            Validates if a string is a valid OTP format
+            </summary>
+            <param name="otp">OTP string to validate</param>
+            <returns>True if valid format, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.GenerateRandomOtp">
+            <summary>
+            Generates a cryptographically secure random 6-digit OTP
+            </summary>
+            <returns>6-digit OTP string</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.Equals(ShopFlow.Domain.ValueObjects.OtpCode)">
+            <summary>
+            Determines whether the specified object is equal to the current object
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.GetHashCode">
+            <summary>
+            Returns the hash code for this instance
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.ToString">
+            <summary>
+            Returns the string representation of the OTP code
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.op_Implicit(ShopFlow.Domain.ValueObjects.OtpCode)~System.String">
+            <summary>
+            Implicit conversion from OtpCode to string
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.op_Explicit(System.String)~ShopFlow.Domain.ValueObjects.OtpCode">
+            <summary>
+            Explicit conversion from string to OtpCode
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.op_Equality(ShopFlow.Domain.ValueObjects.OtpCode,ShopFlow.Domain.ValueObjects.OtpCode)">
+            <summary>
+            Equality operator
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.OtpCode.op_Inequality(ShopFlow.Domain.ValueObjects.OtpCode,ShopFlow.Domain.ValueObjects.OtpCode)">
+            <summary>
+            Inequality operator
+            </summary>
         </member>
         <member name="T:ShopFlow.Domain.ValueObjects.PhoneNumber">
             <summary>

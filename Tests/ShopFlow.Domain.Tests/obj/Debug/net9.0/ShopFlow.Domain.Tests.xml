@@ -4,16 +4,6 @@
         <name>ShopFlow.Domain.Tests</name>
     </assembly>
     <members>
-        <member name="T:ShopFlow.Domain.Tests.DomainEvents.UserEmailVerifiedEventTests">
-            <summary>
-            Unit tests for UserEmailVerifiedEvent domain event
-            </summary>
-        </member>
-        <member name="T:ShopFlow.Domain.Tests.DomainEvents.UserRegisteredEventTests">
-            <summary>
-            Unit tests for UserRegisteredEvent domain event
-            </summary>
-        </member>
         <member name="T:ShopFlow.Domain.Tests.Entities.CatProductTests">
             <summary>
             Comprehensive tests for CatProduct entity business logic and product lifecycle management
