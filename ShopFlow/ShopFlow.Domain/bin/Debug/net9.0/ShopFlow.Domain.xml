@@ -4,6 +4,67 @@
         <name>ShopFlow.Domain</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Domain.DomainEvents.UserEmailVerifiedEvent">
+            <summary>
+            Domain event raised when a user's email is verified
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.UserEmailVerifiedEvent.UserId">
+            <summary>
+            Gets the ID of the user whose email was verified
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.UserEmailVerifiedEvent.Email">
+            <summary>
+            Gets the verified email address
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.UserEmailVerifiedEvent.#ctor(System.Int64,System.String)">
+            <summary>
+            Initializes a new instance of the UserEmailVerifiedEvent
+            </summary>
+            <param name="userId">The ID of the user whose email was verified</param>
+            <param name="email">The verified email address</param>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.UserEmailVerifiedEvent.ToString">
+            <summary>
+            Returns a string representation of the event
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.DomainEvents.UserRegisteredEvent">
+            <summary>
+            Domain event raised when a user registers successfully
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.UserRegisteredEvent.UserId">
+            <summary>
+            Gets the ID of the newly registered user
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.DomainEvents.UserRegisteredEvent.Email">
+            <summary>
+            Gets the email address of the registered user
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.UserRegisteredEvent.#ctor(System.Int64,System.String)">
+            <summary>
+            Initializes a new instance of the UserRegisteredEvent
+            </summary>
+            <param name="userId">The ID of the newly registered user</param>
+            <param name="email">The email address of the registered user as string</param>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.UserRegisteredEvent.#ctor(System.Int64,ShopFlow.Domain.ValueObjects.Email)">
+            <summary>
+            Initializes a new instance of the UserRegisteredEvent with Email value object
+            </summary>
+            <param name="userId">The ID of the newly registered user</param>
+            <param name="email">The email value object of the registered user</param>
+        </member>
+        <member name="M:ShopFlow.Domain.DomainEvents.UserRegisteredEvent.ToString">
+            <summary>
+            Returns a string representation of the event
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.Entities.Cart">
             <summary>
             Represents a shopping cart entity
@@ -79,6 +140,104 @@
             Gets or sets the associated warehouse
             </summary>
         </member>
+        <member name="T:ShopFlow.Domain.Exceptions.DomainException">
+            <summary>
+            Base class for all domain-specific exceptions
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException">
+            <summary>
+            Exception thrown when attempting to register with an email that already exists
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.Email">
+            <summary>
+            Gets the email that already exists
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the EmailAlreadyExistsException
+            </summary>
+            <param name="email">The email that already exists</param>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the EmailAlreadyExistsException with custom message
+            </summary>
+            <param name="email">The email that already exists</param>
+            <param name="message">Custom error message</param>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.EmailAlreadyExistsException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the EmailAlreadyExistsException with custom message and inner exception
+            </summary>
+            <param name="email">The email that already exists</param>
+            <param name="message">Custom error message</param>
+            <param name="innerException">Inner exception</param>
+        </member>
+        <member name="T:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException">
+            <summary>
+            Exception thrown when attempting to register with a phone number that already exists
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.PhoneNumber">
+            <summary>
+            Gets the phone number that already exists
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the PhoneNumberAlreadyExistsException
+            </summary>
+            <param name="phoneNumber">The phone number that already exists</param>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the PhoneNumberAlreadyExistsException with custom message
+            </summary>
+            <param name="phoneNumber">The phone number that already exists</param>
+            <param name="message">Custom error message</param>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.PhoneNumberAlreadyExistsException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the PhoneNumberAlreadyExistsException with custom message and inner exception
+            </summary>
+            <param name="phoneNumber">The phone number that already exists</param>
+            <param name="message">Custom error message</param>
+            <param name="innerException">Inner exception</param>
+        </member>
+        <member name="T:ShopFlow.Domain.Exceptions.UserRegistrationException">
+            <summary>
+            Exception thrown when user registration fails due to business rule violations
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.Exceptions.UserRegistrationException.Reason">
+            <summary>
+            Gets the registration failure reason
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.UserRegistrationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the UserRegistrationException
+            </summary>
+            <param name="reason">The reason for registration failure</param>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.UserRegistrationException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the UserRegistrationException with custom message
+            </summary>
+            <param name="reason">The reason for registration failure</param>
+            <param name="message">Custom error message</param>
+        </member>
+        <member name="M:ShopFlow.Domain.Exceptions.UserRegistrationException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the UserRegistrationException with custom message and inner exception
+            </summary>
+            <param name="reason">The reason for registration failure</param>
+            <param name="message">Custom error message</param>
+            <param name="innerException">Inner exception</param>
+        </member>
         <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventDispatcher">
             <summary>
             Abstraction for publishing domain events without external dependencies
@@ -89,6 +248,93 @@
             Abstraction for handling domain events without external dependencies
             </summary>
             <typeparam name="TDomainEvent">The type of domain event to handle</typeparam>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.Email">
+            <summary>
+            Value object representing an email address with validation
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.ValueObjects.Email.Value">
+            <summary>
+            Gets the normalized email value
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the Email class
+            </summary>
+            <param name="value">The email string to validate and normalize</param>
+            <exception cref="T:System.ArgumentException">Thrown when email is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.IsValid(System.String)">
+            <summary>
+            Validates if a string is a valid email format
+            </summary>
+            <param name="email">Email string to validate</param>
+            <returns>True if valid, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.FromString(System.String)">
+            <summary>
+            Creates an Email from a string value
+            </summary>
+            <param name="value">The email string</param>
+            <returns>Email instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.op_Implicit(ShopFlow.Domain.ValueObjects.Email)~System.String">
+            <summary>
+            Converts Email to string implicitly
+            </summary>
+            <param name="email">Email instance</param>
+            <returns>String representation</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.op_Explicit(System.String)~ShopFlow.Domain.ValueObjects.Email">
+            <summary>
+            Converts string to Email explicitly
+            </summary>
+            <param name="value">String value</param>
+            <returns>Email instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.Equals(ShopFlow.Domain.ValueObjects.Email)">
+            <summary>
+            Determines whether this instance and another Email are equal
+            </summary>
+            <param name="other">Email to compare with</param>
+            <returns>True if equal, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.Equals(System.Object)">
+            <summary>
+            Determines whether this instance and the specified object are equal
+            </summary>
+            <param name="obj">Object to compare with</param>
+            <returns>True if equal, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.GetHashCode">
+            <summary>
+            Gets the hash code for this instance
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.ToString">
+            <summary>
+            Returns the string representation of the email
+            </summary>
+            <returns>Email value as string</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.op_Equality(ShopFlow.Domain.ValueObjects.Email,ShopFlow.Domain.ValueObjects.Email)">
+            <summary>
+            Determines whether two Email instances are equal
+            </summary>
+            <param name="left">Left operand</param>
+            <param name="right">Right operand</param>
+            <returns>True if equal, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.Email.op_Inequality(ShopFlow.Domain.ValueObjects.Email,ShopFlow.Domain.ValueObjects.Email)">
+            <summary>
+            Determines whether two Email instances are not equal
+            </summary>
+            <param name="left">Left operand</param>
+            <param name="right">Right operand</param>
+            <returns>True if not equal, false otherwise</returns>
         </member>
         <member name="T:ShopFlow.Domain.ValueObjects.PhoneNumber">
             <summary>
