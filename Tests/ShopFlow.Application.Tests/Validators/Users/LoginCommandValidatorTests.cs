@@ -129,7 +129,7 @@ public class LoginCommandValidatorTests
         var result = _validator.TestValidate(command);
 
         // Assert
-        result.ShouldNotHaveValidationErrors(x => x.Email);
+        result.ShouldNotHaveValidationErrorFor(x => x.Email);
     }
 
     [Fact]
@@ -142,7 +142,7 @@ public class LoginCommandValidatorTests
         var result = _validator.TestValidate(command);
 
         // Assert
-        result.ShouldNotHaveValidationErrors(x => x.Password);
+        result.ShouldNotHaveValidationErrorFor(x => x.Password);
     }
 
     [Fact]
@@ -156,7 +156,7 @@ public class LoginCommandValidatorTests
         var result = _validator.TestValidate(command);
 
         // Assert
-        result.ShouldNotHaveValidationErrors(x => x.Password);
+        result.ShouldNotHaveValidationErrorFor(x => x.Password);
     }
 
     [Fact]
@@ -171,7 +171,7 @@ public class LoginCommandValidatorTests
         // Assert
         result.ShouldHaveValidationErrorFor(x => x.Email);
         result.ShouldHaveValidationErrorFor(x => x.Password);
-        result.Errors.Should().HaveCount(2);
+        result.Errors.Should().HaveCount(3); // Email required, Invalid email format, Password too short
     }
 
     [Theory]
@@ -187,6 +187,6 @@ public class LoginCommandValidatorTests
         var result = _validator.TestValidate(command);
 
         // Assert
-        result.ShouldNotHaveValidationErrors(x => x.Email);
+        result.ShouldNotHaveValidationErrorFor(x => x.Email);
     }
 }

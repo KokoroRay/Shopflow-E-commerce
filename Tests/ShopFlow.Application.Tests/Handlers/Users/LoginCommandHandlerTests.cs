@@ -273,11 +273,11 @@ public class LoginCommandHandlerTests
     private static CoreUser CreateTestUser(Email email, UserStatus status = UserStatus.Active)
     {
         var user = new CoreUser(email, "hashedPassword123");
-        
+
         // Use reflection to set the status since it might be private set
         var statusProperty = typeof(CoreUser).GetProperty("Status");
         statusProperty?.SetValue(user, status);
-        
+
         // Set ID using reflection
         var idProperty = typeof(CoreUser).GetProperty("Id");
         idProperty?.SetValue(user, 123L);

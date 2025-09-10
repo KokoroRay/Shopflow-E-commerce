@@ -1,0 +1,337 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Solution",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/ShopFlow/ShopFlow.sln",
+        "--configuration",
+        "Debug",
+        "--verbosity",
+        "normal"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Build Solution Release",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/ShopFlow/ShopFlow.sln",
+        "--configuration",
+        "Release",
+        "--verbosity",
+        "normal"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Run All Tests",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/ShopFlow/ShopFlow.sln",
+        "--configuration",
+        "Debug",
+        "--verbosity",
+        "normal",
+        "--logger",
+        "console"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Run All Tests with Coverage",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/ShopFlow/ShopFlow.sln",
+        "--configuration",
+        "Debug",
+        "--verbosity",
+        "normal",
+        "--collect:XPlat Code Coverage",
+        "--settings",
+        "${workspaceFolder}/Tests/coverlet.runsettings",
+        "--results-directory",
+        "${workspaceFolder}/TestResults"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Run Login Functionality Tests",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/Tests/ShopFlow.Application.Tests/ShopFlow.Application.Tests.csproj",
+        "--filter",
+        "FullyQualifiedName~LoginCommandHandlerTests|FullyQualifiedName~LoginCommandValidatorTests|FullyQualifiedName~UsersControllerLoginTests",
+        "--configuration",
+        "Debug",
+        "--verbosity",
+        "detailed",
+        "--logger",
+        "console"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Run Unit Tests Only",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/Tests/ShopFlow.Application.Tests/ShopFlow.Application.Tests.csproj",
+        "--configuration",
+        "Debug",
+        "--verbosity",
+        "normal",
+        "--logger",
+        "console"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Run Integration Tests Only",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/Tests/ShopFlow.Integration.Tests/ShopFlow.Integration.Tests.csproj",
+        "--configuration",
+        "Debug",
+        "--verbosity",
+        "normal",
+        "--logger",
+        "console"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Generate Coverage Report",
+      "type": "shell",
+      "command": "reportgenerator",
+      "args": [
+        "-reports:${workspaceFolder}/TestResults/**/coverage.cobertura.xml",
+        "-targetdir:${workspaceFolder}/TestResults/CoverageReport",
+        "-reporttypes:Html;JsonSummary;Cobertura",
+        "-verbosity:Info"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "dependsOrder": "sequence",
+      "dependsOn": "Run All Tests with Coverage"
+    },
+    {
+      "label": "Install Coverage Tools",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "tool",
+        "install",
+        "--global",
+        "dotnet-reportgenerator-globaltool"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Clean Solution",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "clean",
+        "${workspaceFolder}/ShopFlow/ShopFlow.sln"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Restore Dependencies",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "restore",
+        "${workspaceFolder}/ShopFlow/ShopFlow.sln"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Full Development Workflow",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean Solution",
+        "Restore Dependencies", 
+        "Build Solution",
+        "Run All Tests with Coverage",
+        "Generate Coverage Report"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Quick Test Login Features",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Build Solution",
+        "Run Login Functionality Tests"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Run API",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/ShopFlow/ShopFlow.API/ShopFlow.API.csproj",
+        "--configuration",
+        "Debug"
+      ],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Security Scan",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "list",
+        "package",
+        "--vulnerable",
+        "--include-transitive"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ShopFlow"
+      },
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Check Deprecated Packages",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "list",
+        "package",
+        "--deprecated"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ShopFlow"
+      },
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    }
+  ]
+}
