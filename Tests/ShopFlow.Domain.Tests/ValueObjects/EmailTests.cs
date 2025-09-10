@@ -92,7 +92,7 @@ public class EmailTests : DomainTestBase
         var email = new Email(emailWithSpaces);
 
         // Assert
-        email.Value.Should().Be("TEST@EXAMPLE.COM"); // Should be trimmed and normalized to uppercase
+        email.Value.Should().Be("test@example.com"); // Should be trimmed and normalized to lowercase
     }
 
     [Theory]

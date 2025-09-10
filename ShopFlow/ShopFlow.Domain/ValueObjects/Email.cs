@@ -33,7 +33,7 @@ public sealed class Email : IEquatable<Email>
         if (!EmailRegex.IsMatch(trimmedValue))
             throw new ArgumentException("Invalid email format", nameof(value));
 
-        Value = trimmedValue.ToUpperInvariant();
+        Value = trimmedValue.ToLowerInvariant();
     }
 
     /// <summary>
