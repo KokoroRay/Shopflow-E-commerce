@@ -155,6 +155,16 @@
         <member name="P:ShopFlow.Application.Commands.Users.ForgotPasswordResponse.ExpiresInMinutes">
             <summary>Time until OTP expires (only if successful)</summary>
         </member>
+        <member name="T:ShopFlow.Application.Commands.Users.LoginCommand">
+            <summary>
+            Command to authenticate a user
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Users.LoginCommand.#ctor(System.String,System.String)">
+            <summary>
+            Command to authenticate a user
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Commands.Users.RegisterUserCommand">
             <summary>
             Command to register a new user
@@ -220,6 +230,21 @@
             The email address to send the reset OTP to
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Contracts.Requests.LoginRequest">
+            <summary>
+            Request model for user login
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.LoginRequest.Email">
+            <summary>
+            User's email address
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.LoginRequest.Password">
+            <summary>
+            User's password
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Contracts.Requests.RegisterUserRequest">
             <summary>
             Request model for user registration
@@ -280,6 +305,56 @@
             Confirmation of the new password
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Contracts.Response.LoginResponse">
+            <summary>
+            Response model for successful user login
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.LoginResponse.AccessToken">
+            <summary>
+            JWT access token for authentication
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.LoginResponse.RefreshToken">
+            <summary>
+            Refresh token for renewing access tokens
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.LoginResponse.ExpiresAt">
+            <summary>
+            Token expiration time in UTC
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.LoginResponse.User">
+            <summary>
+            User information
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Contracts.Response.UserInfo">
+            <summary>
+            User information included in login response
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.UserInfo.Id">
+            <summary>
+            User ID
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.UserInfo.Email">
+            <summary>
+            User's email address
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.UserInfo.FullName">
+            <summary>
+            User's full name
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.UserInfo.Roles">
+            <summary>
+            User roles
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Contracts.Response.ForgotPasswordResponse">
             <summary>
             Response for forgot password request
@@ -327,6 +402,11 @@
             <param name="services">The service collection to add services to</param>
             <returns>The service collection for chaining</returns>
         </member>
+        <member name="T:ShopFlow.Application.Exceptions.AuthenticationException">
+            <summary>
+            Exception thrown when authentication fails
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Exceptions.EmailAlreadyExistsException">
             <summary>
             Exception thrown when attempting to register with an email that already exists
@@ -356,6 +436,21 @@
         <member name="M:ShopFlow.Application.Handlers.Users.ForgotPasswordCommandHandler.Handle(ShopFlow.Application.Commands.Users.ForgotPasswordCommand,System.Threading.CancellationToken)">
             <summary>
             Handles the forgot password command
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Users.LoginCommandHandler">
+            <summary>
+            Handler for LoginCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.LoginCommandHandler.#ctor(ShopFlow.Application.Abstractions.Repositories.IUserRepository,ShopFlow.Application.Abstractions.Security.IPasswordHasher,ShopFlow.Application.Abstractions.Security.IJwtTokenService,Microsoft.Extensions.Logging.ILogger{ShopFlow.Application.Handlers.Users.LoginCommandHandler})">
+            <summary>
+            Initializes a new instance of the LoginCommandHandler class
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.LoginCommandHandler.Handle(ShopFlow.Application.Commands.Users.LoginCommand,System.Threading.CancellationToken)">
+            <summary>
+            Handles the LoginCommand
             </summary>
         </member>
         <member name="T:ShopFlow.Application.Handlers.Users.RegisterUserCommandHandler">
@@ -411,6 +506,21 @@
             </summary>
             <param name="email">The email to validate</param>
             <returns>True if valid, false otherwise</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Validators.Users.LoginCommandValidator">
+            <summary>
+            Validator for LoginCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.LoginCommandValidator.#ctor">
+            <summary>
+            Initializes a new instance of the LoginCommandValidator class
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.LoginCommandValidator.BeValidEmail(System.String)">
+            <summary>
+            Validates if the email format is correct
+            </summary>
         </member>
         <member name="T:ShopFlow.Application.Validators.Users.RegisterUserCommandValidator">
             <summary>

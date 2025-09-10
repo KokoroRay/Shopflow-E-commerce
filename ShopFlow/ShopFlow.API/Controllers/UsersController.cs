@@ -131,4 +131,22 @@ public class UsersController : ControllerBase
             Message = result.Message
         });
     }
+
+    /// <summary>
+    /// Authenticates a user and returns access tokens
+    /// </summary>
+    /// <param name="request">Login request</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>Login response with access tokens</returns>
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)
+    {
+        if (request == null)
+            return BadRequest("Request cannot be null");
+
+        var command = new LoginCommand(request.Email, request.Password);
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+
+        return Ok(result);
+    }
 }
