@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="coverlet.msbuild" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
@@ -18,11 +19,13 @@
     <PackageReference Include="AutoFixture.Xunit2" Version="4.18.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="FluentValidation" Version="11.8.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\ShopFlow\ShopFlow.Application\ShopFlow.Application.csproj" />
     <ProjectReference Include="..\..\ShopFlow\ShopFlow.Domain\ShopFlow.Domain.csproj" />
+    <ProjectReference Include="..\..\ShopFlow\ShopFlow.API\ShopFlow.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
