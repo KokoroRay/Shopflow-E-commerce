@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShopFlow.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fbf1575a66dee3725d1b5b46303edb1f01d997c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3b1096859ac3284aef4b3a5622207c04a96f905")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShopFlow.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShopFlow.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
