@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShopFlow.Domain.Entities;
+using ShopFlow.Domain.ValueObjects;
 
 namespace ShopFlow.Infrastructure.Persistence;
 
@@ -9,11 +10,10 @@ public class ShopFlowDbContext : DbContext
     {
     }
 
-    // Domain entities only
     public DbSet<CoreUser> Users { get; set; }
     public DbSet<CatProduct> Products { get; set; }
     public DbSet<Cart> Carts { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Configure domain entities
@@ -23,17 +23,17 @@ public class ShopFlowDbContext : DbContext
             entity.OwnsOne(e => e.Email);
             entity.OwnsOne(e => e.Phone);
         });
-        
+
         modelBuilder.Entity<CatProduct>(entity =>
         {
             entity.HasKey(e => e.Id);
         });
-        
+
         modelBuilder.Entity<Cart>(entity =>
         {
             entity.HasKey(e => e.Id);
         });
-        
+
         base.OnModelCreating(modelBuilder);
     }
 }

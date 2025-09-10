@@ -4,6 +4,157 @@
         <name>ShopFlow.Application</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository">
+            <summary>
+            Repository interface for managing password reset tokens
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository.GetByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Gets a password reset token by its ID
+            </summary>
+            <param name="id">The token ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The password reset token if found, null otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository.GetByEmailAsync(ShopFlow.Domain.ValueObjects.Email,System.Threading.CancellationToken)">
+            <summary>
+            Gets the latest active password reset token for an email
+            </summary>
+            <param name="email">The email address</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The latest active token if found, null otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository.AddAsync(ShopFlow.Domain.Entities.PasswordResetToken,System.Threading.CancellationToken)">
+            <summary>
+            Adds a new password reset token
+            </summary>
+            <param name="token">The token to add</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The added token</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository.UpdateAsync(ShopFlow.Domain.Entities.PasswordResetToken,System.Threading.CancellationToken)">
+            <summary>
+            Updates an existing password reset token
+            </summary>
+            <param name="token">The token to update</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The updated token</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository.DeleteExpiredTokensAsync(System.Threading.CancellationToken)">
+            <summary>
+            Deletes expired tokens
+            </summary>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Task representing the cleanup operation</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Services.IEmailService">
+            <summary>
+            Service interface for sending emails
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IEmailService.SendPasswordResetOtpAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Sends a password reset OTP email to the specified recipient
+            </summary>
+            <param name="toEmail">The recipient's email address</param>
+            <param name="otpCode">The OTP code to include in the email</param>
+            <param name="expirationMinutes">The expiration time in minutes</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>A task representing the async operation</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IEmailService.SendPasswordResetConfirmationAsync(System.String,System.DateTime,System.Threading.CancellationToken)">
+            <summary>
+            Sends a password reset confirmation email
+            </summary>
+            <param name="toEmail">The recipient's email address</param>
+            <param name="resetDateTime">When the password was reset</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>A task representing the async operation</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IEmailService.SendEmailAsync(System.String,System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a generic email with subject and body
+            </summary>
+            <param name="toEmail">The recipient's email address</param>
+            <param name="subject">The email subject</param>
+            <param name="body">The email body</param>
+            <param name="isHtml">Whether the body is HTML formatted</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>A task representing the async operation</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Services.IOtpService">
+            <summary>
+            Service interface for OTP generation and validation
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IOtpService.GenerateOtp(System.Int32)">
+            <summary>
+            Generates a new OTP code with specified expiration
+            </summary>
+            <param name="expirationMinutes">The expiration time in minutes (default: 15)</param>
+            <returns>A new OtpCode instance</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IOtpService.IsValidOtpFormat(System.String)">
+            <summary>
+            Validates if the provided OTP code matches the expected format
+            </summary>
+            <param name="otpCode">The OTP code to validate</param>
+            <returns>True if valid format, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IOtpService.GenerateOtpString">
+            <summary>
+            Generates a secure random OTP code as string
+            </summary>
+            <returns>6-digit OTP string</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IOtpService.IsOtpValid(ShopFlow.Domain.ValueObjects.OtpCode)">
+            <summary>
+            Validates if the OTP code is not expired
+            </summary>
+            <param name="otpCode">The OTP code to check</param>
+            <returns>True if not expired, false otherwise</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Users.ForgotPasswordCommand">
+            <summary>
+            Command to initiate a password reset process by sending OTP to user's email
+            </summary>
+            <param name="Email">The email address to send the reset OTP to</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Users.ForgotPasswordCommand.#ctor(System.String)">
+            <summary>
+            Command to initiate a password reset process by sending OTP to user's email
+            </summary>
+            <param name="Email">The email address to send the reset OTP to</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ForgotPasswordCommand.Email">
+            <summary>The email address to send the reset OTP to</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Users.ForgotPasswordResponse">
+            <summary>
+            Response for the forgot password command
+            </summary>
+            <param name="Success">Whether the request was successful</param>
+            <param name="Message">Status message</param>
+            <param name="ExpiresInMinutes">Time until OTP expires (only if successful)</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Users.ForgotPasswordResponse.#ctor(System.Boolean,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Response for the forgot password command
+            </summary>
+            <param name="Success">Whether the request was successful</param>
+            <param name="Message">Status message</param>
+            <param name="ExpiresInMinutes">Time until OTP expires (only if successful)</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ForgotPasswordResponse.Success">
+            <summary>Whether the request was successful</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ForgotPasswordResponse.Message">
+            <summary>Status message</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ForgotPasswordResponse.ExpiresInMinutes">
+            <summary>Time until OTP expires (only if successful)</summary>
+        </member>
         <member name="T:ShopFlow.Application.Commands.Users.RegisterUserCommand">
             <summary>
             Command to register a new user
@@ -12,6 +163,61 @@
         <member name="M:ShopFlow.Application.Commands.Users.RegisterUserCommand.#ctor(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime})">
             <summary>
             Command to register a new user
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Users.ResetPasswordCommand">
+            <summary>
+            Command to reset user password using OTP verification
+            </summary>
+            <param name="Email">The email address of the user</param>
+            <param name="OtpCode">The OTP code received via email</param>
+            <param name="NewPassword">The new password to set</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Users.ResetPasswordCommand.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Command to reset user password using OTP verification
+            </summary>
+            <param name="Email">The email address of the user</param>
+            <param name="OtpCode">The OTP code received via email</param>
+            <param name="NewPassword">The new password to set</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ResetPasswordCommand.Email">
+            <summary>The email address of the user</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ResetPasswordCommand.OtpCode">
+            <summary>The OTP code received via email</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ResetPasswordCommand.NewPassword">
+            <summary>The new password to set</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Users.ResetPasswordResponse">
+            <summary>
+            Response for the reset password command
+            </summary>
+            <param name="Success">Whether the password reset was successful</param>
+            <param name="Message">Status message</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Users.ResetPasswordResponse.#ctor(System.Boolean,System.String)">
+            <summary>
+            Response for the reset password command
+            </summary>
+            <param name="Success">Whether the password reset was successful</param>
+            <param name="Message">Status message</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ResetPasswordResponse.Success">
+            <summary>Whether the password reset was successful</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Users.ResetPasswordResponse.Message">
+            <summary>Status message</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Contracts.Requests.ForgotPasswordRequest">
+            <summary>
+            Request to initiate a password reset process
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.ForgotPasswordRequest.Email">
+            <summary>
+            The email address to send the reset OTP to
             </summary>
         </member>
         <member name="T:ShopFlow.Application.Contracts.Requests.RegisterUserRequest">
@@ -49,6 +255,66 @@
             Gets or sets the date of birth (optional)
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Contracts.Requests.ResetPasswordRequest">
+            <summary>
+            Request to reset user password using OTP verification
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.ResetPasswordRequest.Email">
+            <summary>
+            The email address of the user
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.ResetPasswordRequest.OtpCode">
+            <summary>
+            The OTP code received via email
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.ResetPasswordRequest.NewPassword">
+            <summary>
+            The new password to set
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Requests.ResetPasswordRequest.ConfirmPassword">
+            <summary>
+            Confirmation of the new password
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Contracts.Response.ForgotPasswordResponse">
+            <summary>
+            Response for forgot password request
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.ForgotPasswordResponse.Success">
+            <summary>
+            Whether the request was successful
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.ForgotPasswordResponse.Message">
+            <summary>
+            Status message
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.ForgotPasswordResponse.ExpiresInMinutes">
+            <summary>
+            Time until OTP expires in minutes (only if successful)
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Contracts.Response.ResetPasswordResponse">
+            <summary>
+            Response for reset password request
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.ResetPasswordResponse.Success">
+            <summary>
+            Whether the password reset was successful
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.ResetPasswordResponse.Message">
+            <summary>
+            Status message
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.ServiceCollectionExtensions">
             <summary>
             Extension methods for IServiceCollection to configure Application services
@@ -77,6 +343,21 @@
             Gets the email that already exists
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Handlers.Users.ForgotPasswordCommandHandler">
+            <summary>
+            Handler for the ForgotPasswordCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.ForgotPasswordCommandHandler.#ctor(ShopFlow.Application.Abstractions.Repositories.IUserRepository,ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository,ShopFlow.Application.Abstractions.Services.IEmailService,ShopFlow.Application.Abstractions.Services.IOtpService,ShopFlow.Application.Abstractions.Messaging.IDomainEventPublisher,Microsoft.Extensions.Logging.ILogger{ShopFlow.Application.Handlers.Users.ForgotPasswordCommandHandler})">
+            <summary>
+            Initializes a new instance of the ForgotPasswordCommandHandler
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.ForgotPasswordCommandHandler.Handle(ShopFlow.Application.Commands.Users.ForgotPasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Handles the forgot password command
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Handlers.Users.RegisterUserCommandHandler">
             <summary>
             Handler for RegisterUserCommand
@@ -99,6 +380,38 @@
             <param name="cancellationToken">Cancellation token</param>
             <returns>User response</returns>
         </member>
+        <member name="T:ShopFlow.Application.Handlers.Users.ResetPasswordCommandHandler">
+            <summary>
+            Handler for the ResetPasswordCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.ResetPasswordCommandHandler.#ctor(ShopFlow.Application.Abstractions.Repositories.IUserRepository,ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository,ShopFlow.Application.Abstractions.Security.IPasswordHasher,ShopFlow.Application.Abstractions.Services.IEmailService,ShopFlow.Application.Abstractions.Messaging.IDomainEventPublisher,Microsoft.Extensions.Logging.ILogger{ShopFlow.Application.Handlers.Users.ResetPasswordCommandHandler})">
+            <summary>
+            Initializes a new instance of the ResetPasswordCommandHandler
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Handlers.Users.ResetPasswordCommandHandler.Handle(ShopFlow.Application.Commands.Users.ResetPasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Handles the reset password command
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Validators.Users.ForgotPasswordCommandValidator">
+            <summary>
+            Validator for the ForgotPasswordCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.ForgotPasswordCommandValidator.#ctor">
+            <summary>
+            Initializes a new instance of the ForgotPasswordCommandValidator
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.ForgotPasswordCommandValidator.BeValidEmailFormat(System.String)">
+            <summary>
+            Validates if the email format is valid using the Email value object
+            </summary>
+            <param name="email">The email to validate</param>
+            <returns>True if valid, false otherwise</returns>
+        </member>
         <member name="T:ShopFlow.Application.Validators.Users.RegisterUserCommandValidator">
             <summary>
             Validator for RegisterUserCommand
@@ -108,6 +421,30 @@
             <summary>
             Initializes a new instance of the RegisterUserCommandValidator class
             </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Validators.Users.ResetPasswordCommandValidator">
+            <summary>
+            Validator for the ResetPasswordCommand
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.ResetPasswordCommandValidator.#ctor">
+            <summary>
+            Initializes a new instance of the ResetPasswordCommandValidator
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.ResetPasswordCommandValidator.BeValidEmailFormat(System.String)">
+            <summary>
+            Validates if the email format is valid using the Email value object
+            </summary>
+            <param name="email">The email to validate</param>
+            <returns>True if valid, false otherwise</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Validators.Users.ResetPasswordCommandValidator.BeValidOtpFormat(System.String)">
+            <summary>
+            Validates if the OTP code format is valid using the OtpCode value object
+            </summary>
+            <param name="otpCode">The OTP code to validate</param>
+            <returns>True if valid, false otherwise</returns>
         </member>
     </members>
 </doc>

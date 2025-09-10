@@ -30,6 +30,9 @@ public static class ServiceCollectionExtensions
         var cs = config.GetConnectionString("Default");
         services.AddDbContext<ShopFlowDbContext>(opt => opt.UseSqlServer(cs));
 
+        // Add Memory Cache for password reset tokens
+        services.AddMemoryCache();
+
         // Generic Repositories & UnitOfWork (keep for backward compatibility)
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -37,6 +40,8 @@ public static class ServiceCollectionExtensions
         // Domain-specific Repositories
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        // Repositories
+        services.AddScoped<IPasswordResetTokenRepository, PasswordResetTokenInMemoryRepository>();
 
         // Domain Event Publisher
         services.AddScoped<IDomainEventPublisher, DomainEventPublisher>();
@@ -53,6 +58,10 @@ public static class ServiceCollectionExtensions
 
         // Cache Service
         services.AddScoped<ICacheService, CacheService>();
+
+        // Email and OTP Services
+        services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IOtpService, OtpService>();
 
         // Domain Event Dispatcher
         services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
