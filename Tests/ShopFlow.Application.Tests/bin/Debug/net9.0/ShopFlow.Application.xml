@@ -48,6 +48,156 @@
             <param name="cancellationToken">Cancellation token</param>
             <returns>Task representing the cleanup operation</returns>
         </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RequireRoleAttribute">
+            <summary>
+            Attribute to specify required roles for an action or controller
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.RequireRoleAttribute.Roles">
+            <summary>
+            Required roles
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.RequireRoleAttribute.RequireAllRoles">
+            <summary>
+            Indicates if all roles are required (true) or any role is sufficient (false)
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.RequireRoleAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance with multiple roles
+            </summary>
+            <param name="roles">Required roles</param>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.RequireRoleAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance with a single role
+            </summary>
+            <param name="role">Required role</param>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RequirePermissionAttribute">
+            <summary>
+            Attribute to specify required permissions for an action or controller
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.RequirePermissionAttribute.Permissions">
+            <summary>
+            Required permissions
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.RequirePermissionAttribute.RequireAllPermissions">
+            <summary>
+            Indicates if all permissions are required (true) or any permission is sufficient (false)
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.RequirePermissionAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance with multiple permissions
+            </summary>
+            <param name="permissions">Required permissions</param>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.RequirePermissionAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance with a single permission
+            </summary>
+            <param name="permission">Required permission</param>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes">
+            <summary>
+            Predefined authorization attributes for common roles
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes.AdminOnlyAttribute">
+            <summary>
+            Require Admin role
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes.ModeratorOnlyAttribute">
+            <summary>
+            Require Moderator role
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes.CustomerOnlyAttribute">
+            <summary>
+            Require Customer role
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes.StaffOnlyAttribute">
+            <summary>
+            Require Staff roles (Admin, Moderator, Vendor Staff, Warehouse Staff)
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes.AdminOrModeratorAttribute">
+            <summary>
+            Require Admin or Moderator role
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes.VendorStaffOnlyAttribute">
+            <summary>
+            Require Vendor Staff role
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleAttributes.WarehouseStaffOnlyAttribute">
+            <summary>
+            Require Warehouse Staff role
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.RoleRequirement">
+            <summary>
+            Authorization requirement for role-based access control
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.RoleRequirement.RequiredRoles">
+            <summary>
+            Required roles for authorization
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.RoleRequirement.RequireAllRoles">
+            <summary>
+            Indicates if the user must have ALL roles (true) or ANY role (false)
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.RoleRequirement.#ctor(System.String[],System.Boolean)">
+            <summary>
+            Initializes a new instance of the RoleRequirement class
+            </summary>
+            <param name="requiredRoles">Required roles</param>
+            <param name="requireAllRoles">Require all roles or any role</param>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.RoleRequirement.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the RoleRequirement class with a single role
+            </summary>
+            <param name="requiredRole">Required role</param>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Security.PermissionRequirement">
+            <summary>
+            Authorization requirement for permission-based access control
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.PermissionRequirement.RequiredPermissions">
+            <summary>
+            Required permissions for authorization
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Security.PermissionRequirement.RequireAllPermissions">
+            <summary>
+            Indicates if the user must have ALL permissions (true) or ANY permission (false)
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.PermissionRequirement.#ctor(System.String[],System.Boolean)">
+            <summary>
+            Initializes a new instance of the PermissionRequirement class
+            </summary>
+            <param name="requiredPermissions">Required permissions</param>
+            <param name="requireAllPermissions">Require all permissions or any permission</param>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Security.PermissionRequirement.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the PermissionRequirement class with a single permission
+            </summary>
+            <param name="requiredPermission">Required permission</param>
+        </member>
         <member name="T:ShopFlow.Application.Abstractions.Services.IEmailService">
             <summary>
             Service interface for sending emails
@@ -114,6 +264,180 @@
             </summary>
             <param name="otpCode">The OTP code to check</param>
             <returns>True if not expired, false otherwise</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Services.IPageRoutingService">
+            <summary>
+            Service for determining role-based page routing after login
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IPageRoutingService.GetDefaultPageForRole(System.String)">
+            <summary>
+            Gets the default page URL based on user's primary role
+            </summary>
+            <param name="primaryRole">Primary role code</param>
+            <returns>Default page URL</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IPageRoutingService.GetAllowedPagesForRole(System.String)">
+            <summary>
+            Gets allowed pages for a specific role
+            </summary>
+            <param name="roleCode">Role code</param>
+            <returns>List of allowed page URLs</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IPageRoutingService.CanRoleAccessPage(System.String,System.String)">
+            <summary>
+            Checks if a role can access a specific page
+            </summary>
+            <param name="roleCode">Role code</param>
+            <param name="pageUrl">Page URL</param>
+            <returns>True if role can access the page</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IPageRoutingService.GetDashboardConfig(System.String)">
+            <summary>
+            Gets the dashboard configuration for a role
+            </summary>
+            <param name="primaryRole">Primary role code</param>
+            <returns>Dashboard configuration</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Services.DashboardConfig">
+            <summary>
+            Dashboard configuration for different roles
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.DashboardConfig.Title">
+            <summary>
+            Dashboard title
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.DashboardConfig.WelcomeMessage">
+            <summary>
+            Welcome message
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.DashboardConfig.MenuItems">
+            <summary>
+            Available menu items
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.DashboardConfig.QuickActions">
+            <summary>
+            Quick action buttons
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Services.MenuItem">
+            <summary>
+            Menu item configuration
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.MenuItem.Name">
+            <summary>
+            Menu item name
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.MenuItem.Url">
+            <summary>
+            Menu item URL
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.MenuItem.Icon">
+            <summary>
+            Icon class
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.MenuItem.RequiredPermissions">
+            <summary>
+            Required permissions to view this menu item
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Services.QuickAction">
+            <summary>
+            Quick action configuration
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.QuickAction.Name">
+            <summary>
+            Action name
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.QuickAction.Url">
+            <summary>
+            Action URL
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.QuickAction.Description">
+            <summary>
+            Action description
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Abstractions.Services.QuickAction.Icon">
+            <summary>
+            Icon class
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Services.IUserRoleService">
+            <summary>
+            Service for managing user roles and permissions
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IUserRoleService.GetUserRolesAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Gets user roles by user ID
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of role codes</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IUserRoleService.GetUserPermissionsAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Gets user permissions by user ID
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of permission codes</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IUserRoleService.HasRoleAsync(System.Int64,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Checks if user has specific role
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="roleCode">Role code</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>True if user has role</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IUserRoleService.HasPermissionAsync(System.Int64,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Checks if user has specific permission
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="permissionCode">Permission code</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>True if user has permission</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IUserRoleService.AssignRoleAsync(System.Int64,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Assigns role to user
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="roleCode">Role code</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IUserRoleService.RemoveRoleAsync(System.Int64,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Removes role from user
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="roleCode">Role code</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Services.IUserRoleService.GetPrimaryRoleAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Gets user's primary role (for role-based page routing)
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Primary role code or null</returns>
         </member>
         <member name="T:ShopFlow.Application.Commands.Users.ForgotPasswordCommand">
             <summary>
@@ -355,6 +679,11 @@
             User roles
             </summary>
         </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.UserInfo.PrimaryRole">
+            <summary>
+            Primary role for determining default page/dashboard
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Contracts.Response.ForgotPasswordResponse">
             <summary>
             Response for forgot password request
@@ -443,7 +772,7 @@
             Handler for LoginCommand
             </summary>
         </member>
-        <member name="M:ShopFlow.Application.Handlers.Users.LoginCommandHandler.#ctor(ShopFlow.Application.Abstractions.Repositories.IUserRepository,ShopFlow.Application.Abstractions.Security.IPasswordHasher,ShopFlow.Application.Abstractions.Security.IJwtTokenService,Microsoft.Extensions.Logging.ILogger{ShopFlow.Application.Handlers.Users.LoginCommandHandler})">
+        <member name="M:ShopFlow.Application.Handlers.Users.LoginCommandHandler.#ctor(ShopFlow.Application.Abstractions.Repositories.IUserRepository,ShopFlow.Application.Abstractions.Security.IPasswordHasher,ShopFlow.Application.Abstractions.Security.IJwtTokenService,ShopFlow.Application.Abstractions.Services.IUserRoleService,Microsoft.Extensions.Logging.ILogger{ShopFlow.Application.Handlers.Users.LoginCommandHandler})">
             <summary>
             Initializes a new instance of the LoginCommandHandler class
             </summary>

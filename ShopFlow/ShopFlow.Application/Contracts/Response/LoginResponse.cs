@@ -50,4 +50,9 @@ public sealed record UserInfo
     /// User roles
     /// </summary>
     public IEnumerable<string> Roles { get; init; } = new List<string>();
+
+    /// <summary>
+    /// Primary role for determining default page/dashboard
+    /// </summary>
+    public string? PrimaryRole { get; init; }
 }

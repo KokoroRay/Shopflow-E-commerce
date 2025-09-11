@@ -345,6 +345,86 @@
             Returns a string representation of the token
             </summary>
         </member>
+        <member name="T:ShopFlow.Domain.Enums.PermissionCode">
+            <summary>
+            Predefined permission codes for the system
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.PermissionCode.AdminPermissions">
+            <summary>
+            Gets all admin permissions
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.PermissionCode.ModeratorPermissions">
+            <summary>
+            Gets moderator permissions
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.PermissionCode.CustomerPermissions">
+            <summary>
+            Gets customer permissions
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.PermissionCode.VendorStaffPermissions">
+            <summary>
+            Gets vendor staff permissions
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.PermissionCode.WarehouseStaffPermissions">
+            <summary>
+            Gets warehouse staff permissions
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.Enums.RoleCode">
+            <summary>
+            Predefined role codes for the system
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.ADMIN">
+            <summary>
+            System administrator with full access
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.MODERATOR">
+            <summary>
+            Content moderator with review and moderation permissions
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.CUSTOMER">
+            <summary>
+            Regular customer user
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.VENDOR_STAFF">
+            <summary>
+            Vendor staff managing vendor products and orders
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.WAREHOUSE_STAFF">
+            <summary>
+            Warehouse staff managing inventory and logistics
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.GUEST">
+            <summary>
+            Guest user with limited access (for future use)
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.AllRoles">
+            <summary>
+            Gets all valid role codes
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.StaffRoles">
+            <summary>
+            Gets staff role codes (roles with management permissions)
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.RoleCode.CustomerRoles">
+            <summary>
+            Gets customer role codes
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventDispatcher">
             <summary>
             Abstraction for publishing domain events without external dependencies

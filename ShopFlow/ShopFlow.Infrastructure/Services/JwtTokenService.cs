@@ -15,16 +15,25 @@ public class JwtTokenService : IJwtTokenService
 
     public string GenerateAccessToken(long userId, string email, IEnumerable<string> roles)
     {
+        return GenerateAccessTokenWithPermissions(userId, email, roles, new List<string>());
+    }
+
+    public string GenerateAccessTokenWithPermissions(long userId, string email, IEnumerable<string> roles, IEnumerable<string> permissions)
+    {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_secretKey);
-        
+
         var claims = new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, userId.ToString()),
             new(ClaimTypes.Email, email)
         };
-        
+
+        // Add roles
         claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+
+        // Add permissions as custom claims
+        claims.AddRange(permissions.Select(permission => new Claim("permission", permission)));
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
