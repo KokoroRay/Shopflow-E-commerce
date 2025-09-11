@@ -19,6 +19,9 @@ public static class PermissionCode
     public const string DELETE_PRODUCTS = "DELETE_PRODUCTS";
     public const string APPROVE_PRODUCTS = "APPROVE_PRODUCTS";
 
+    // Category Management
+    public const string MANAGE_CATEGORIES = "MANAGE_CATEGORIES";
+
     // Order Management
     public const string VIEW_ORDERS = "VIEW_ORDERS";
     public const string CREATE_ORDERS = "CREATE_ORDERS";
@@ -76,6 +79,7 @@ public static class PermissionCode
         EDIT_PRODUCTS,
         DELETE_PRODUCTS,
         APPROVE_PRODUCTS,
+        MANAGE_CATEGORIES,
         VIEW_ORDERS,
         CREATE_ORDERS,
         EDIT_ORDERS,

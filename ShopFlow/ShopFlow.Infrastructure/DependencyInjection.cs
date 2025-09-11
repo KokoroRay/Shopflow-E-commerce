@@ -41,6 +41,7 @@ public static class ServiceCollectionExtensions
         // Domain-specific Repositories
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        // services.AddScoped<ICategoryRepository, CategoryRepository>(); // Temporarily disabled
         // Repositories
         services.AddScoped<IPasswordResetTokenRepository, PasswordResetTokenInMemoryRepository>();
 

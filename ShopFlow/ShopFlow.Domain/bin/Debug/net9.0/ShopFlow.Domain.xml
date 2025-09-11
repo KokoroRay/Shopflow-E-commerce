@@ -4,6 +4,36 @@
         <name>ShopFlow.Domain</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Domain.DomainEvents.CategoryCreatedEvent">
+            <summary>
+            Domain event raised when a new category is created
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.DomainEvents.CategoryDeletedEvent">
+            <summary>
+            Domain event raised when a category is deleted
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.DomainEvents.CategoryParentChangedEvent">
+            <summary>
+            Domain event raised when a category parent is changed
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.DomainEvents.CategorySlugChangedEvent">
+            <summary>
+            Domain event raised when a category slug is changed
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.DomainEvents.CategoryStatusChangedEvent">
+            <summary>
+            Domain event raised when a category status is changed
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.DomainEvents.CategoryUpdatedEvent">
+            <summary>
+            Domain event raised when a category is updated
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.DomainEvents.PasswordResetConfirmedEvent">
             <summary>
             Domain event raised when a user successfully resets their password
@@ -345,6 +375,26 @@
             Returns a string representation of the token
             </summary>
         </member>
+        <member name="T:ShopFlow.Domain.Enums.CategoryStatus">
+            <summary>
+            Represents the status of a category in the system
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.CategoryStatus.Active">
+            <summary>
+            Category is active and visible to users
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.CategoryStatus.Inactive">
+            <summary>
+            Category is inactive and hidden from users
+            </summary>
+        </member>
+        <member name="F:ShopFlow.Domain.Enums.CategoryStatus.Deleted">
+            <summary>
+            Category is soft-deleted
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.Enums.PermissionCode">
             <summary>
             Predefined permission codes for the system
@@ -435,6 +485,145 @@
             Abstraction for handling domain events without external dependencies
             </summary>
             <typeparam name="TDomainEvent">The type of domain event to handle</typeparam>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.CategoryName">
+            <summary>
+            Value object representing a category name with validation
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.ValueObjects.CategoryName.Value">
+            <summary>
+            Gets the normalized category name value
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the CategoryName class
+            </summary>
+            <param name="value">The category name string to validate and normalize</param>
+            <exception cref="T:System.ArgumentException">Thrown when category name is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.op_Implicit(System.String)~ShopFlow.Domain.ValueObjects.CategoryName">
+            <summary>
+            Implicitly converts a string to CategoryName
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.op_Implicit(ShopFlow.Domain.ValueObjects.CategoryName)~System.String">
+            <summary>
+            Implicitly converts CategoryName to string
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.ToString">
+            <summary>
+            Returns the string representation of the category name
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.Equals(ShopFlow.Domain.ValueObjects.CategoryName)">
+            <summary>
+            Determines whether two CategoryName instances are equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.Equals(System.Object)">
+            <summary>
+            Determines whether two CategoryName instances are equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.GetHashCode">
+            <summary>
+            Returns the hash code for this CategoryName
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.op_Equality(ShopFlow.Domain.ValueObjects.CategoryName,ShopFlow.Domain.ValueObjects.CategoryName)">
+            <summary>
+            Determines whether two CategoryName instances are equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.op_Inequality(ShopFlow.Domain.ValueObjects.CategoryName,ShopFlow.Domain.ValueObjects.CategoryName)">
+            <summary>
+            Determines whether two CategoryName instances are not equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.FromDisplayName(System.String)">
+            <summary>
+            Creates a CategoryName from a display name by normalizing it
+            </summary>
+            <param name="displayName">The display name to normalize</param>
+            <returns>A new CategoryName instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategoryName.IsValid(System.String)">
+            <summary>
+            Validates if a string can be used as a category name
+            </summary>
+            <param name="value">The string to validate</param>
+            <returns>True if valid, false otherwise</returns>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.CategorySlug">
+            <summary>
+            Value object representing a category URL slug with validation
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Domain.ValueObjects.CategorySlug.Value">
+            <summary>
+            Gets the normalized category slug value
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the CategorySlug class
+            </summary>
+            <param name="value">The category slug string to validate and normalize</param>
+            <exception cref="T:System.ArgumentException">Thrown when category slug is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.FromName(System.String)">
+            <summary>
+            Creates a CategorySlug from a name by converting it to a slug format
+            </summary>
+            <param name="name">The name to convert to slug</param>
+            <returns>A new CategorySlug instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.FromCategoryName(ShopFlow.Domain.ValueObjects.CategoryName)">
+            <summary>
+            Creates a CategorySlug from a CategoryName
+            </summary>
+            <param name="categoryName">The category name to convert to slug</param>
+            <returns>A new CategorySlug instance</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.ToString">
+            <summary>
+            Returns the string representation of the category slug
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.Equals(ShopFlow.Domain.ValueObjects.CategorySlug)">
+            <summary>
+            Determines whether two CategorySlug instances are equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.Equals(System.Object)">
+            <summary>
+            Determines whether two CategorySlug instances are equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.GetHashCode">
+            <summary>
+            Returns the hash code for this CategorySlug
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.op_Equality(ShopFlow.Domain.ValueObjects.CategorySlug,ShopFlow.Domain.ValueObjects.CategorySlug)">
+            <summary>
+            Determines whether two CategorySlug instances are equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.op_Inequality(ShopFlow.Domain.ValueObjects.CategorySlug,ShopFlow.Domain.ValueObjects.CategorySlug)">
+            <summary>
+            Determines whether two CategorySlug instances are not equal
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.CategorySlug.IsValid(System.String)">
+            <summary>
+            Validates if a string can be used as a category slug
+            </summary>
+            <param name="value">The string to validate</param>
+            <returns>True if valid, false otherwise</returns>
         </member>
         <member name="T:ShopFlow.Domain.ValueObjects.Email">
             <summary>
