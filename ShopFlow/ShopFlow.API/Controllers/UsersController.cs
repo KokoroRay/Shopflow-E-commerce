@@ -1,15 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using MediatR;
 using Asp.Versioning;
 using ShopFlow.Application.Commands.Users;
 using ShopFlow.Application.Queries.Users;
 using ShopFlow.Application.Contracts.Requests;
+using ShopFlow.Application.Abstractions.Security;
+using ShopFlow.Domain.Enums;
+using static ShopFlow.Application.Abstractions.Security.RoleAttributes;
 
 namespace ShopFlow.API.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
+[Authorize] // Require authentication by default
 public class UsersController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -19,7 +24,12 @@ public class UsersController : ControllerBase
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Create a new user (Admin only)
+    /// </summary>
     [HttpPost]
+    [AdminOnly]
+    [RequirePermission(PermissionCode.MANAGE_USERS)]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request, CancellationToken cancellationToken)
     {
         if (request == null)
@@ -39,12 +49,13 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Registers a new user
+    /// Registers a new user (Public endpoint)
     /// </summary>
     /// <param name="request">Registration request</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>Created user response</returns>
     [HttpPost("register")]
+    [AllowAnonymous] // Allow anonymous access for registration
     public async Task<IActionResult> RegisterUser([FromBody] RegisterUserRequest request, CancellationToken cancellationToken)
     {
         if (request == null)
@@ -64,12 +75,31 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Gets a user by ID
+    /// User login (Public endpoint)
+    /// </summary>
+    /// <param name="request">Login request</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>Login response with token and user info</returns>
+    [HttpPost("login")]
+    [AllowAnonymous] // Allow anonymous access for login
+    public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)
+    {
+        if (request == null)
+            return BadRequest("Request cannot be null");
+
+        var command = new LoginCommand(request.Email, request.Password);
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Gets a user by ID (Admin or Self access)
     /// </summary>
     /// <param name="id">User ID</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>User details</returns>
     [HttpGet("{id}")]
+    [AdminOrModerator] // Admin and Moderator can view any user
     public async Task<IActionResult> GetUserById(long id, CancellationToken cancellationToken)
     {
         var query = new GetUserQuery(id);
@@ -90,6 +120,7 @@ public class UsersController : ControllerBase
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>Forgot password response</returns>
     [HttpPost("forgot-password")]
+    [AllowAnonymous] // Allow anonymous access for password reset
     public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request, CancellationToken cancellationToken)
     {
         if (request == null)
@@ -130,23 +161,5 @@ public class UsersController : ControllerBase
             Success = result.Success,
             Message = result.Message
         });
-    }
-
-    /// <summary>
-    /// Authenticates a user and returns access tokens
-    /// </summary>
-    /// <param name="request">Login request</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>Login response with access tokens</returns>
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)
-    {
-        if (request == null)
-            return BadRequest("Request cannot be null");
-
-        var command = new LoginCommand(request.Email, request.Password);
-        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
-
-        return Ok(result);
     }
 }

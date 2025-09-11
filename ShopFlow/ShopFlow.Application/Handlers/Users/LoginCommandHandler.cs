@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using ShopFlow.Application.Abstractions.Repositories;
 using ShopFlow.Application.Abstractions.Security;
+using ShopFlow.Application.Abstractions.Services;
 using ShopFlow.Application.Commands.Users;
 using ShopFlow.Application.Contracts.Response;
 using ShopFlow.Application.Exceptions;
@@ -17,6 +18,7 @@ public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, LoginRes
     private readonly IUserRepository _userRepository;
     private readonly IPasswordHasher _passwordHasher;
     private readonly IJwtTokenService _jwtTokenService;
+    private readonly IUserRoleService _userRoleService;
     private readonly ILogger<LoginCommandHandler> _logger;
 
     /// <summary>
@@ -26,11 +28,13 @@ public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, LoginRes
         IUserRepository userRepository,
         IPasswordHasher passwordHasher,
         IJwtTokenService jwtTokenService,
+        IUserRoleService userRoleService,
         ILogger<LoginCommandHandler> logger)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
         _jwtTokenService = jwtTokenService ?? throw new ArgumentNullException(nameof(jwtTokenService));
+        _userRoleService = userRoleService ?? throw new ArgumentNullException(nameof(userRoleService));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -71,11 +75,20 @@ public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, LoginRes
                 throw new AuthenticationException("User account is not active");
             }
 
-            // Get user roles (simplified - assuming Customer role for now)
-            var roles = new List<string> { "Customer" };
+            // Get user roles and permissions
+            var userRoles = await _userRoleService.GetUserRolesAsync(user.Id, cancellationToken).ConfigureAwait(false);
+            var userPermissions = await _userRoleService.GetUserPermissionsAsync(user.Id, cancellationToken).ConfigureAwait(false);
+            var primaryRole = await _userRoleService.GetPrimaryRoleAsync(user.Id, cancellationToken).ConfigureAwait(false);
 
-            // Generate tokens
-            var accessToken = _jwtTokenService.GenerateAccessToken(user.Id, user.Email.Value, roles);
+            var roles = userRoles.ToList();
+            var permissions = userPermissions.ToList();
+
+            // Generate tokens with roles and permissions
+            var accessToken = _jwtTokenService.GenerateAccessTokenWithPermissions(
+                user.Id,
+                user.Email.Value,
+                roles,
+                permissions);
             var refreshToken = _jwtTokenService.GenerateRefreshToken();
             var tokenExpiration = _jwtTokenService.GetTokenExpiration(accessToken);
 
@@ -91,7 +104,8 @@ public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, LoginRes
                     Id = user.Id,
                     Email = user.Email.Value,
                     FullName = GetUserFullName(user),
-                    Roles = roles
+                    Roles = roles,
+                    PrimaryRole = primaryRole
                 }
             };
         }

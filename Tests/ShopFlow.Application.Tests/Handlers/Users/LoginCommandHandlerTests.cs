@@ -5,6 +5,7 @@ using ShopFlow.Application.Commands.Users;
 using ShopFlow.Application.Handlers.Users;
 using ShopFlow.Application.Abstractions.Security;
 using ShopFlow.Application.Abstractions.Repositories;
+using ShopFlow.Application.Abstractions.Services;
 using ShopFlow.Application.Exceptions;
 using ShopFlow.Domain.Entities;
 using ShopFlow.Domain.ValueObjects;
@@ -20,6 +21,7 @@ public class LoginCommandHandlerTests
     private readonly Mock<IUserRepository> _userRepositoryMock;
     private readonly Mock<IPasswordHasher> _passwordHasherMock;
     private readonly Mock<IJwtTokenService> _jwtTokenServiceMock;
+    private readonly Mock<IUserRoleService> _userRoleServiceMock;
     private readonly Mock<ILogger<LoginCommandHandler>> _loggerMock;
     private readonly LoginCommandHandler _handler;
 
@@ -28,12 +30,14 @@ public class LoginCommandHandlerTests
         _userRepositoryMock = new Mock<IUserRepository>();
         _passwordHasherMock = new Mock<IPasswordHasher>();
         _jwtTokenServiceMock = new Mock<IJwtTokenService>();
+        _userRoleServiceMock = new Mock<IUserRoleService>();
         _loggerMock = new Mock<ILogger<LoginCommandHandler>>();
 
         _handler = new LoginCommandHandler(
             _userRepositoryMock.Object,
             _passwordHasherMock.Object,
             _jwtTokenServiceMock.Object,
+            _userRoleServiceMock.Object,
             _loggerMock.Object);
     }
 
@@ -47,10 +51,12 @@ public class LoginCommandHandlerTests
 
         var emailValueObject = new Email(email);
         var user = CreateTestUser(emailValueObject);
-        var hashedPassword = "hashedPassword123";
         var accessToken = "access.token.here";
         var refreshToken = "refresh.token.here";
         var tokenExpiration = DateTime.UtcNow.AddHours(1);
+        var userRoles = new List<string> { "CUSTOMER" };
+        var userPermissions = new List<string> { "PLACE_ORDERS", "VIEW_OWN_ORDERS" };
+        var primaryRole = "CUSTOMER";
 
         _userRepositoryMock
             .Setup(x => x.GetByEmailAsync(It.Is<Email>(e => e.Value == email), It.IsAny<CancellationToken>()))
@@ -60,8 +66,20 @@ public class LoginCommandHandlerTests
             .Setup(x => x.VerifyPassword(password, user.PasswordHash))
             .Returns(true);
 
+        _userRoleServiceMock
+            .Setup(x => x.GetUserRolesAsync(user.Id, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(userRoles);
+
+        _userRoleServiceMock
+            .Setup(x => x.GetUserPermissionsAsync(user.Id, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(userPermissions);
+
+        _userRoleServiceMock
+            .Setup(x => x.GetPrimaryRoleAsync(user.Id, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(primaryRole);
+
         _jwtTokenServiceMock
-            .Setup(x => x.GenerateAccessToken(user.Id, email, It.IsAny<IEnumerable<string>>()))
+            .Setup(x => x.GenerateAccessTokenWithPermissions(user.Id, email, userRoles, userPermissions))
             .Returns(accessToken);
 
         _jwtTokenServiceMock
@@ -83,12 +101,16 @@ public class LoginCommandHandlerTests
         result.User.Should().NotBeNull();
         result.User.Id.Should().Be(user.Id);
         result.User.Email.Should().Be(email);
-        result.User.Roles.Should().Contain("Customer");
+        result.User.Roles.Should().Contain("CUSTOMER");
+        result.User.PrimaryRole.Should().Be("CUSTOMER");
 
         // Verify interactions
         _userRepositoryMock.Verify(x => x.GetByEmailAsync(It.IsAny<Email>(), It.IsAny<CancellationToken>()), Times.Once);
         _passwordHasherMock.Verify(x => x.VerifyPassword(password, user.PasswordHash), Times.Once);
-        _jwtTokenServiceMock.Verify(x => x.GenerateAccessToken(user.Id, email, It.IsAny<IEnumerable<string>>()), Times.Once);
+        _userRoleServiceMock.Verify(x => x.GetUserRolesAsync(user.Id, It.IsAny<CancellationToken>()), Times.Once);
+        _userRoleServiceMock.Verify(x => x.GetUserPermissionsAsync(user.Id, It.IsAny<CancellationToken>()), Times.Once);
+        _userRoleServiceMock.Verify(x => x.GetPrimaryRoleAsync(user.Id, It.IsAny<CancellationToken>()), Times.Once);
+        _jwtTokenServiceMock.Verify(x => x.GenerateAccessTokenWithPermissions(user.Id, email, userRoles, userPermissions), Times.Once);
         _jwtTokenServiceMock.Verify(x => x.GenerateRefreshToken(), Times.Once);
         _jwtTokenServiceMock.Verify(x => x.GetTokenExpiration(accessToken), Times.Once);
     }
@@ -222,6 +244,7 @@ public class LoginCommandHandlerTests
             null!,
             _passwordHasherMock.Object,
             _jwtTokenServiceMock.Object,
+            _userRoleServiceMock.Object,
             _loggerMock.Object);
 
         act.Should().Throw<ArgumentNullException>()
@@ -236,6 +259,7 @@ public class LoginCommandHandlerTests
             _userRepositoryMock.Object,
             null!,
             _jwtTokenServiceMock.Object,
+            _userRoleServiceMock.Object,
             _loggerMock.Object);
 
         act.Should().Throw<ArgumentNullException>()
@@ -250,10 +274,26 @@ public class LoginCommandHandlerTests
             _userRepositoryMock.Object,
             _passwordHasherMock.Object,
             null!,
+            _userRoleServiceMock.Object,
             _loggerMock.Object);
 
         act.Should().Throw<ArgumentNullException>()
             .WithParameterName("jwtTokenService");
+    }
+
+    [Fact]
+    public void Constructor_WithNullUserRoleService_ShouldThrowArgumentNullException()
+    {
+        // Act & Assert
+        var act = () => new LoginCommandHandler(
+            _userRepositoryMock.Object,
+            _passwordHasherMock.Object,
+            _jwtTokenServiceMock.Object,
+            null!,
+            _loggerMock.Object);
+
+        act.Should().Throw<ArgumentNullException>()
+            .WithParameterName("userRoleService");
     }
 
     [Fact]
@@ -264,6 +304,7 @@ public class LoginCommandHandlerTests
             _userRepositoryMock.Object,
             _passwordHasherMock.Object,
             _jwtTokenServiceMock.Object,
+            _userRoleServiceMock.Object,
             null!);
 
         act.Should().Throw<ArgumentNullException>()

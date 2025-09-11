@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 using ShopFlow.Application.Abstractions.Repositories;
 using ShopFlow.Application.Abstractions.Security;
 using ShopFlow.Application.Abstractions.Mappings;
@@ -50,6 +51,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddScoped<IUserRoleService, UserRoleService>();
+        services.AddScoped<IPageRoutingService, PageRoutingService>();
         services.AddHttpContextAccessor();
 
         // Mappers
