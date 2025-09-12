@@ -12,7 +12,7 @@ public class ShopFlowDbContext : DbContext
 
     public DbSet<CoreUser> Users { get; set; }
     public DbSet<CatProduct> Products { get; set; }
-    // public DbSet<CatCategory> Categories { get; set; } // Temporarily disabled
+    public DbSet<CatCategory> Categories { get; set; }
     public DbSet<Cart> Carts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,23 +33,7 @@ public class ShopFlowDbContext : DbContext
             entity.HasKey(e => e.Id);
         });
 
-        // Temporarily disabled CatCategory entity configuration
-        /*
-        modelBuilder.Entity<CatCategory>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-            
-            // Temporarily disable value object mapping for CategoryName and CategorySlug
-            // TODO: Implement proper EF Core value object configuration
-            entity.Ignore(e => e.Name);
-            entity.Ignore(e => e.Slug);
-            
-            entity.HasOne(e => e.Parent)
-                  .WithMany(e => e.Children)
-                  .HasForeignKey(e => e.ParentId)
-                  .OnDelete(DeleteBehavior.Restrict);
-        });
-        */
+        // Configure Category entity - temporarily disabled to fix EF configuration issues
 
         modelBuilder.Entity<Cart>(entity =>
         {
