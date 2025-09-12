@@ -4,6 +4,142 @@
         <name>ShopFlow.Application</name>
     </assembly>
     <members>
+        <member name="T:ShopFlow.Application.Abstractions.Mappings.ICategoryMapper">
+            <summary>
+            Mapper interface for converting Category entities to response DTOs
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Mappings.ICategoryMapper.ToCategoryResponse(ShopFlow.Domain.Entities.CatCategory)">
+            <summary>
+            Converts a Category entity to CategoryResponse
+            </summary>
+            <param name="category">The category entity to convert</param>
+            <returns>CategoryResponse DTO</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Mappings.ICategoryMapper.ToCategoryResponseList(System.Collections.Generic.IEnumerable{ShopFlow.Domain.Entities.CatCategory})">
+            <summary>
+            Converts a collection of Category entities to CategoryResponse list
+            </summary>
+            <param name="categories">The category entities to convert</param>
+            <returns>List of CategoryResponse DTOs</returns>
+        </member>
+        <member name="T:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository">
+            <summary>
+            Repository interface for category operations
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.GetByIdAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Gets a category by its unique identifier
+            </summary>
+            <param name="id">The category identifier</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The category if found, otherwise null</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.GetBySlugAsync(ShopFlow.Domain.ValueObjects.CategorySlug,System.Threading.CancellationToken)">
+            <summary>
+            Gets a category by its slug
+            </summary>
+            <param name="slug">The category slug</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The category if found, otherwise null</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.GetByNameAsync(ShopFlow.Domain.ValueObjects.CategoryName,System.Threading.CancellationToken)">
+            <summary>
+            Gets a category by its name
+            </summary>
+            <param name="name">The category name</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The category if found, otherwise null</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.GetChildrenAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Gets all child categories of a parent category
+            </summary>
+            <param name="parentId">The parent category identifier</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Collection of child categories</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.GetRootCategoriesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets all root categories (categories without parent)
+            </summary>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Collection of root categories</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.GetCategoryHierarchyAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets categories with full hierarchy (parent and children)
+            </summary>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Collection of categories with hierarchy</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.FindAsync(ShopFlow.Application.Abstractions.Repositories.ISpecification{ShopFlow.Domain.Entities.CatCategory},System.Threading.CancellationToken)">
+            <summary>
+            Finds categories based on specification
+            </summary>
+            <param name="specification">The specification to apply</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Collection of categories matching the specification</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.ExistsBySlugAsync(ShopFlow.Domain.ValueObjects.CategorySlug,System.Threading.CancellationToken)">
+            <summary>
+            Checks if a category with the specified slug exists
+            </summary>
+            <param name="slug">The category slug</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>True if exists, otherwise false</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.ExistsByNameAsync(ShopFlow.Domain.ValueObjects.CategoryName,System.Threading.CancellationToken)">
+            <summary>
+            Checks if a category with the specified name exists
+            </summary>
+            <param name="name">The category name</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>True if exists, otherwise false</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.ExistsBySlugAsync(ShopFlow.Domain.ValueObjects.CategorySlug,System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Checks if a category with the specified slug exists, excluding a specific category
+            </summary>
+            <param name="slug">The category slug</param>
+            <param name="excludeId">The category ID to exclude from the check</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>True if exists, otherwise false</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.ExistsByNameAsync(ShopFlow.Domain.ValueObjects.CategoryName,System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Checks if a category with the specified name exists, excluding a specific category
+            </summary>
+            <param name="name">The category name</param>
+            <param name="excludeId">The category ID to exclude from the check</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>True if exists, otherwise false</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.AddAsync(ShopFlow.Domain.Entities.CatCategory,System.Threading.CancellationToken)">
+            <summary>
+            Adds a new category
+            </summary>
+            <param name="category">The category to add</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The added category</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.UpdateAsync(ShopFlow.Domain.Entities.CatCategory,System.Threading.CancellationToken)">
+            <summary>
+            Updates an existing category
+            </summary>
+            <param name="category">The category to update</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Task representing the asynchronous operation</returns>
+        </member>
+        <member name="M:ShopFlow.Application.Abstractions.Repositories.ICategoryRepository.DeleteAsync(ShopFlow.Domain.Entities.CatCategory,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a category
+            </summary>
+            <param name="category">The category to delete</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Task representing the asynchronous operation</returns>
+        </member>
         <member name="T:ShopFlow.Application.Abstractions.Repositories.IPasswordResetTokenRepository">
             <summary>
             Repository interface for managing password reset tokens
@@ -439,6 +575,151 @@
             <param name="cancellationToken">Cancellation token</param>
             <returns>Primary role code or null</returns>
         </member>
+        <member name="T:ShopFlow.Application.Commands.Categories.ActivateCategoryCommand">
+            <summary>
+            Command for activating a category
+            </summary>
+            <param name="Id">The category ID to activate</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Categories.ActivateCategoryCommand.#ctor(System.Int64)">
+            <summary>
+            Command for activating a category
+            </summary>
+            <param name="Id">The category ID to activate</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.ActivateCategoryCommand.Id">
+            <summary>The category ID to activate</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Categories.CreateCategoryCommand">
+            <summary>
+            Command for creating a new category
+            </summary>
+            <param name="Name">The category name</param>
+            <param name="Slug">The category slug</param>
+            <param name="Description">The category description</param>
+            <param name="ParentId">The parent category ID (optional)</param>
+            <param name="SortOrder">The sort order</param>
+            <param name="ImageUrl">The category image URL (optional)</param>
+            <param name="IconUrl">The category icon URL (optional)</param>
+            <param name="IsActive">Whether the category is active</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.#ctor(System.String,System.String,System.String,System.Nullable{System.Int64},System.Int32,System.String,System.String,System.Boolean)">
+            <summary>
+            Command for creating a new category
+            </summary>
+            <param name="Name">The category name</param>
+            <param name="Slug">The category slug</param>
+            <param name="Description">The category description</param>
+            <param name="ParentId">The parent category ID (optional)</param>
+            <param name="SortOrder">The sort order</param>
+            <param name="ImageUrl">The category image URL (optional)</param>
+            <param name="IconUrl">The category icon URL (optional)</param>
+            <param name="IsActive">Whether the category is active</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.Name">
+            <summary>The category name</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.Slug">
+            <summary>The category slug</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.Description">
+            <summary>The category description</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.ParentId">
+            <summary>The parent category ID (optional)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.SortOrder">
+            <summary>The sort order</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.ImageUrl">
+            <summary>The category image URL (optional)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.IconUrl">
+            <summary>The category icon URL (optional)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.CreateCategoryCommand.IsActive">
+            <summary>Whether the category is active</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Categories.DeactivateCategoryCommand">
+            <summary>
+            Command for deactivating a category
+            </summary>
+            <param name="Id">The category ID to deactivate</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Categories.DeactivateCategoryCommand.#ctor(System.Int64)">
+            <summary>
+            Command for deactivating a category
+            </summary>
+            <param name="Id">The category ID to deactivate</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.DeactivateCategoryCommand.Id">
+            <summary>The category ID to deactivate</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Categories.DeleteCategoryCommand">
+            <summary>
+            Command for deleting a category
+            </summary>
+            <param name="Id">The category ID to delete</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Categories.DeleteCategoryCommand.#ctor(System.Int64)">
+            <summary>
+            Command for deleting a category
+            </summary>
+            <param name="Id">The category ID to delete</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.DeleteCategoryCommand.Id">
+            <summary>The category ID to delete</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand">
+            <summary>
+            Command for updating an existing category
+            </summary>
+            <param name="Id">The category ID</param>
+            <param name="Name">The category name</param>
+            <param name="Slug">The category slug</param>
+            <param name="Description">The category description</param>
+            <param name="ParentId">The parent category ID (optional)</param>
+            <param name="SortOrder">The sort order</param>
+            <param name="ImageUrl">The category image URL (optional)</param>
+            <param name="IconUrl">The category icon URL (optional)</param>
+        </member>
+        <member name="M:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.#ctor(System.Int64,System.String,System.String,System.String,System.Nullable{System.Int64},System.Int32,System.String,System.String)">
+            <summary>
+            Command for updating an existing category
+            </summary>
+            <param name="Id">The category ID</param>
+            <param name="Name">The category name</param>
+            <param name="Slug">The category slug</param>
+            <param name="Description">The category description</param>
+            <param name="ParentId">The parent category ID (optional)</param>
+            <param name="SortOrder">The sort order</param>
+            <param name="ImageUrl">The category image URL (optional)</param>
+            <param name="IconUrl">The category icon URL (optional)</param>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.Id">
+            <summary>The category ID</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.Name">
+            <summary>The category name</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.Slug">
+            <summary>The category slug</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.Description">
+            <summary>The category description</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.ParentId">
+            <summary>The parent category ID (optional)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.SortOrder">
+            <summary>The sort order</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.ImageUrl">
+            <summary>The category image URL (optional)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Commands.Categories.UpdateCategoryCommand.IconUrl">
+            <summary>The category icon URL (optional)</summary>
+        </member>
         <member name="T:ShopFlow.Application.Commands.Users.ForgotPasswordCommand">
             <summary>
             Command to initiate a password reset process by sending OTP to user's email
@@ -629,6 +910,131 @@
             Confirmation of the new password
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Contracts.Response.CategoryResponse">
+            <summary>
+            Response model for category information
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.Id">
+            <summary>
+            Category identifier
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.Name">
+            <summary>
+            Category name
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.Slug">
+            <summary>
+            Category slug
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.Description">
+            <summary>
+            Category description
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.ParentId">
+            <summary>
+            Parent category identifier
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.SortOrder">
+            <summary>
+            Sort order
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.ImageUrl">
+            <summary>
+            Category image URL
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.IconUrl">
+            <summary>
+            Category icon URL
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.Status">
+            <summary>
+            Category status
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.IsActive">
+            <summary>
+            Whether the category is active
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.CreatedAt">
+            <summary>
+            Creation timestamp
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryResponse.UpdatedAt">
+            <summary>
+            Last update timestamp
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Contracts.Response.CategoryHierarchyResponse">
+            <summary>
+            Response model for category hierarchy
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryHierarchyResponse.Children">
+            <summary>
+            Child categories
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryHierarchyResponse.HasChildren">
+            <summary>
+            Whether this category has children
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryHierarchyResponse.Level">
+            <summary>
+            Depth level in the hierarchy (root = 0)
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Contracts.Response.CategoryListResponse">
+            <summary>
+            Response model for category list with pagination
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryListResponse.Categories">
+            <summary>
+            List of categories
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryListResponse.TotalCount">
+            <summary>
+            Total count of categories
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryListResponse.Page">
+            <summary>
+            Current page number
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryListResponse.PageSize">
+            <summary>
+            Page size
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryListResponse.TotalPages">
+            <summary>
+            Total pages
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryListResponse.HasNext">
+            <summary>
+            Whether there are more pages
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Contracts.Response.CategoryListResponse.HasPrevious">
+            <summary>
+            Whether there are previous pages
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Contracts.Response.LoginResponse">
             <summary>
             Response model for successful user login
@@ -752,6 +1158,51 @@
             Gets the email that already exists
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.ActivateCategoryCommandHandler">
+            <summary>
+            Handler for activating a category
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.CreateCategoryCommandHandler">
+            <summary>
+            Handler for creating a new category
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.DeactivateCategoryCommandHandler">
+            <summary>
+            Handler for deactivating a category
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.DeleteCategoryCommandHandler">
+            <summary>
+            Handler for deleting a category
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.GetCategoryBySlugQueryHandler">
+            <summary>
+            Handler for getting a category by slug
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.GetCategoryQueryHandler">
+            <summary>
+            Handler for getting a category by ID
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.GetChildCategoriesQueryHandler">
+            <summary>
+            Handler for getting child categories
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.GetRootCategoriesQueryHandler">
+            <summary>
+            Handler for getting root categories
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Handlers.Categories.UpdateCategoryCommandHandler">
+            <summary>
+            Handler for updating an existing category
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Handlers.Users.ForgotPasswordCommandHandler">
             <summary>
             Handler for the ForgotPasswordCommand
@@ -817,6 +1268,106 @@
         <member name="M:ShopFlow.Application.Handlers.Users.ResetPasswordCommandHandler.Handle(ShopFlow.Application.Commands.Users.ResetPasswordCommand,System.Threading.CancellationToken)">
             <summary>
             Handles the reset password command
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery">
+            <summary>
+            Query for getting all categories with pagination and filtering
+            </summary>
+            <param name="Page">Page number (default: 1)</param>
+            <param name="PageSize">Page size (default: 10)</param>
+            <param name="SearchTerm">Search term for name filtering</param>
+            <param name="ParentId">Filter by parent category ID</param>
+            <param name="IsActive">Filter by active status</param>
+            <param name="SortBy">Sort field (name, createdAt, sortOrder)</param>
+            <param name="SortDirection">Sort direction (asc, desc)</param>
+        </member>
+        <member name="M:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.#ctor(System.Int32,System.Int32,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.String,System.String)">
+            <summary>
+            Query for getting all categories with pagination and filtering
+            </summary>
+            <param name="Page">Page number (default: 1)</param>
+            <param name="PageSize">Page size (default: 10)</param>
+            <param name="SearchTerm">Search term for name filtering</param>
+            <param name="ParentId">Filter by parent category ID</param>
+            <param name="IsActive">Filter by active status</param>
+            <param name="SortBy">Sort field (name, createdAt, sortOrder)</param>
+            <param name="SortDirection">Sort direction (asc, desc)</param>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.Page">
+            <summary>Page number (default: 1)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.PageSize">
+            <summary>Page size (default: 10)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.SearchTerm">
+            <summary>Search term for name filtering</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.ParentId">
+            <summary>Filter by parent category ID</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.IsActive">
+            <summary>Filter by active status</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.SortBy">
+            <summary>Sort field (name, createdAt, sortOrder)</summary>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetAllCategoriesQuery.SortDirection">
+            <summary>Sort direction (asc, desc)</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Queries.Categories.GetCategoryBySlugQuery">
+            <summary>
+            Query for getting a category by slug
+            </summary>
+            <param name="Slug">The category slug</param>
+        </member>
+        <member name="M:ShopFlow.Application.Queries.Categories.GetCategoryBySlugQuery.#ctor(System.String)">
+            <summary>
+            Query for getting a category by slug
+            </summary>
+            <param name="Slug">The category slug</param>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetCategoryBySlugQuery.Slug">
+            <summary>The category slug</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Queries.Categories.GetCategoryHierarchyQuery">
+            <summary>
+            Query for getting category hierarchy tree
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Queries.Categories.GetCategoryQuery">
+            <summary>
+            Query for getting a category by ID
+            </summary>
+            <param name="Id">The category ID</param>
+        </member>
+        <member name="M:ShopFlow.Application.Queries.Categories.GetCategoryQuery.#ctor(System.Int64)">
+            <summary>
+            Query for getting a category by ID
+            </summary>
+            <param name="Id">The category ID</param>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetCategoryQuery.Id">
+            <summary>The category ID</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Queries.Categories.GetChildCategoriesQuery">
+            <summary>
+            Query for getting child categories of a parent
+            </summary>
+            <param name="ParentId">The parent category ID</param>
+        </member>
+        <member name="M:ShopFlow.Application.Queries.Categories.GetChildCategoriesQuery.#ctor(System.Int64)">
+            <summary>
+            Query for getting child categories of a parent
+            </summary>
+            <param name="ParentId">The parent category ID</param>
+        </member>
+        <member name="P:ShopFlow.Application.Queries.Categories.GetChildCategoriesQuery.ParentId">
+            <summary>The parent category ID</summary>
+        </member>
+        <member name="T:ShopFlow.Application.Queries.Categories.GetRootCategoriesQuery">
+            <summary>
+            Query for getting all root categories (categories without parent)
             </summary>
         </member>
         <member name="T:ShopFlow.Application.Validators.Users.ForgotPasswordCommandValidator">

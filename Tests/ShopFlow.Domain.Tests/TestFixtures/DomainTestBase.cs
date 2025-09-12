@@ -58,14 +58,8 @@ public abstract class DomainTestBase
             .With(s => s.SkuCode, () => $"SKU-{Fixture.Create<string>()[..8]}")
             .With(s => s.ProductId, () => Fixture.Create<long>()));
 
-        // Configure CatCategory creation
-        Fixture.Customize<CatCategory>(composer => composer
-            .Without(c => c.Products)
-            .Without(c => c.InverseParent)
-            .Without(c => c.Parent)
-            .With(c => c.IsActive, true)
-            .With(c => c.Sort, () => Fixture.Create<int>())
-            .With(c => c.ParentId, () => (long?)null));
+        // Configure CatCategory creation - skip customization since it has complex constructor
+        // We'll create categories manually in CreateSimpleCategory method
 
         // Configure CoreAddress creation
         Fixture.Customize<CoreAddress>(composer => composer
@@ -161,12 +155,8 @@ public abstract class DomainTestBase
     /// </summary>
     protected CatCategory CreateSimpleCategory(string? name = null)
     {
-        return new CatCategory
-        {
-            Id = Fixture.Create<long>(),
-            IsActive = true,
-            Sort = Fixture.Create<int>(),
-            ParentId = null
-        };
+        var categoryName = new CategoryName(name ?? "Test Category");
+        var categorySlug = new CategorySlug((name ?? "test-category").ToLowerInvariant().Replace(" ", "-", StringComparison.Ordinal));
+        return new CatCategory(categoryName, categorySlug, "Test description", null, 1);
     }
 }

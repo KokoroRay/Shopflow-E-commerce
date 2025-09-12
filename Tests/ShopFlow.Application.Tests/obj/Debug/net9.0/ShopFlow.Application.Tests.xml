@@ -14,6 +14,41 @@
             Unit tests for UsersController Login endpoint
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Tests.Handlers.Categories.CategoryTestBase">
+            <summary>
+            Base class for category-related application tests providing category-specific test infrastructure
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.Handlers.Categories.CategoryTestBase.ConfigureCategoryMocks">
+            <summary>
+            Configure category-specific mocks
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.Handlers.Categories.CategoryTestBase.CreateSimpleCategory(System.String,System.String,System.String,System.Nullable{System.Int64},System.Int32)">
+            <summary>
+            Helper method to create a simple category for testing
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.Handlers.Categories.CategoryTestBase.CreateCategoryList(System.Int32)">
+            <summary>
+            Helper method to create multiple categories for testing
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Application.Tests.Handlers.Categories.CategoryTestBase.ResetMocks">
+            <summary>
+            Reset category-specific mocks
+            </summary>
+        </member>
+        <member name="P:ShopFlow.Application.Tests.Handlers.Categories.CategoryTestBase.TestCancellationToken">
+            <summary>
+            Generate a cancellation token for testing
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Application.Tests.Handlers.Categories.CreateCategoryCommandHandlerTests">
+            <summary>
+            Unit tests for CreateCategoryCommandHandler
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Tests.Handlers.Users.LoginCommandHandlerTests">
             <summary>
             Unit tests for LoginCommandHandler
