@@ -44,6 +44,11 @@
             Generate a cancellation token for testing
             </summary>
         </member>
+        <member name="T:ShopFlow.Application.Tests.Handlers.Categories.CreateCategoryCommandHandlerTests">
+            <summary>
+            Unit tests for CreateCategoryCommandHandler
+            </summary>
+        </member>
         <member name="T:ShopFlow.Application.Tests.Handlers.Users.LoginCommandHandlerTests">
             <summary>
             Unit tests for LoginCommandHandler
