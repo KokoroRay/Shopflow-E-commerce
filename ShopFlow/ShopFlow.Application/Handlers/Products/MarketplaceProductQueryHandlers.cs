@@ -50,7 +50,7 @@ public class GetProductsByVendorQueryHandler : IRequestHandler<GetProductsByVend
                 Id = p.Id,
                 Name = p.Name.Value, // Using value object
                 Slug = p.Slug.Value, // Using value object
-                Status = p.Status,
+                Status = (byte)p.Status,
                 CreatedAt = p.CreatedAt,
                 UpdatedAt = p.UpdatedAt,
                 // Note: Additional properties will be mapped in Phase 3
@@ -120,7 +120,7 @@ public class GetProductsByLanguageQueryHandler : IRequestHandler<GetProductsByLa
                 Id = p.Id,
                 Name = p.Name.Value,
                 Slug = p.Slug.Value,
-                Status = p.Status,
+                Status = (byte)p.Status,
                 CreatedAt = p.CreatedAt,
                 UpdatedAt = p.UpdatedAt,
                 Language = request.LanguageCode,
@@ -188,7 +188,7 @@ public class GetProductsByPriceRangeQueryHandler : IRequestHandler<GetProductsBy
                 Id = p.Id,
                 Name = p.Name.Value,
                 Slug = p.Slug.Value,
-                Status = p.Status,
+                Status = (byte)p.Status,
                 CreatedAt = p.CreatedAt,
                 UpdatedAt = p.UpdatedAt,
                 Language = request.Language,
@@ -258,7 +258,7 @@ public class GetProductsForApprovalQueryHandler : IRequestHandler<GetProductsFor
                 Id = p.Id,
                 Name = p.Name.Value,
                 Slug = p.Slug.Value,
-                Status = p.Status,
+                Status = (byte)p.Status,
                 CreatedAt = p.CreatedAt,
                 UpdatedAt = p.UpdatedAt,
                 Language = request.Language,

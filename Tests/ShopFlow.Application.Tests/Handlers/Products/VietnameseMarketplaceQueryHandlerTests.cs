@@ -1,10 +1,11 @@
 using AutoFixture.Xunit2;
 using FluentAssertions;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Moq;
 using ShopFlow.Application.Abstractions.Repositories;
 using ShopFlow.Application.Contracts.Response;
-using ShopFlow.Application.Handlers.Products.Queries;
+using ShopFlow.Application.Handlers.Products;
 using ShopFlow.Application.Queries.Products;
 using ShopFlow.Application.Tests.TestFixtures;
 using ShopFlow.Domain.Entities;
@@ -19,6 +20,10 @@ namespace ShopFlow.Application.Tests.Handlers.Products;
 public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
 {
     private readonly Mock<IProductRepository> _productRepositoryMock;
+    private readonly Mock<ILogger<GetProductsByVendorQueryHandler>> _getProductsByVendorLoggerMock;
+    private readonly Mock<ILogger<GetProductsByLanguageQueryHandler>> _getProductsByLanguageLoggerMock;
+    private readonly Mock<ILogger<GetProductsByPriceRangeQueryHandler>> _getProductsByPriceRangeLoggerMock;
+    private readonly Mock<ILogger<SearchProductsQueryHandler>> _searchProductsLoggerMock;
     private readonly GetProductsByVendorQueryHandler _getProductsByVendorHandler;
     private readonly GetProductsByLanguageQueryHandler _getProductsByLanguageHandler;
     private readonly GetProductsByPriceRangeQueryHandler _getProductsByPriceRangeHandler;
@@ -27,10 +32,15 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
     public VietnameseMarketplaceQueryHandlerTests()
     {
         _productRepositoryMock = new Mock<IProductRepository>();
-        _getProductsByVendorHandler = new GetProductsByVendorQueryHandler(_productRepositoryMock.Object);
-        _getProductsByLanguageHandler = new GetProductsByLanguageQueryHandler(_productRepositoryMock.Object);
-        _getProductsByPriceRangeHandler = new GetProductsByPriceRangeQueryHandler(_productRepositoryMock.Object);
-        _searchProductsHandler = new SearchProductsQueryHandler(_productRepositoryMock.Object);
+        _getProductsByVendorLoggerMock = new Mock<ILogger<GetProductsByVendorQueryHandler>>();
+        _getProductsByLanguageLoggerMock = new Mock<ILogger<GetProductsByLanguageQueryHandler>>();
+        _getProductsByPriceRangeLoggerMock = new Mock<ILogger<GetProductsByPriceRangeQueryHandler>>();
+        _searchProductsLoggerMock = new Mock<ILogger<SearchProductsQueryHandler>>();
+
+        _getProductsByVendorHandler = new GetProductsByVendorQueryHandler(_productRepositoryMock.Object, _getProductsByVendorLoggerMock.Object);
+        _getProductsByLanguageHandler = new GetProductsByLanguageQueryHandler(_productRepositoryMock.Object, _getProductsByLanguageLoggerMock.Object);
+        _getProductsByPriceRangeHandler = new GetProductsByPriceRangeQueryHandler(_productRepositoryMock.Object, _getProductsByPriceRangeLoggerMock.Object);
+        _searchProductsHandler = new SearchProductsQueryHandler(_productRepositoryMock.Object, _searchProductsLoggerMock.Object);
     }
 
     #region GetProductsByVendor Tests

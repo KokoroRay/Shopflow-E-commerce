@@ -49,6 +49,9 @@ public class ProductResponse
     /// <summary>Primary language code (vi or en)</summary>
     public string PrimaryLanguage { get; set; } = string.Empty;
 
+    /// <summary>Language code for compatibility</summary>
+    public string Language { get; set; } = string.Empty;
+
     /// <summary>Secondary language content for i18n</summary>
     public ProductI18NContentResponse? SecondaryLanguageContent { get; set; }
 
@@ -100,6 +103,12 @@ public class ProductResponse
 
     /// <summary>Product SKUs</summary>
     public IReadOnlyCollection<SkuResponse> Skus { get; init; } = new List<SkuResponse>();
+
+    /// <summary>Indicates if the operation was successful</summary>
+    public bool Success { get; set; }
+
+    /// <summary>Status message about the operation</summary>
+    public string Message { get; set; } = string.Empty;
 }
 
 /// <summary>
@@ -210,15 +219,19 @@ public class ProductPricingResponse
 public class ProductVariantResponse
 {
     public long Id { get; set; }
+    public long ProductId { get; set; }
     public string VariantType { get; set; } = string.Empty; // "Size", "Color", etc.
     public string VariantValue { get; set; } = string.Empty; // "L", "Red", etc.
     public string? VariantSku { get; set; }
+    public string? Sku { get; set; } // Alternative SKU property name for compatibility
     public decimal? PriceAdjustment { get; set; }
     public int StockQuantity { get; set; }
     public long? WarehouseId { get; set; }
     public string? WarehouseName { get; set; }
     public bool IsDefault { get; set; }
     public bool IsActive { get; set; }
+    public bool IsAvailable { get; set; } = true;
+    public string Language { get; set; } = "vi";
     public DateTime CreatedAt { get; set; }
 
     // Computed Properties

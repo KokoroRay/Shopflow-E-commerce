@@ -1,3 +1,4 @@
+using System.Text;
 using ShopFlow.API.Middlewares;
 
 namespace ShopFlow.API.Extensions;

@@ -177,4 +177,16 @@ public record BulkUpdateProductsResponse
 
     /// <summary>Success rate percentage</summary>
     public decimal SuccessRate => TotalCount > 0 ? (decimal)UpdatedCount / TotalCount * 100 : 0;
+
+    /// <summary>Indicates if the operation was successful</summary>
+    public bool Success { get; init; }
+
+    /// <summary>Status message about the operation</summary>
+    public string Message { get; init; } = string.Empty;
+
+    /// <summary>Number of products requested to be updated</summary>
+    public int RequestedCount { get; init; }
+
+    /// <summary>Collection of product IDs that failed to update (alias for FailedProductIds)</summary>
+    public IReadOnlyCollection<long> FailedIds => FailedProductIds;
 }

@@ -135,8 +135,14 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
 
     private static CatProduct CreateProductEntity(CreateProductCommand request)
     {
+        // Create value objects
+        var productName = ProductName.FromDisplayName(request.Name);
+        var productSlug = ProductSlug.FromString(request.Slug);
+
         // Create basic product using existing constructor
         var product = new CatProduct(
+            productName,
+            productSlug,
             request.ProductType,
             request.ReturnDays ?? 15 // Default 15 days for Vietnamese marketplace
         );

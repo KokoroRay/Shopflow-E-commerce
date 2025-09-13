@@ -1,11 +1,12 @@
 using AutoFixture.Xunit2;
 using FluentAssertions;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Moq;
 using ShopFlow.Application.Abstractions.Repositories;
 using ShopFlow.Application.Commands.Products;
 using ShopFlow.Application.Contracts.Response;
-using ShopFlow.Application.Handlers.Products.Commands;
+using ShopFlow.Application.Handlers.Products;
 using ShopFlow.Application.Tests.TestFixtures;
 using ShopFlow.Domain.Entities;
 using ShopFlow.Domain.ValueObjects;
@@ -19,6 +20,10 @@ namespace ShopFlow.Application.Tests.Handlers.Products;
 public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
 {
     private readonly Mock<IProductRepository> _productRepositoryMock;
+    private readonly Mock<ILogger<UpdateProductStatusCommandHandler>> _updateStatusLoggerMock;
+    private readonly Mock<ILogger<ApproveRejectProductCommandHandler>> _approveRejectLoggerMock;
+    private readonly Mock<ILogger<BulkUpdateProductsCommandHandler>> _bulkUpdateLoggerMock;
+    private readonly Mock<ILogger<UpdateProductPricingCommandHandler>> _updatePricingLoggerMock;
     private readonly UpdateProductStatusCommandHandler _updateStatusHandler;
     private readonly ApproveRejectProductCommandHandler _approveRejectHandler;
     private readonly BulkUpdateProductsCommandHandler _bulkUpdateHandler;
@@ -27,10 +32,15 @@ public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
     public VietnameseMarketplaceCommandHandlerTests()
     {
         _productRepositoryMock = new Mock<IProductRepository>();
-        _updateStatusHandler = new UpdateProductStatusCommandHandler(_productRepositoryMock.Object);
-        _approveRejectHandler = new ApproveRejectProductCommandHandler(_productRepositoryMock.Object);
-        _bulkUpdateHandler = new BulkUpdateProductsCommandHandler(_productRepositoryMock.Object);
-        _updatePricingHandler = new UpdateProductPricingCommandHandler(_productRepositoryMock.Object);
+        _updateStatusLoggerMock = new Mock<ILogger<UpdateProductStatusCommandHandler>>();
+        _approveRejectLoggerMock = new Mock<ILogger<ApproveRejectProductCommandHandler>>();
+        _bulkUpdateLoggerMock = new Mock<ILogger<BulkUpdateProductsCommandHandler>>();
+        _updatePricingLoggerMock = new Mock<ILogger<UpdateProductPricingCommandHandler>>();
+
+        _updateStatusHandler = new UpdateProductStatusCommandHandler(_productRepositoryMock.Object, _updateStatusLoggerMock.Object);
+        _approveRejectHandler = new ApproveRejectProductCommandHandler(_productRepositoryMock.Object, _approveRejectLoggerMock.Object);
+        _bulkUpdateHandler = new BulkUpdateProductsCommandHandler(_productRepositoryMock.Object, _bulkUpdateLoggerMock.Object);
+        _updatePricingHandler = new UpdateProductPricingCommandHandler(_productRepositoryMock.Object, _updatePricingLoggerMock.Object);
     }
 
     #region UpdateProductStatus Tests

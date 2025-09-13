@@ -1,0 +1,8 @@
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\.msCoverageSourceRootsMapping_ShopFlow.Application.Tests
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_ShopFlow.Application.Tests
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.csproj.AssemblyReference.cache
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.AssemblyInfoInputs.cache
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.AssemblyInfo.cs
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.csproj.CoreCompileInputs.cache
+D:\Code\.Net\project_shopflow\Tests\ShopFlow.Application.Tests\obj\Debug\net9.0\ShopFlow.Application.Tests.sourcelink.json
