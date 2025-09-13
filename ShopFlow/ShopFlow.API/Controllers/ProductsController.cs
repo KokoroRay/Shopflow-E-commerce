@@ -43,12 +43,12 @@ public class ProductsController : ControllerBase
     {
         var query = new GetProductQuery(id);
         var result = await _mediator.Send(query, cancellationToken);
-        
+
         if (result == null)
         {
             return NotFound();
         }
-        
+
         return Ok(result);
     }
 }
