@@ -70,34 +70,34 @@ jobs:
       - name: Build Main Projects Only
         run: |
           echo "🔨 Building main application projects..."
-          
+
           # Build main projects individually to ensure they all compile successfully
           dotnet build ShopFlow/ShopFlow.Domain/ShopFlow.Domain.csproj \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
             --no-restore \
             --verbosity normal
-          
+
           dotnet build ShopFlow/ShopFlow.Application/ShopFlow.Application.csproj \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
             --no-restore \
             --verbosity normal
-          
+
           dotnet build ShopFlow/ShopFlow.Infrastructure/ShopFlow.Infrastructure.csproj \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
             --no-restore \
             --verbosity normal
-          
+
           dotnet build ShopFlow/ShopFlow.API/ShopFlow.API.csproj \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
             --no-restore \
             --verbosity normal
-          
+
           echo "✅ All main projects built successfully"
 
       - name: Build Domain Tests (Pass/Fail Check)
         run: |
           echo "🧪 Checking Domain Tests compilation..."
-          
+
           # Try to build domain tests - if they fail, note but don't fail CI
           if dotnet build Tests/ShopFlow.Domain.Tests/ShopFlow.Domain.Tests.csproj \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
@@ -109,10 +109,10 @@ jobs:
             echo "⚠️ Domain tests have compilation issues"
             DOMAIN_TESTS_STATUS="⚠️ Compilation issues"
           fi
-          
+
           # Create TestResults directory and summary
           mkdir -p TestResults
-          
+
           # Create a summary report instead of running tests
           cat > TestResults/build-summary.trx << EOF
           <?xml version="1.0" encoding="utf-8"?>
@@ -126,7 +126,7 @@ jobs:
             </ResultSummary>
           </TestRun>
           EOF
-          
+
           echo "📊 Build Summary Created"
           echo "Main Application: ✅ Success"
           echo "Domain Tests: $DOMAIN_TESTS_STATUS"
