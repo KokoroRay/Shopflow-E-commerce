@@ -185,8 +185,8 @@ public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
             .ReturnsAsync(expectedUpdatedCount);
 
         var command = new BulkUpdateProductsCommand(
-            productIds, 
-            (ProductStatus)newStatus, 
+            productIds,
+            (ProductStatus)newStatus,
             "Bulk approval of Vietnamese traditional products",
             adminId,
             false);
@@ -287,7 +287,7 @@ public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
             newPrice,
             salePrice
         );
-        
+
         var command = new UpdateProductPricingCommand(
             productId,
             new[] { pricingRequest },
@@ -319,7 +319,7 @@ public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
             .ReturnsAsync(existingProduct);
 
         var pricingRequest = new UpdateProductPricingRequest("EUR", 50m);
-        
+
         var command = new UpdateProductPricingCommand(
             productId,
             new[] { pricingRequest },
@@ -354,7 +354,7 @@ public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
             .ReturnsAsync(existingProduct);
 
         var pricingRequest = new UpdateProductPricingRequest(currency, invalidPrice);
-        
+
         var command = new UpdateProductPricingCommand(
             productId,
             new[] { pricingRequest },
@@ -436,7 +436,7 @@ public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
             .Returns(Task.CompletedTask);
 
         var pricingRequest = new UpdateProductPricingRequest(currency, originalPrice, salePrice);
-        
+
         var command = new UpdateProductPricingCommand(
             productId,
             new[] { pricingRequest },
@@ -464,10 +464,10 @@ public class VietnameseMarketplaceCommandHandlerTests : ApplicationTestBase
         var productName = ProductName.FromDisplayName(name);
         var productSlug = ProductSlug.FromProductName(productName);
         var product = new CatProduct(productName, productSlug, 1); // productType = 1
-        
+
         // Set ID using reflection since it's inherited from BaseEntity
         typeof(BaseEntity).GetProperty("Id")?.SetValue(product, vendorId); // Use vendorId as simplified ID
-        
+
         return product;
     }
 

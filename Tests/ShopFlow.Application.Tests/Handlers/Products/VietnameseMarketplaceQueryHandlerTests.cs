@@ -273,8 +273,8 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
         result.Items.Should().AllSatisfy(p =>
         {
             var nameContainsSearchTerm = p.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase);
-            var nameContainsVietnameseTerms = p.Name.Contains("Phở") || p.Name.Contains("Bánh") || 
-                                             p.Name.Contains("Vietnamese") || p.Name.Contains("Coffee") || 
+            var nameContainsVietnameseTerms = p.Name.Contains("Phở") || p.Name.Contains("Bánh") ||
+                                             p.Name.Contains("Vietnamese") || p.Name.Contains("Coffee") ||
                                              p.Name.Contains("Cà phê");
             (nameContainsSearchTerm || nameContainsVietnameseTerms).Should().BeTrue();
         });
@@ -329,7 +329,7 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
     {
         var productName = ProductName.FromDisplayName(name);
         var productSlug = ProductSlug.FromProductName(productName);
-        
+
         var product = new CatProduct(productName, productSlug, 1); // ProductType = 1
         return product;
     }

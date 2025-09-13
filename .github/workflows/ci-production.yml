@@ -83,7 +83,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "🧪 Checking test project compilation..."
-          
+
           # First restore test project dependencies
           echo "🔄 Restoring test project dependencies..."
           dotnet restore Tests/ShopFlow.Domain.Tests/ShopFlow.Domain.Tests.csproj || echo "Domain test restore issues"

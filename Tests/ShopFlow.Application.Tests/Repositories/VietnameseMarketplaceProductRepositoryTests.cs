@@ -426,10 +426,10 @@ public class VietnameseMarketplaceProductRepositoryTests : ApplicationTestBase
         var productName = ProductName.FromDisplayName(name);
         var productSlug = ProductSlug.FromProductName(productName);
         var product = new CatProduct(productName, productSlug, 1); // productType = 1
-        
+
         // Set ID using reflection since it's inherited from BaseEntity
         typeof(BaseEntity).GetProperty("Id")?.SetValue(product, Random.Shared.NextInt64(1, 1000000));
-        
+
         return product;
     }
 
@@ -438,10 +438,10 @@ public class VietnameseMarketplaceProductRepositoryTests : ApplicationTestBase
         var productName = ProductName.FromDisplayName(name);
         var productSlug = ProductSlug.FromProductName(productName);
         var product = new CatProduct(productName, productSlug, 1); // productType = 1
-        
+
         // Set ID using reflection since it's inherited from BaseEntity
         typeof(BaseEntity).GetProperty("Id")?.SetValue(product, id);
-        
+
         return product;
     }
 
@@ -450,10 +450,10 @@ public class VietnameseMarketplaceProductRepositoryTests : ApplicationTestBase
         var productName = ProductName.FromDisplayName(name);
         var productSlug = ProductSlug.FromProductName(productName);
         var product = new CatProduct(productName, productSlug, 1); // productType = 1
-        
+
         // Set ID using reflection since it's inherited from BaseEntity
         typeof(BaseEntity).GetProperty("Id")?.SetValue(product, id);
-        
+
         return product;
     }
 
