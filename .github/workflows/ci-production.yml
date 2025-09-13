@@ -4,22 +4,22 @@ on:
   push:
     branches: [main, Ray, develop]
     paths-ignore:
-      - '**.md'
-      - 'docs/**'
+      - "**.md"
+      - "docs/**"
   pull_request:
     branches: [main, develop]
     paths-ignore:
-      - '**.md'
-      - 'docs/**'
+      - "**.md"
+      - "docs/**"
   schedule:
-    - cron: '0 2 * * 1' # Weekly security scan on Mondays at 2 AM
+    - cron: "0 2 * * 1" # Weekly security scan on Mondays at 2 AM
 
 env:
   DOTNET_VERSION: "9.0.x"
   BUILD_CONFIGURATION: "Release"
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  
+
 # Global defaults for all jobs
 defaults:
   run:
@@ -34,21 +34,21 @@ jobs:
       contents: read
       security-events: write
       actions: read
-    
+
     outputs:
       should-deploy: ${{ steps.security-gate.outputs.should-deploy }}
-      
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Full history for better analysis
-          
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          
+
       - name: Cache .NET packages
         uses: actions/cache@v4
         with:
@@ -56,7 +56,7 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-            
+
       - name: Restore dependencies
         run: |
           echo "🔄 Restoring all project dependencies..."
@@ -71,7 +71,7 @@ jobs:
         with:
           languages: csharp
           queries: security-extended,security-and-quality
-          
+
       - name: Build for Security Analysis
         run: |
           echo "🔨 Building projects for security analysis..."
@@ -99,7 +99,7 @@ jobs:
         run: |
           dotnet tool install -g dotnet-format
           dotnet tool install -g dotnet-outdated-tool
-          
+
       - name: Code Formatting Check
         run: |
           echo "📋 Checking code formatting..."
@@ -107,9 +107,9 @@ jobs:
           APPLICATION_FORMAT=$(dotnet format ShopFlow/ShopFlow.Application/ShopFlow.Application.csproj --verify-no-changes --verbosity minimal && echo "✅" || echo "❌")
           INFRASTRUCTURE_FORMAT=$(dotnet format ShopFlow/ShopFlow.Infrastructure/ShopFlow.Infrastructure.csproj --verify-no-changes --verbosity minimal && echo "✅" || echo "❌")
           API_FORMAT=$(dotnet format ShopFlow/ShopFlow.API/ShopFlow.API.csproj --verify-no-changes --verbosity minimal && echo "✅" || echo "❌")
-          
+
           echo "Domain: $DOMAIN_FORMAT | Application: $APPLICATION_FORMAT | Infrastructure: $INFRASTRUCTURE_FORMAT | API: $API_FORMAT"
-          
+
       - name: Check for Outdated Packages
         run: |
           echo "📦 Checking for outdated packages..."
@@ -132,19 +132,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: security-analysis
     if: needs.security-analysis.outputs.should-deploy == 'true'
-    
+
     strategy:
       matrix:
         include:
           - project: Domain
             path: ShopFlow/ShopFlow.Domain/ShopFlow.Domain.csproj
-          - project: Application  
+          - project: Application
             path: ShopFlow/ShopFlow.Application/ShopFlow.Application.csproj
           - project: Infrastructure
             path: ShopFlow/ShopFlow.Infrastructure/ShopFlow.Infrastructure.csproj
           - project: API
             path: ShopFlow/ShopFlow.API/ShopFlow.API.csproj
-    
+
     outputs:
       build-status: ${{ steps.build-result.outputs.status }}
       test-status: ${{ steps.test-result.outputs.status }}
@@ -212,7 +212,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "🧪 Checking test project compilation for ${{ matrix.project }}..."
-          
+
           # Map main projects to their corresponding test projects
           case "${{ matrix.project }}" in
             "Domain")
@@ -227,7 +227,7 @@ jobs:
               exit 0
               ;;
           esac
-          
+
           if [ -f "$TEST_PROJECT" ]; then
             echo "Found test project: $TEST_PROJECT"
             if dotnet build "$TEST_PROJECT" --configuration ${{ env.BUILD_CONFIGURATION }} --verbosity minimal; then
@@ -255,10 +255,10 @@ jobs:
         run: |
           echo "📦 Creating build artifacts..."
           mkdir -p artifacts
-          
+
           # Copy API build output
           cp -r ShopFlow/ShopFlow.API/bin/${{ env.BUILD_CONFIGURATION }}/* artifacts/ 2>/dev/null || echo "No build output to copy"
-          
+
           # Create deployment manifest
           cat > artifacts/deployment-manifest.json << EOF
           {
@@ -285,7 +285,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-test
     if: always() && needs.build-and-test.result == 'success'
-    
+
     services:
       postgres:
         image: postgres:15
@@ -365,7 +365,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-and-test, integration-tests]
     if: always() && needs.build-and-test.result == 'success'
-    
+
     outputs:
       image-digest: ${{ steps.build.outputs.digest }}
       image-tag: ${{ steps.meta.outputs.tags }}
@@ -407,29 +407,29 @@ jobs:
           cat > Dockerfile.production << 'EOF'
           # Multi-stage Docker build for production
           FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS runtime
-          
+
           # Security: Create non-root user
           RUN adduser -D -s /bin/sh shopflow
-          
+
           # Performance: Set working directory
           WORKDIR /app
-          
+
           # Copy pre-built artifacts
           COPY artifacts/ ./
-          
+
           # Security: Set proper permissions
           RUN chown -R shopflow:shopflow /app
           USER shopflow
-          
+
           # Health check
           HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
             CMD curl -f http://localhost:8080/health || exit 1
-          
+
           # Runtime configuration
           ENV ASPNETCORE_ENVIRONMENT=Production
           ENV ASPNETCORE_URLS=http://+:8080
           EXPOSE 8080
-          
+
           ENTRYPOINT ["dotnet", "ShopFlow.API.dll"]
           EOF
 
@@ -459,7 +459,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [security-analysis, build-and-test, integration-tests, docker-build]
     if: always()
-    
+
     outputs:
       deploy-ready: ${{ steps.gate-decision.outputs.deploy-ready }}
       quality-score: ${{ steps.gate-decision.outputs.quality-score }}
@@ -475,12 +475,12 @@ jobs:
         id: metrics
         run: |
           echo "� Collecting quality metrics..."
-          
+
           # Initialize counters
           SECURITY_SCORE=100
           BUILD_SCORE=0
           TEST_SCORE=0
-          
+
           # Security analysis results
           if [ "${{ needs.security-analysis.outputs.should-deploy }}" == "true" ]; then
             echo "✅ Security: Passed"
@@ -489,7 +489,7 @@ jobs:
             echo "❌ Security: Failed"
             SECURITY_SCORE=0
           fi
-          
+
           # Build results
           if [ "${{ needs.build-and-test.result }}" == "success" ]; then
             echo "✅ Build: Success"
@@ -498,7 +498,7 @@ jobs:
             echo "❌ Build: Failed"
             BUILD_SCORE=0
           fi
-          
+
           # Integration test results
           if [ "${{ needs.integration-tests.result }}" == "success" ]; then
             echo "✅ Integration Tests: Passed"
@@ -507,7 +507,7 @@ jobs:
             echo "⚠️ Integration Tests: Issues detected"
             TEST_SCORE=50
           fi
-          
+
           # Docker build results
           if [ "${{ needs.docker-build.result }}" == "success" ]; then
             echo "✅ Docker Build: Success"
@@ -516,10 +516,10 @@ jobs:
             echo "❌ Docker Build: Failed"
             DOCKER_SCORE=0
           fi
-          
+
           # Calculate overall quality score
           QUALITY_SCORE=$(( (SECURITY_SCORE + BUILD_SCORE + TEST_SCORE + DOCKER_SCORE) / 4 ))
-          
+
           echo "security-score=$SECURITY_SCORE" >> $GITHUB_OUTPUT
           echo "build-score=$BUILD_SCORE" >> $GITHUB_OUTPUT
           echo "test-score=$TEST_SCORE" >> $GITHUB_OUTPUT
@@ -532,7 +532,7 @@ jobs:
           QUALITY_SCORE=${{ steps.metrics.outputs.quality-score }}
           SECURITY_SCORE=${{ steps.metrics.outputs.security-score }}
           BUILD_SCORE=${{ steps.metrics.outputs.build-score }}
-          
+
           echo "🎯 Quality Gate Assessment"
           echo "========================="
           echo "Overall Quality Score: $QUALITY_SCORE%"
@@ -540,7 +540,7 @@ jobs:
           echo "Build Score: $BUILD_SCORE%"
           echo "Test Score: ${{ steps.metrics.outputs.test-score }}%"
           echo "Docker Score: ${{ steps.metrics.outputs.docker-score }}%"
-          
+
           # Quality gate criteria
           if [ "$QUALITY_SCORE" -ge 85 ] && [ "$SECURITY_SCORE" -eq 100 ] && [ "$BUILD_SCORE" -eq 100 ]; then
             echo "✅ QUALITY GATE: PASSED"
@@ -555,7 +555,7 @@ jobs:
             echo "🛑 Deployment blocked"
             echo "deploy-ready=false" >> $GITHUB_OUTPUT
           fi
-          
+
           echo "quality-score=$QUALITY_SCORE" >> $GITHUB_OUTPUT
 
       - name: Create Quality Report
@@ -563,14 +563,14 @@ jobs:
           mkdir -p reports
           cat > reports/quality-report.md << EOF
           # 📊 Quality Gate Report
-          
+
           **Build ID:** \`${{ github.run_id }}\`  
           **Commit:** \`${{ github.sha }}\`  
           **Branch:** \`${{ github.ref_name }}\`  
           **Date:** \`$(date -u +%Y-%m-%d\ %H:%M:%S\ UTC)\`
-          
+
           ## 🎯 Quality Metrics
-          
+
           | Metric | Score | Status |
           |--------|-------|--------|
           | Security Analysis | ${{ steps.metrics.outputs.security-score }}% | ${{ steps.metrics.outputs.security-score == '100' && '✅ Pass' || '❌ Fail' }} |
@@ -578,11 +578,11 @@ jobs:
           | Integration Tests | ${{ steps.metrics.outputs.test-score }}% | ${{ steps.metrics.outputs.test-score == '100' && '✅ Pass' || steps.metrics.outputs.test-score == '50' && '⚠️ Warning' || '❌ Fail' }} |
           | Docker Build | ${{ steps.metrics.outputs.docker-score }}% | ${{ steps.metrics.outputs.docker-score == '100' && '✅ Pass' || '❌ Fail' }} |
           | **Overall Quality** | **${{ steps.metrics.outputs.quality-score }}%** | **${{ steps.gate-decision.outputs.deploy-ready == 'true' && '✅ Ready' || steps.gate-decision.outputs.deploy-ready == 'conditional' && '⚠️ Conditional' || '❌ Blocked' }}** |
-          
+
           ## 🚀 Deployment Status
-          
+
           **Decision:** ${{ steps.gate-decision.outputs.deploy-ready == 'true' && '✅ Approved for deployment' || steps.gate-decision.outputs.deploy-ready == 'conditional' && '⚠️ Conditional deployment allowed' || '❌ Deployment blocked' }}
-          
+
           EOF
 
       - name: Upload Quality Report
@@ -598,7 +598,7 @@ jobs:
           script: |
             const fs = require('fs');
             const qualityReport = fs.readFileSync('reports/quality-report.md', 'utf8');
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -612,12 +612,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: quality-gate
     if: needs.quality-gate.outputs.deploy-ready == 'true' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-    
+
     strategy:
       matrix:
-        environment: 
+        environment:
           - ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
-    
+
     environment:
       name: ${{ matrix.environment }}
       url: ${{ steps.deploy.outputs.url }}
@@ -629,16 +629,16 @@ jobs:
           echo "🚀 Deploying to ${{ matrix.environment }}..."
           echo "Image: ${{ needs.docker-build.outputs.image-tag }}"
           echo "Quality Score: ${{ needs.quality-gate.outputs.quality-score }}%"
-          
+
           # Simulate deployment
           sleep 5
-          
+
           if [ "${{ matrix.environment }}" == "production" ]; then
             echo "url=https://shopflow.production.com" >> $GITHUB_OUTPUT
           else
             echo "url=https://shopflow.staging.com" >> $GITHUB_OUTPUT
           fi
-          
+
           echo "✅ Deployment to ${{ matrix.environment }} completed successfully"
 
       - name: Post-Deployment Health Check
@@ -692,17 +692,17 @@ jobs:
       - name: Collect Pipeline Metrics
         run: |
           echo "📈 Collecting pipeline performance metrics..."
-          
+
           # Calculate pipeline duration
           PIPELINE_START="${{ github.event.head_commit.timestamp }}"
           PIPELINE_END=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          
+
           echo "Pipeline Start: $PIPELINE_START"
           echo "Pipeline End: $PIPELINE_END"
-          
+
           # Quality metrics
           echo "Quality Score: ${{ needs.quality-gate.outputs.quality-score }}%"
-          
+
           # Success metrics
           echo "Security Analysis: ${{ needs.security-analysis.result }}"
           echo "Build & Test: ${{ needs.build-and-test.result }}"
