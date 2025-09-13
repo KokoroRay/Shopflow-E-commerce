@@ -82,16 +82,7 @@ public record ProductName
 
     public static implicit operator string(ProductName productName) => productName.Value;
 
-    public static bool operator ==(ProductName? left, ProductName? right)
-    {
-        if (left is null && right is null) return true;
-        if (left is null || right is null) return false;
-        return left.Value.Equals(right.Value, StringComparison.OrdinalIgnoreCase);
-    }
-
-    public static bool operator !=(ProductName? left, ProductName? right) => !(left == right);
-
-    public override int GetHashCode() => Value.ToLowerInvariant().GetHashCode();
+    public override int GetHashCode() => Value.ToUpperInvariant().GetHashCode(StringComparison.OrdinalIgnoreCase);
 
     public virtual bool Equals(ProductName? other)
     {

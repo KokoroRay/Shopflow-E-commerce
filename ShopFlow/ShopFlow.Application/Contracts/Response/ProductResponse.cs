@@ -138,6 +138,14 @@ public class ProductSummaryResponse
 
     // Primary Category
     public CategoryResponse? PrimaryCategory { get; set; }
+
+    // Additional Properties for Vietnamese Marketplace
+    public DateTime? UpdatedAt { get; set; }
+    public string Language { get; set; } = "vi";
+    public string CurrencyCode { get; set; } = "VND";
+    public decimal BasePrice { get; set; }
+    public bool IsFeatured { get; set; }
+    public decimal? VatRate { get; set; }
 }
 
 /// <summary>

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShopFlow.Domain.Entities;
 using ShopFlow.Domain.ValueObjects;
+using ShopFlow.Infrastructure.Configurations;
 
 namespace ShopFlow.Infrastructure.Persistence;
 
@@ -17,7 +18,10 @@ public class ShopFlowDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure domain entities
+        // Apply entity configurations
+        modelBuilder.ApplyConfiguration(new CatProductConfiguration());
+
+        // Configure other entities
         modelBuilder.Entity<CoreUser>(entity =>
         {
             entity.HasKey(e => e.Id);
@@ -26,11 +30,6 @@ public class ShopFlowDbContext : DbContext
             // TODO: Implement proper EF Core value object configuration
             entity.Ignore(e => e.Email);
             entity.Ignore(e => e.Phone);
-        });
-
-        modelBuilder.Entity<CatProduct>(entity =>
-        {
-            entity.HasKey(e => e.Id);
         });
 
         // Configure Category entity - temporarily disabled to fix EF configuration issues

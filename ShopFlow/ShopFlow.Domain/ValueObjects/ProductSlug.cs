@@ -143,16 +143,7 @@ public record ProductSlug
 
     public static implicit operator string(ProductSlug productSlug) => productSlug.Value;
 
-    public static bool operator ==(ProductSlug? left, ProductSlug? right)
-    {
-        if (left is null && right is null) return true;
-        if (left is null || right is null) return false;
-        return left.Value.Equals(right.Value, StringComparison.Ordinal);
-    }
-
-    public static bool operator !=(ProductSlug? left, ProductSlug? right) => !(left == right);
-
-    public override int GetHashCode() => Value.GetHashCode();
+    public override int GetHashCode() => Value.GetHashCode(StringComparison.Ordinal);
 
     public virtual bool Equals(ProductSlug? other)
     {
