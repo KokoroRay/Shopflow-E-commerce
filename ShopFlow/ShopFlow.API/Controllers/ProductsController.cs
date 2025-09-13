@@ -6,25 +6,42 @@ using ShopFlow.Application.Commands.Products;
 using ShopFlow.Application.Queries.Products;
 using ShopFlow.Application.Contracts.Requests;
 using ShopFlow.Application.Contracts.Response;
+using ShopFlow.Domain.Enums;
+using ShopFlow.API.Extensions;
 
 namespace ShopFlow.API.Controllers;
 
+/// <summary>
+/// Vietnamese marketplace products controller with multi-vendor support
+/// </summary>
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class ProductsController : ControllerBase
+internal class ProductsController : ControllerBase
 {
     private readonly IMediator _mediator;
 
+    /// <summary>
+    /// Initializes a new instance of the ProductsController
+    /// </summary>
+    /// <param name="mediator">The mediator instance</param>
     public ProductsController(IMediator mediator)
     {
-        _mediator = mediator;
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
+    /// <summary>
+    /// Creates a new product in the Vietnamese marketplace
+    /// </summary>
+    /// <param name="request">The create product request</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The created product</returns>
     [HttpPost]
     [Authorize(Policy = "ProductManagement")] // Vietnamese marketplace: enhanced policy
     public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
     {
+        ArgumentNullException.ThrowIfNull(request);
+
         // Note: In Phase 3, this will use request parameters directly
         // For now, using simplified version with hardcoded Vietnamese marketplace defaults
         var command = new CreateProductCommand(
@@ -65,11 +82,17 @@ public class ProductsController : ControllerBase
         return CreatedAtAction(nameof(GetProduct), new { id = result.Id }, result);
     }
 
+    /// <summary>
+    /// Gets a product by ID
+    /// </summary>
+    /// <param name="id">Product ID</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The product details</returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetProduct(long id, CancellationToken cancellationToken)
     {
         var query = new GetProductQuery(id);
-        var result = await _mediator.Send(query, cancellationToken);
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
 
         if (result == null)
         {
@@ -93,8 +116,22 @@ public class ProductsController : ControllerBase
         [FromQuery] string? status = null,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement GetProductsByVendorQuery in Phase 6
-        return Ok(new { message = "Vietnamese marketplace: Get products by vendor - to be implemented in Phase 6" });
+        byte? statusByte = null;
+        if (byte.TryParse(status, out var parsedStatus))
+        {
+            statusByte = parsedStatus;
+        }
+
+        var query = new GetProductsByVendorQuery(
+            VendorId: vendorId,
+            Page: page,
+            PageSize: pageSize,
+            Status: statusByte,
+            Language: "vi"
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -107,8 +144,17 @@ public class ProductsController : ControllerBase
         [FromQuery] int pageSize = 20,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement GetProductsByLanguageQuery in Phase 6
-        return Ok(new { message = $"Vietnamese marketplace: Get products in {languageCode} - to be implemented in Phase 6" });
+        ArgumentNullException.ThrowIfNull(languageCode);
+
+        var query = new GetProductsByLanguageQuery(
+            LanguageCode: languageCode,
+            Page: page,
+            PageSize: pageSize,
+            IncludeInactive: false
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -122,8 +168,17 @@ public class ProductsController : ControllerBase
         [FromQuery] int pageSize = 20,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement SearchProductsQuery in Phase 6
-        return Ok(new { message = $"Vietnamese marketplace: Search '{searchTerm}' in {language} - to be implemented in Phase 6" });
+        ArgumentNullException.ThrowIfNull(searchTerm);
+
+        var query = new SearchProductsQuery(
+            SearchTerm: searchTerm,
+            Language: language ?? "vi",
+            Page: page,
+            PageSize: pageSize
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -138,8 +193,19 @@ public class ProductsController : ControllerBase
         [FromQuery] int pageSize = 20,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement GetProductsByPriceRangeQuery in Phase 6
-        return Ok(new { message = $"Vietnamese marketplace: Get products {minPrice}-{maxPrice} {currencyCode} - to be implemented in Phase 6" });
+        ArgumentNullException.ThrowIfNull(currencyCode);
+
+        var query = new GetProductsByPriceRangeQuery(
+            CurrencyCode: currencyCode,
+            MinPrice: minPrice,
+            MaxPrice: maxPrice,
+            Page: page,
+            PageSize: pageSize,
+            Language: "vi"
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -152,8 +218,15 @@ public class ProductsController : ControllerBase
         [FromQuery] int pageSize = 20,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement GetProductsPendingApprovalQuery in Phase 6
-        return Ok(new { message = "Vietnamese marketplace: Get products pending approval - to be implemented in Phase 6" });
+        var query = new GetProductsForApprovalQuery(
+            Page: page,
+            PageSize: pageSize,
+            VendorId: null,
+            Language: "vi"
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -166,8 +239,18 @@ public class ProductsController : ControllerBase
         [FromBody] ProductApprovalRequest request,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement ApproveRejectProductCommand in Phase 7
-        return Ok(new { message = $"Vietnamese marketplace: Update approval for product {id} - to be implemented in Phase 7" });
+        ArgumentNullException.ThrowIfNull(request);
+
+        var command = new ApproveRejectProductCommand(
+            ProductId: id,
+            IsApproved: request.IsApproved,
+            AdminNotes: request.AdminNotes,
+            RejectionReason: request.RejectionReason,
+            AdminId: HttpContext.GetRequiredUserId()
+        );
+
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -178,8 +261,13 @@ public class ProductsController : ControllerBase
         long id,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement GetProductVariantsQuery in Phase 6
-        return Ok(new { message = $"Vietnamese marketplace: Get variants for product {id} - to be implemented in Phase 6" });
+        var query = new GetProductVariantsQuery(
+            ProductId: id,
+            Language: "vi"
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -191,8 +279,14 @@ public class ProductsController : ControllerBase
         [FromQuery] int count = 10,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement GetFeaturedProductsQuery in Phase 6
-        return Ok(new { message = $"Vietnamese marketplace: Get {count} featured products in {language} - to be implemented in Phase 6" });
+        var query = new GetFeaturedProductsQuery(
+            Language: language ?? "vi",
+            Count: count,
+            CategoryId: null
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -204,8 +298,18 @@ public class ProductsController : ControllerBase
         [FromBody] BulkUpdateStatusRequest request,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement BulkUpdateProductsCommand in Phase 7
-        return Ok(new { message = $"Vietnamese marketplace: Bulk update {request.ProductIds.Count} products - to be implemented in Phase 7" });
+        ArgumentNullException.ThrowIfNull(request);
+
+        var command = new BulkUpdateProductsCommand(
+            ProductIds: request.ProductIds,
+            NewStatus: (ProductStatus)request.NewStatus,
+            AdminNotes: request.AdminNotes,
+            AdminId: HttpContext.GetRequiredUserId(),
+            NotifyVendors: true
+        );
+
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     #endregion
@@ -223,8 +327,16 @@ public class ProductsController : ControllerBase
         [FromQuery] int pageSize = 20,
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement GetProductsByVatRateQuery in Phase 6
-        return Ok(new { message = $"Vietnamese marketplace: Get products with {vatRate}% VAT - to be implemented in Phase 6" });
+        var query = new GetProductsByVatRateQuery(
+            VatRate: vatRate,
+            Page: page,
+            PageSize: pageSize,
+            FromDate: null,
+            ToDate: null
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -232,14 +344,17 @@ public class ProductsController : ControllerBase
     /// </summary>
     [HttpGet("tax/export")]
     [Authorize(Policy = "TaxCompliance")]
-    public async Task<IActionResult> ExportTaxReport(
+    public Task<IActionResult> ExportTaxReport(
         [FromQuery] DateTime? fromDate = null,
         [FromQuery] DateTime? toDate = null,
         [FromQuery] string format = "excel",
         CancellationToken cancellationToken = default)
     {
-        // Note: Will implement ExportTaxReportQuery in Phase 6
-        return Ok(new { message = $"Vietnamese marketplace: Export tax report {format} - to be implemented in Phase 6" });
+        // Note: Export functionality will be implemented in Phase 4
+        return Task.FromResult<IActionResult>(Ok(new
+        {
+            message = $"Vietnamese marketplace: Export tax report {format} from {fromDate} to {toDate} - to be implemented in Phase 4"
+        }));
     }
 
     #endregion

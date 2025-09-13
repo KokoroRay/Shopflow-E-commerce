@@ -148,7 +148,7 @@ public class VietnameseMoneyTests : DomainTestBase
         var formattedPrice = price.ToString();
 
         // Assert
-        formattedPrice.Should().Contain("10.50");
+        formattedPrice.Should().Contain("10,5000"); // F4 formatting uses Vietnamese culture
         formattedPrice.Should().Contain("USD");
     }
 

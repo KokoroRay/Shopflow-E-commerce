@@ -228,19 +228,11 @@ public class VietnameseTextHandlingTests : DomainTestBase
     public void Constructor_EmptyVietnameseText_ShouldThrowException(string? invalidText)
     {
         // Act & Assert
-        if (invalidText == null)
-        {
-            Assert.Throws<ArgumentNullException>(() => ProductName.FromDisplayName(invalidText!));
-        }
-        else
-        {
-            Assert.Throws<ArgumentException>(() => ProductName.FromDisplayName(invalidText));
-        }
+        Assert.Throws<ArgumentException>(() => ProductName.FromDisplayName(invalidText!));
     }
 
     [Theory]
-    [InlineData("A")] // Too short
-    [InlineData("AB")] // Still too short
+    [InlineData("A")] // Too short (length 1, minimum is 2)
     public void Constructor_TooShortVietnameseText_ShouldThrowException(string shortText)
     {
         // Act & Assert

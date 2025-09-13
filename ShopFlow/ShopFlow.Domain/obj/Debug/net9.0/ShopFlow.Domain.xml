@@ -475,6 +475,11 @@
             Gets customer role codes
             </summary>
         </member>
+        <member name="T:ShopFlow.Domain.Exceptions.DomainException">
+            <summary>
+            Base domain exception for business rule violations
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventDispatcher">
             <summary>
             Abstraction for publishing domain events without external dependencies
@@ -907,6 +912,33 @@
             <param name="left">The first PhoneNumber to compare</param>
             <param name="right">The second PhoneNumber to compare</param>
             <returns>true if the PhoneNumbers are not equal; otherwise, false</returns>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.ProductDescription">
+            <summary>
+            Represents a product description value object with Vietnamese marketplace support
+            Supports both Vietnamese and English content for multi-language marketplace
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductDescription.FromContent(System.String)">
+            <summary>
+            Creates a ProductDescription from content with marketplace validation
+            Supports Vietnamese and English text for multi-language marketplace
+            </summary>
+            <param name="content">The product description content</param>
+            <returns>A valid ProductDescription instance</returns>
+            <exception cref="T:System.ArgumentException">When content is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductDescription.IsValidMarketplaceDescription(System.String)">
+            <summary>
+            Validates if description content is suitable for Vietnamese marketplace
+            Allows Vietnamese characters, Latin characters, numbers, spaces, and common symbols
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductDescription.IsVietnameseCharacter(System.Char)">
+            <summary>
+            Checks if character is a Vietnamese character
+            Covers Vietnamese Unicode ranges for accented characters
+            </summary>
         </member>
         <member name="T:ShopFlow.Domain.ValueObjects.ProductName">
             <summary>

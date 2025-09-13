@@ -2,6 +2,7 @@ using AutoFixture;
 using FluentAssertions;
 using ShopFlow.Domain.Entities;
 using ShopFlow.Domain.Enums;
+using ShopFlow.Domain.ValueObjects;
 using ShopFlow.Domain.Tests.TestFixtures;
 using Xunit;
 
@@ -14,6 +15,8 @@ public class CatProductTests : DomainTestBase
 {
     private const byte ValidProductType = 1;
     private const int ValidReturnDays = 30;
+    private static readonly ProductName ValidProductName = ProductName.FromDisplayName("Test Product");
+    private static readonly ProductSlug ValidProductSlug = ProductSlug.FromString("test-product");
 
     #region Constructor Tests
 
@@ -21,9 +24,11 @@ public class CatProductTests : DomainTestBase
     public void Constructor_ValidParameters_ShouldCreateProduct()
     {
         // Act
-        var product = new CatProduct(ValidProductType, ValidReturnDays);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType, ValidReturnDays);
 
         // Assert
+        product.Name.Should().Be(ValidProductName);
+        product.Slug.Should().Be(ValidProductSlug);
         product.ProductType.Should().Be(ValidProductType);
         product.Status.Should().Be(ProductStatus.Draft);
         product.ReturnDays.Should().Be(ValidReturnDays);
@@ -38,7 +43,7 @@ public class CatProductTests : DomainTestBase
     public void Constructor_WithoutReturnDays_ShouldCreateProduct()
     {
         // Act
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Assert
         product.ProductType.Should().Be(ValidProductType);
@@ -56,7 +61,7 @@ public class CatProductTests : DomainTestBase
     public void Constructor_VariousReturnDays_ShouldCreateProduct(int returnDays)
     {
         // Act
-        var product = new CatProduct(ValidProductType, returnDays);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType, returnDays);
 
         // Assert
         product.ReturnDays.Should().Be(returnDays);
@@ -71,7 +76,7 @@ public class CatProductTests : DomainTestBase
     public void Activate_DraftProduct_ShouldActivateProduct()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var originalUpdatedAt = product.UpdatedAt;
 
         // Act
@@ -86,7 +91,7 @@ public class CatProductTests : DomainTestBase
     public void Activate_InactiveProduct_ShouldActivateProduct()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Deactivate();
         var originalUpdatedAt = product.UpdatedAt;
 
@@ -102,7 +107,7 @@ public class CatProductTests : DomainTestBase
     public void Activate_DiscontinuedProduct_ShouldThrowException()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Discontinue();
 
         // Act & Assert
@@ -114,7 +119,7 @@ public class CatProductTests : DomainTestBase
     public void Deactivate_ActiveProduct_ShouldDeactivateProduct()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Activate();
         var originalUpdatedAt = product.UpdatedAt;
 
@@ -130,7 +135,7 @@ public class CatProductTests : DomainTestBase
     public void Deactivate_DraftProduct_ShouldDeactivateProduct()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var originalUpdatedAt = product.UpdatedAt;
 
         // Act
@@ -145,7 +150,7 @@ public class CatProductTests : DomainTestBase
     public void Discontinue_AnyProduct_ShouldDiscontinueProduct()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Activate();
         var originalUpdatedAt = product.UpdatedAt;
 
@@ -161,7 +166,7 @@ public class CatProductTests : DomainTestBase
     public void Discontinue_InactiveProduct_ShouldDiscontinueProduct()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Deactivate();
         var originalUpdatedAt = product.UpdatedAt;
 
@@ -180,7 +185,7 @@ public class CatProductTests : DomainTestBase
     public void IsActive_NonActiveProduct_ShouldReturnFalse(ProductStatus status)
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Set status using appropriate method
         switch (status)
@@ -204,7 +209,7 @@ public class CatProductTests : DomainTestBase
     public void IsActive_ActiveProduct_ShouldReturnTrue()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Activate();
 
         // Act & Assert
@@ -219,7 +224,7 @@ public class CatProductTests : DomainTestBase
     public void UpdateReturnDays_ValidDays_ShouldUpdateReturnDays()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var newReturnDays = 60;
         var originalUpdatedAt = product.UpdatedAt;
 
@@ -235,7 +240,7 @@ public class CatProductTests : DomainTestBase
     public void UpdateReturnDays_NullDays_ShouldSetToNull()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType, ValidReturnDays);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType, ValidReturnDays);
         var originalUpdatedAt = product.UpdatedAt;
 
         // Act
@@ -250,7 +255,7 @@ public class CatProductTests : DomainTestBase
     public void UpdateReturnDays_ZeroDays_ShouldUpdateReturnDays()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var originalUpdatedAt = product.UpdatedAt;
 
         // Act
@@ -265,7 +270,7 @@ public class CatProductTests : DomainTestBase
     public void UpdateReturnDays_NegativeDays_ShouldThrowException()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(() => product.UpdateReturnDays(-1));
@@ -280,7 +285,7 @@ public class CatProductTests : DomainTestBase
     public void UpdateReturnDays_VariousNegativeValues_ShouldThrowException(int negativeDays)
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(() => product.UpdateReturnDays(negativeDays));
@@ -295,7 +300,7 @@ public class CatProductTests : DomainTestBase
     public void AddSku_ValidSku_ShouldAddSku()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var sku = CreateSimpleSku();
         var originalUpdatedAt = product.UpdatedAt;
 
@@ -311,7 +316,7 @@ public class CatProductTests : DomainTestBase
     public void AddSku_NullSku_ShouldThrowException()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() => product.AddSku(null!));
@@ -322,7 +327,7 @@ public class CatProductTests : DomainTestBase
     public void AddSku_MultipleSkus_ShouldAddAllSkus()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var sku1 = CreateSimpleSku();
         var sku2 = CreateSimpleSku();
 
@@ -340,7 +345,7 @@ public class CatProductTests : DomainTestBase
     public void CanBeOrdered_ActiveProductWithActiveSku_ShouldReturnTrue()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Activate();
 
         var activeSku = CreateSimpleSku(isActive: true);
@@ -354,7 +359,7 @@ public class CatProductTests : DomainTestBase
     public void CanBeOrdered_ActiveProductWithInactiveSku_ShouldReturnFalse()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Activate();
 
         var inactiveSku = CreateSimpleSku(isActive: false);
@@ -368,7 +373,7 @@ public class CatProductTests : DomainTestBase
     public void CanBeOrdered_InactiveProductWithActiveSku_ShouldReturnFalse()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         // Product remains in Draft status (not active)
 
         var activeSku = CreateSimpleSku(isActive: true);
@@ -382,7 +387,7 @@ public class CatProductTests : DomainTestBase
     public void CanBeOrdered_ActiveProductWithoutSkus_ShouldReturnFalse()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Activate();
 
         // Act & Assert
@@ -393,7 +398,7 @@ public class CatProductTests : DomainTestBase
     public void CanBeOrdered_ActiveProductWithMixedSkus_ShouldReturnTrue()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         product.Activate();
 
         var activeSku = CreateSimpleSku(isActive: true);
@@ -414,7 +419,7 @@ public class CatProductTests : DomainTestBase
     public void AddCategory_ValidCategory_ShouldAddCategory()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var category = CreateSimpleCategory();
         var originalUpdatedAt = product.UpdatedAt;
 
@@ -430,7 +435,7 @@ public class CatProductTests : DomainTestBase
     public void AddCategory_NullCategory_ShouldThrowException()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() => product.AddCategory(null!));
@@ -441,7 +446,7 @@ public class CatProductTests : DomainTestBase
     public void AddCategory_DuplicateCategory_ShouldNotAddDuplicate()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var category = CreateSimpleCategory();
         product.AddCategory(category);
 
@@ -457,7 +462,7 @@ public class CatProductTests : DomainTestBase
     public void AddCategory_MultipleCategories_ShouldAddAllCategories()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var category1 = CreateSimpleCategory();
         var category2 = CreateSimpleCategory();
 
@@ -475,7 +480,7 @@ public class CatProductTests : DomainTestBase
     public void RemoveCategory_ExistingCategory_ShouldRemoveCategory()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var category = CreateSimpleCategory();
         product.AddCategory(category);
         var originalUpdatedAt = product.UpdatedAt;
@@ -493,7 +498,7 @@ public class CatProductTests : DomainTestBase
     public void RemoveCategory_NonExistingCategory_ShouldNotThrow()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var category = CreateSimpleCategory();
 
         // Act & Assert - Should not throw
@@ -505,7 +510,7 @@ public class CatProductTests : DomainTestBase
     public void RemoveCategory_NullCategory_ShouldThrowException()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() => product.RemoveCategory(null!));
@@ -516,7 +521,7 @@ public class CatProductTests : DomainTestBase
     public void RemoveCategory_OneOfMultipleCategories_ShouldRemoveOnlySpecified()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var category1 = CreateSimpleCategory();
         var category2 = CreateSimpleCategory();
         product.AddCategory(category1);
@@ -539,7 +544,7 @@ public class CatProductTests : DomainTestBase
     public void Skus_ShouldBeReadOnlyCollection()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         product.Skus.Should().BeAssignableTo<IReadOnlyCollection<CatSku>>();
@@ -550,7 +555,7 @@ public class CatProductTests : DomainTestBase
     public void Reviews_ShouldBeReadOnlyCollection()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         product.Reviews.Should().BeAssignableTo<IReadOnlyCollection<CeReview>>();
@@ -561,7 +566,7 @@ public class CatProductTests : DomainTestBase
     public void Categories_ShouldBeReadOnlyCollection()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Act & Assert
         product.Categories.Should().BeAssignableTo<IReadOnlyCollection<CatCategory>>();
@@ -576,7 +581,7 @@ public class CatProductTests : DomainTestBase
     public void ProductLifecycle_CompleteFlow_ShouldWorkCorrectly()
     {
         // Arrange & Act - Create product
-        var product = new CatProduct(ValidProductType, ValidReturnDays);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType, ValidReturnDays);
         var originalCreatedAt = product.CreatedAt;
 
         // Act - Add categories and SKUs
@@ -621,7 +626,7 @@ public class CatProductTests : DomainTestBase
     public void ProductStatusTransitions_AllValidTransitions_ShouldWork()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
 
         // Draft -> Active
         product.Activate();
@@ -647,7 +652,7 @@ public class CatProductTests : DomainTestBase
     public void ProductWithComplexCategoryManagement_ShouldHandleCorrectly()
     {
         // Arrange
-        var product = new CatProduct(ValidProductType);
+        var product = new CatProduct(ValidProductName, ValidProductSlug, ValidProductType);
         var categories = new List<CatCategory>();
         for (int i = 0; i < 5; i++)
         {
@@ -682,3 +687,4 @@ public class CatProductTests : DomainTestBase
 
     #endregion
 }
+
