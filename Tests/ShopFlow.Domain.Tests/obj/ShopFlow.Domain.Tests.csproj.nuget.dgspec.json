@@ -4,14 +4,14 @@
     "D:\\Code\\.Net\\project_shopflow\\Tests\\ShopFlow.Domain.Tests\\ShopFlow.Domain.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
+    "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj",
+        "projectUniqueName": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj",
         "projectName": "ShopFlow.Domain",
-        "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj",
+        "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj",
         "packagesPath": "C:\\Users\\namng\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\obj\\",
+        "outputPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -121,8 +121,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
-                "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
+              "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
+                "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
               }
             }
           }

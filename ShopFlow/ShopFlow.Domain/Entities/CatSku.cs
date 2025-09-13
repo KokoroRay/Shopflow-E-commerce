@@ -25,17 +25,17 @@ public partial class CatSku
 
     public bool IsActive { get; set; }
 
-    public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
+    public virtual ICollection<CartItem> CartItems { get; } = new List<CartItem>();
 
-    public virtual ICollection<CatSkuMedium> CatSkuMedia { get; set; } = new List<CatSkuMedium>();
+    public virtual ICollection<CatSkuMedium> CatSkuMedia { get; } = new List<CatSkuMedium>();
 
-    public virtual ICollection<CatSkuOptionValue> CatSkuOptionValues { get; set; } = new List<CatSkuOptionValue>();
+    public virtual ICollection<CatSkuOptionValue> CatSkuOptionValues { get; } = new List<CatSkuOptionValue>();
 
-    public virtual ICollection<CeReview> CeReviews { get; set; } = new List<CeReview>();
+    public virtual ICollection<CeReview> CeReviews { get; } = new List<CeReview>();
 
-    public virtual ICollection<InvAdjustmentLine> InvAdjustmentLines { get; set; } = new List<InvAdjustmentLine>();
+    public virtual ICollection<InvAdjustmentLine> InvAdjustmentLines { get; } = new List<InvAdjustmentLine>();
 
-    public virtual ICollection<InvReservation> InvReservations { get; set; } = new List<InvReservation>();
+    public virtual ICollection<InvReservation> InvReservations { get; } = new List<InvReservation>();
 
     public virtual ICollection<InvStock> InvStocks { get; set; } = new List<InvStock>();
 

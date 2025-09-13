@@ -1936,8 +1936,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
-              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
+            "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
+              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
             }
           }
         }

@@ -13,5 +13,5 @@ public partial class CatAttributeOption
 
     public virtual CatAttribute Attribute { get; set; } = null!;
 
-    public virtual ICollection<CatSkuOptionValue> CatSkuOptionValues { get; set; } = new List<CatSkuOptionValue>();
+    public virtual ICollection<CatSkuOptionValue> CatSkuOptionValues { get; } = new List<CatSkuOptionValue>();
 }
