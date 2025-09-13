@@ -8304,11 +8304,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.API\\ShopFlow.API.csproj",
+      "projectUniqueName": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\ShopFlow.API.csproj",
       "projectName": "ShopFlow.API",
-      "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.API\\ShopFlow.API.csproj",
+      "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\ShopFlow.API.csproj",
       "packagesPath": "C:\\Users\\namng\\.nuget\\packages\\",
-      "outputPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.API\\obj\\",
+      "outputPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8333,8 +8333,8 @@
             "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\ShopFlow.Application.csproj": {
               "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\ShopFlow.Application.csproj"
             },
-            "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
-              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
+            "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
+              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
             },
             "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj": {
               "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Infrastructure\\ShopFlow.Infrastructure.csproj"

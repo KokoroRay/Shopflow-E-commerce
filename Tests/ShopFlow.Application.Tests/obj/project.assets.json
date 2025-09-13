@@ -13157,8 +13157,8 @@
     },
     "ShopFlow.API/1.0.0": {
       "type": "project",
-      "path": "../../ShopFLow/ShopFlow.API/ShopFlow.API.csproj",
-      "msbuildProject": "../../ShopFLow/ShopFlow.API/ShopFlow.API.csproj"
+      "path": "../../ShopFlow/ShopFlow.API/ShopFlow.API.csproj",
+      "msbuildProject": "../../ShopFlow/ShopFlow.API/ShopFlow.API.csproj"
     },
     "ShopFlow.Application/1.0.0": {
       "type": "project",
@@ -13167,8 +13167,8 @@
     },
     "ShopFlow.Domain/1.0.0": {
       "type": "project",
-      "path": "../../ShopFLow/ShopFlow.Domain/ShopFlow.Domain.csproj",
-      "msbuildProject": "../../ShopFLow/ShopFlow.Domain/ShopFlow.Domain.csproj"
+      "path": "../../ShopFlow/ShopFlow.Domain/ShopFlow.Domain.csproj",
+      "msbuildProject": "../../ShopFlow/ShopFlow.Domain/ShopFlow.Domain.csproj"
     },
     "ShopFlow.Infrastructure/1.0.0": {
       "type": "project",
@@ -13232,14 +13232,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.API\\ShopFlow.API.csproj": {
-              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.API\\ShopFlow.API.csproj"
+            "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\ShopFlow.API.csproj": {
+              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.API\\ShopFlow.API.csproj"
             },
             "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\ShopFlow.Application.csproj": {
               "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Application\\ShopFlow.Application.csproj"
             },
-            "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
-              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFLow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
+            "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj": {
+              "projectPath": "D:\\Code\\.Net\\project_shopflow\\ShopFlow\\ShopFlow.Domain\\ShopFlow.Domain.csproj"
             }
           }
         }
