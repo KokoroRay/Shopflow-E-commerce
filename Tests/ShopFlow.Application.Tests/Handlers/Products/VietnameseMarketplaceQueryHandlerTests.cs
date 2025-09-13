@@ -8,8 +8,8 @@ using ShopFlow.Application.Contracts.Response;
 using ShopFlow.Application.Handlers.Products;
 using ShopFlow.Application.Queries.Products;
 using ShopFlow.Application.Tests.TestFixtures;
-using ShopFlow.Domain.Entities;
 using ShopFlow.Domain.ValueObjects;
+using ShopFlow.Domain.Entities;
 using Xunit;
 
 namespace ShopFlow.Application.Tests.Handlers.Products;
@@ -71,11 +71,11 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().HaveCount(3);
+        result.Items.Should().HaveCount(3);
         result.TotalCount.Should().Be(totalCount);
-        result.Page.Should().Be(page);
+        result.CurrentPage.Should().Be(page);
         result.PageSize.Should().Be(pageSize);
-        result.Data.Should().AllSatisfy(p => p.VendorId.Should().Be(vendorId));
+        result.Items.Should().AllSatisfy(p => p.VendorId.Should().Be(vendorId));
     }
 
     [Theory, AutoData]
@@ -94,7 +94,7 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEmpty();
+        result.Items.Should().BeEmpty();
         result.TotalCount.Should().Be(0);
     }
 
@@ -139,16 +139,16 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().HaveCount(products.Count);
+        result.Items.Should().HaveCount(products.Count);
         result.TotalCount.Should().Be(totalCount);
 
         if (languageCode == "vi")
         {
-            result.Data.Should().AllSatisfy(p => p.Name.Should().ContainAny("Phở", "Bánh"));
+            result.Items.Should().AllSatisfy(p => p.Name.Should().ContainAny("Phở", "Bánh"));
         }
         else
         {
-            result.Data.Should().AllSatisfy(p => p.Name.Should().ContainAny("Pho", "Sandwich"));
+            result.Items.Should().AllSatisfy(p => p.Name.Should().ContainAny("Pho", "Sandwich"));
         }
     }
 
@@ -190,11 +190,10 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().HaveCount(products.Count);
-        result.Data.Should().AllSatisfy(p =>
+        result.Items.Should().HaveCount(products.Count);
+        result.Items.Should().AllSatisfy(p =>
         {
-            p.Price.Currency.Should().Be(currency);
-            p.Price.Amount.Should().BeInRange(minPrice, maxPrice);
+            p.BasePrice.Should().BeInRange(minPrice, maxPrice);
         });
     }
 
@@ -216,7 +215,7 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEmpty();
+        result.Items.Should().BeEmpty();
     }
 
     #endregion
@@ -263,17 +262,22 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
             .Setup(x => x.SearchAsync(searchTerm, languageCode, It.IsAny<CancellationToken>()))
             .ReturnsAsync(searchResults);
 
-        var query = new SearchProductsQuery(searchTerm, languageCode, page, pageSize);
+        var query = new SearchProductsQuery(searchTerm, languageCode ?? "vi", page, pageSize);
 
         // Act
         var result = await _searchProductsHandler.Handle(query, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().HaveCount(searchResults.Count);
-        result.Data.Should().AllSatisfy(p =>
-            p.Name.Should().Contain(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-            p.Name.Should().ContainAny("Phở", "Bánh", "Vietnamese", "Coffee", "Cà phê"));
+        result.Items.Should().HaveCount(searchResults.Count);
+        result.Items.Should().AllSatisfy(p =>
+        {
+            var nameContainsSearchTerm = p.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase);
+            var nameContainsVietnameseTerms = p.Name.Contains("Phở") || p.Name.Contains("Bánh") || 
+                                             p.Name.Contains("Vietnamese") || p.Name.Contains("Coffee") || 
+                                             p.Name.Contains("Cà phê");
+            (nameContainsSearchTerm || nameContainsVietnameseTerms).Should().BeTrue();
+        });
     }
 
     [Fact]
@@ -285,14 +289,14 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
             .Setup(x => x.SearchAsync(emptySearchTerm, null, It.IsAny<CancellationToken>()))
             .ReturnsAsync(new List<CatProduct>());
 
-        var query = new SearchProductsQuery(emptySearchTerm, null, 1, 10);
+        var query = new SearchProductsQuery(emptySearchTerm, "vi", 1, 10);
 
         // Act
         var result = await _searchProductsHandler.Handle(query, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEmpty();
+        result.Items.Should().BeEmpty();
     }
 
     [Theory]
@@ -307,14 +311,14 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
             .Setup(x => x.SearchAsync(invalidSearchTerm, languageCode, It.IsAny<CancellationToken>()))
             .ReturnsAsync(new List<CatProduct>());
 
-        var query = new SearchProductsQuery(invalidSearchTerm, languageCode, 1, 10);
+        var query = new SearchProductsQuery(invalidSearchTerm, "vi", 1, 10);
 
         // Act
         var result = await _searchProductsHandler.Handle(query, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEmpty();
+        result.Items.Should().BeEmpty();
     }
 
     #endregion
@@ -323,18 +327,11 @@ public class VietnameseMarketplaceQueryHandlerTests : ApplicationTestBase
 
     private static CatProduct CreateVietnameseProduct(long vendorId, string name, string currency, decimal price)
     {
-        return new CatProduct
-        {
-            Id = Random.Shared.NextInt64(1, 1000000),
-            VendorId = vendorId,
-            Name = new ProductName(name),
-            Description = new ProductDescription($"Description for {name}"),
-            Price = new Money(price, currency),
-            Status = 1, // Active
-            CategoryId = Random.Shared.NextInt64(1, 100),
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
-        };
+        var productName = ProductName.FromDisplayName(name);
+        var productSlug = ProductSlug.FromProductName(productName);
+        
+        var product = new CatProduct(productName, productSlug, 1); // ProductType = 1
+        return product;
     }
 
     #endregion

@@ -83,28 +83,39 @@ jobs:
         continue-on-error: true
         run: |
           echo "🧪 Checking test project compilation..."
+          
+          # First restore test project dependencies
+          echo "🔄 Restoring test project dependencies..."
+          dotnet restore Tests/ShopFlow.Domain.Tests/ShopFlow.Domain.Tests.csproj || echo "Domain test restore issues"
+          dotnet restore Tests/ShopFlow.Application.Tests/ShopFlow.Application.Tests.csproj || echo "Application test restore issues"
 
+          # Then try to build test projects
           if dotnet build Tests/ShopFlow.Domain.Tests/ShopFlow.Domain.Tests.csproj \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
-            --no-restore \
             --verbosity minimal; then
             echo "✅ Domain tests compile successfully"
+            DOMAIN_TEST_STATUS="✅ Success"
           else
             echo "⚠️ Domain tests have compilation issues"
+            DOMAIN_TEST_STATUS="⚠️ Issues"
           fi
 
           if dotnet build Tests/ShopFlow.Application.Tests/ShopFlow.Application.Tests.csproj \
             --configuration ${{ env.BUILD_CONFIGURATION }} \
-            --no-restore \
             --verbosity minimal; then
             echo "✅ Application tests compile successfully"
+            APPLICATION_TEST_STATUS="✅ Success"
           else
             echo "⚠️ Application tests have compilation issues (expected)"
+            APPLICATION_TEST_STATUS="⚠️ Issues (expected)"
           fi
 
+          echo ""
           echo "📊 Build Summary:"
           echo "Main Application: ✅ Success"
-          echo "Test Projects: ⚠️ Some compilation issues (not blocking)"
+          echo "Domain Tests: $DOMAIN_TEST_STATUS"
+          echo "Application Tests: $APPLICATION_TEST_STATUS"
+          echo "Note: Test compilation issues are non-blocking for main CI pipeline"
 
   # Job 2: Code Quality & Security (Basic)
   code-quality:
