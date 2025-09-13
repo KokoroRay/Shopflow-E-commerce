@@ -475,6 +475,11 @@
             Gets customer role codes
             </summary>
         </member>
+        <member name="T:ShopFlow.Domain.Exceptions.DomainException">
+            <summary>
+            Base domain exception for business rule violations
+            </summary>
+        </member>
         <member name="T:ShopFlow.Domain.Infrastructure.IDomainEventDispatcher">
             <summary>
             Abstraction for publishing domain events without external dependencies
@@ -907,6 +912,101 @@
             <param name="left">The first PhoneNumber to compare</param>
             <param name="right">The second PhoneNumber to compare</param>
             <returns>true if the PhoneNumbers are not equal; otherwise, false</returns>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.ProductDescription">
+            <summary>
+            Represents a product description value object with Vietnamese marketplace support
+            Supports both Vietnamese and English content for multi-language marketplace
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductDescription.FromContent(System.String)">
+            <summary>
+            Creates a ProductDescription from content with marketplace validation
+            Supports Vietnamese and English text for multi-language marketplace
+            </summary>
+            <param name="content">The product description content</param>
+            <returns>A valid ProductDescription instance</returns>
+            <exception cref="T:System.ArgumentException">When content is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductDescription.IsValidMarketplaceDescription(System.String)">
+            <summary>
+            Validates if description content is suitable for Vietnamese marketplace
+            Allows Vietnamese characters, Latin characters, numbers, spaces, and common symbols
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductDescription.IsVietnameseCharacter(System.Char)">
+            <summary>
+            Checks if character is a Vietnamese character
+            Covers Vietnamese Unicode ranges for accented characters
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.ProductName">
+            <summary>
+            Represents a product name value object with marketplace validation rules
+            Supports Vietnamese marketplace requirements with both VN and EN languages
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductName.FromDisplayName(System.String)">
+            <summary>
+            Creates a ProductName from a display name with marketplace validation
+            Supports Vietnamese and English characters for multi-language marketplace
+            </summary>
+            <param name="displayName">The product display name</param>
+            <returns>A valid ProductName instance</returns>
+            <exception cref="T:System.ArgumentException">When display name is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductName.IsValidMarketplaceName(System.String)">
+            <summary>
+            Validates if a name is suitable for Vietnamese marketplace
+            Allows Vietnamese characters, Latin characters, numbers, spaces, and common symbols
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductName.IsVietnameseCharacter(System.Char)">
+            <summary>
+            Checks if character is a Vietnamese character
+            Covers Vietnamese Unicode ranges for accented characters
+            </summary>
+        </member>
+        <member name="T:ShopFlow.Domain.ValueObjects.ProductSlug">
+            <summary>
+            Represents a product slug value object for marketplace SEO-friendly URLs
+            Supports Vietnamese marketplace with proper URL slug generation and validation
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductSlug.FromString(System.String)">
+            <summary>
+            Creates a ProductSlug from a string with marketplace validation
+            Ensures SEO-friendly URLs for Vietnamese marketplace
+            </summary>
+            <param name="slug">The product slug string</param>
+            <returns>A valid ProductSlug instance</returns>
+            <exception cref="T:System.ArgumentException">When slug is invalid</exception>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductSlug.FromProductName(ShopFlow.Domain.ValueObjects.ProductName)">
+            <summary>
+            Creates a ProductSlug from a ProductName by generating SEO-friendly slug
+            Converts Vietnamese characters to URL-safe equivalents for marketplace SEO
+            </summary>
+            <param name="productName">The product name to convert</param>
+            <returns>A SEO-friendly ProductSlug</returns>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductSlug.GenerateSlugFromName(System.String)">
+            <summary>
+            Generates a SEO-friendly slug from product name
+            Handles Vietnamese character conversion for marketplace URLs
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductSlug.RemoveVietnameseAccents(System.String)">
+            <summary>
+            Removes Vietnamese accents and converts to ASCII for SEO-friendly URLs
+            Essential for Vietnamese marketplace SEO optimization
+            </summary>
+        </member>
+        <member name="M:ShopFlow.Domain.ValueObjects.ProductSlug.IsValidSlugFormat(System.String)">
+            <summary>
+            Validates slug format for marketplace URLs
+            Ensures SEO-friendly format: lowercase, alphanumeric, hyphens only
+            </summary>
         </member>
     </members>
 </doc>

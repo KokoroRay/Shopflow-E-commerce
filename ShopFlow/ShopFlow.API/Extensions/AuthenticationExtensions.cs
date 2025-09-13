@@ -1,7 +1,9 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using ShopFlow.API.Configurations;
+using ShopFlow.API.Authorization;
 
 namespace ShopFlow.API.Extensions;
 
@@ -11,9 +13,9 @@ public static class AuthenticationExtensions
     {
         // Configure JWT options
         services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
-        
+
         var jwtOptions = configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
-        
+
         if (jwtOptions == null || string.IsNullOrEmpty(jwtOptions.SecretKey))
         {
             throw new InvalidOperationException("JWT configuration is invalid or missing");
@@ -62,14 +64,58 @@ public static class AuthenticationExtensions
             };
         });
 
-        // Add authorization
+        // Add authorization with Vietnamese marketplace policies
         services.AddAuthorization(options =>
         {
-            // Add custom policies here
+            // Basic role policies
             options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
             options.AddPolicy("CustomerOnly", policy => policy.RequireRole("Customer"));
             options.AddPolicy("VendorOnly", policy => policy.RequireRole("Vendor"));
+
+            // Vietnamese marketplace specific policies
+            options.AddPolicy("VendorOrAdmin", policy =>
+                policy.RequireRole("Vendor", "Admin"));
+
+            options.AddPolicy("ProductManagement", policy =>
+                policy.RequireRole("Vendor", "Admin")
+                      .RequireClaim("permission", "product.manage"));
+
+            options.AddPolicy("ProductApproval", policy =>
+                policy.RequireRole("Admin")
+                      .RequireClaim("permission", "product.approve"));
+
+            options.AddPolicy("VendorProductAccess", policy =>
+                policy.RequireRole("Vendor")
+                      .RequireClaim("vendor_id")); // Must have vendor_id claim
+
+            options.AddPolicy("TaxReporting", policy =>
+                policy.RequireRole("Admin", "Accountant")
+                      .RequireClaim("permission", "tax.report"));
+
+            options.AddPolicy("BulkOperations", policy =>
+                policy.RequireRole("Admin")
+                      .RequireClaim("permission", "bulk.operations"));
+
+            // Multi-language content management
+            options.AddPolicy("ContentManagement", policy =>
+                policy.RequireRole("Admin", "ContentManager")
+                      .RequireClaim("permission", "content.manage"));
+
+            // Vietnamese marketplace custom authorization requirements
+            options.AddPolicy("VendorResourceAccess", policy =>
+                policy.Requirements.Add(new VendorResourceRequirement("product")));
+
+            options.AddPolicy("ApprovalAuthority", policy =>
+                policy.Requirements.Add(new ApprovalAuthorityRequirement("product.approval")));
+
+            options.AddPolicy("TaxCompliance", policy =>
+                policy.Requirements.Add(new TaxComplianceRequirement("tax.operations")));
         });
+
+        // Register custom authorization handlers
+        services.AddScoped<IAuthorizationHandler, VendorResourceHandler>();
+        services.AddScoped<IAuthorizationHandler, ApprovalAuthorityHandler>();
+        services.AddScoped<IAuthorizationHandler, TaxComplianceHandler>();
 
         return services;
     }

@@ -37,6 +37,9 @@ try
     // 6) Caching
     builder.Services.AddCachingConfiguration(builder.Configuration);
 
+    // 7) Vietnamese Marketplace
+    builder.Services.AddVietnameseMarketplace();
+
     // (tuỳ chọn) CORS mặc định
     builder.Services.AddCors(o =>
     {
@@ -64,6 +67,9 @@ try
     app.UseAuthentication();
     app.UseAuthorization();
 
+    // Vietnamese Marketplace middleware (after auth, before exception handler)
+    app.UseVietnameseMarketplace();
+
     // Global exception handler (middleware của bạn)
     app.UseMiddleware<GlobalExceptionHandler>();
 
@@ -87,4 +93,7 @@ finally
 /// <summary>
 /// Program class for integration tests
 /// </summary>
-public partial class Program { }
+internal partial class Program
+{
+    protected Program() { }
+}
