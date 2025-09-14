@@ -313,3 +313,107 @@ public class BulkUpdateProductsCommandHandler : IRequestHandler<BulkUpdateProduc
         }
     }
 }
+
+/// <summary>
+/// Handler for EditProductCommand - Vietnamese marketplace product editing
+/// </summary>
+public class EditProductCommandHandler : IRequestHandler<EditProductCommand, ProductResponse>
+{
+    private readonly IProductRepository _productRepository;
+    private readonly ILogger<EditProductCommandHandler> _logger;
+
+    public EditProductCommandHandler(
+        IProductRepository productRepository,
+        ILogger<EditProductCommandHandler> logger)
+    {
+        _productRepository = productRepository;
+        _logger = logger;
+    }
+
+    public async Task<ProductResponse> Handle(EditProductCommand request, CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Editing product {ProductId} by vendor {VendorId}",
+            request.ProductId, request.VendorId);
+
+        try
+        {
+            // Get the product
+            var product = await _productRepository.GetByIdAsync(request.ProductId, cancellationToken).ConfigureAwait(false);
+
+            if (product == null)
+            {
+                return new ProductResponse
+                {
+                    Success = false,
+                    Message = $"Product with ID {request.ProductId} not found"
+                };
+            }
+
+            // Validate that the product can be edited (business rules)
+            if (product.Status == ProductStatus.Discontinued)
+            {
+                return new ProductResponse
+                {
+                    Success = false,
+                    Message = "Cannot edit a discontinued product"
+                };
+            }
+
+            // Create updated product name and slug
+            var productName = ShopFlow.Domain.ValueObjects.ProductName.FromDisplayName(request.Name);
+            var productSlug = ShopFlow.Domain.ValueObjects.ProductSlug.FromProductName(productName);
+
+            // Update product details using domain method
+            product.UpdateProductDetails(
+                name: productName,
+                slug: productSlug,
+                productType: request.ProductType,
+                returnDays: request.ReturnDays
+            );
+
+            // Save changes
+            await _productRepository.UpdateAsync(product, cancellationToken).ConfigureAwait(false);
+
+            _logger.LogInformation("Successfully updated product {ProductId}", request.ProductId);
+
+            return new ProductResponse
+            {
+                Success = true,
+                Message = "Product updated successfully",
+                Id = product.Id,
+                Name = product.Name.Value,
+                Slug = product.Slug.Value,
+                Status = (byte)product.Status,
+                CreatedAt = product.CreatedAt,
+                UpdatedAt = product.UpdatedAt
+            };
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogWarning(ex, "Validation error while editing product {ProductId}", request.ProductId);
+            return new ProductResponse
+            {
+                Success = false,
+                Message = ex.Message
+            };
+        }
+        catch (DomainException ex)
+        {
+            _logger.LogWarning(ex, "Domain error while editing product {ProductId}", request.ProductId);
+            return new ProductResponse
+            {
+                Success = false,
+                Message = ex.Message
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unexpected error while editing product {ProductId}", request.ProductId);
+            return new ProductResponse
+            {
+                Success = false,
+                Message = "An unexpected error occurred while updating the product"
+            };
+        }
+    }
+}

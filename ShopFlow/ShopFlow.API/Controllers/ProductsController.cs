@@ -102,6 +102,46 @@ internal class ProductsController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Updates an existing product in the Vietnamese marketplace
+    /// </summary>
+    /// <param name="id">Product ID to update</param>
+    /// <param name="request">The edit product request</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The updated product</returns>
+    [HttpPut("{id}")]
+    [Authorize(Policy = "ProductManagement")]
+    public async Task<IActionResult> UpdateProduct(long id, [FromBody] EditProductRequest request, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+
+        // TODO: Get vendor ID from authenticated user claims
+        var vendorId = 1L; // Placeholder for authentication system
+
+        var command = new EditProductCommand(
+            ProductId: id,
+            Name: request.Name,
+            ShortDescription: request.ShortDescription,
+            LongDescription: request.LongDescription,
+            ProductType: request.ProductType,
+            ReturnDays: request.ReturnDays,
+            VendorId: vendorId
+        );
+
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+
+        if (!result.Success)
+        {
+            if (result.Message?.Contains("not found") == true)
+            {
+                return NotFound(result);
+            }
+            return BadRequest(result);
+        }
+
+        return Ok(result);
+    }
+
     #region Vietnamese Marketplace Endpoints
 
     /// <summary>

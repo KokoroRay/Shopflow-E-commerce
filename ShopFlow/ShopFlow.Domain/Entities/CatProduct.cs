@@ -70,6 +70,24 @@ public class CatProduct : BaseEntity
         UpdatedAt = DateTime.UtcNow;
     }
 
+    public void UpdateProductDetails(ProductName name, ProductSlug slug, byte? productType = null, int? returnDays = null)
+    {
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+        Slug = slug ?? throw new ArgumentNullException(nameof(slug));
+        
+        if (productType.HasValue)
+            ProductType = productType.Value;
+            
+        if (returnDays.HasValue)
+        {
+            if (returnDays.Value < 0)
+                throw new ArgumentException("Return days cannot be negative", nameof(returnDays));
+            ReturnDays = returnDays.Value;
+        }
+        
+        UpdatedAt = DateTime.UtcNow;
+    }
+
     public void AddSku(CatSku sku)
     {
         if (sku == null) throw new ArgumentNullException(nameof(sku));
