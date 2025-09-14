@@ -88,7 +88,7 @@ public class CreateProductCommandHandlerTests
 
         _productRepositoryMock
             .Setup(x => x.AddAsync(It.IsAny<CatProduct>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync((CatProduct p, CancellationToken _) => 
+            .ReturnsAsync((CatProduct p, CancellationToken _) =>
             {
                 // Simulate setting ID after save
                 p.GetType().GetProperty("Id")?.SetValue(p, 123L);
@@ -155,7 +155,7 @@ public class CreateProductCommandHandlerTests
             .ReturnsAsync((CatCategory?)null);
 
         // Act & Assert
-        var exception = await Assert.ThrowsAsync<Application.Exceptions.DomainException>(() => 
+        var exception = await Assert.ThrowsAsync<Application.Exceptions.DomainException>(() =>
             _handler.Handle(command, CancellationToken.None));
 
         exception.Message.Should().Contain("Category with ID 999 not found");
@@ -224,7 +224,7 @@ public class CreateProductCommandHandlerTests
 
         _productRepositoryMock
             .Setup(x => x.AddAsync(It.IsAny<CatProduct>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync((CatProduct p, CancellationToken _) => 
+            .ReturnsAsync((CatProduct p, CancellationToken _) =>
             {
                 p.GetType().GetProperty("Id")?.SetValue(p, 456L);
                 return p;
@@ -248,7 +248,7 @@ public class CreateProductCommandHandlerTests
     {
         var categoryName = CategoryName.FromDisplayName($"Category {id}");
         var categorySlug = new CategorySlug($"category-{id}");
-        
+
         return new CatCategory(
             categoryName,
             categorySlug,

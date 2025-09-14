@@ -146,7 +146,7 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, PagedPr
 
         return sortBy.ToUpperInvariant() switch
         {
-            "NAME" => isDescending 
+            "NAME" => isDescending
                 ? query.OrderByDescending(p => p.Name.Value)
                 : query.OrderBy(p => p.Name.Value),
             "STATUS" => isDescending
