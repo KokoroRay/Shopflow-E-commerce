@@ -25,6 +25,20 @@ public record EditProductCommand(
 ) : IRequest<ProductResponse>;
 
 /// <summary>
+/// Command to delete (discontinue) product in Vietnamese marketplace
+/// </summary>
+/// <param name="ProductId">ID of the product to delete</param>
+/// <param name="VendorId">ID of the vendor (for authorization)</param>
+/// <param name="AdminNotes">Admin notes about the deletion</param>
+/// <param name="NotifyVendor">Whether to notify the vendor about deletion</param>
+public record DeleteProductCommand(
+    long ProductId,
+    long? VendorId = null,
+    string? AdminNotes = null,
+    bool NotifyVendor = true
+) : IRequest<ProductResponse>;
+
+/// <summary>
 /// Command to update product status in Vietnamese marketplace
 /// </summary>
 /// <param name="ProductId">ID of the product to update</param>

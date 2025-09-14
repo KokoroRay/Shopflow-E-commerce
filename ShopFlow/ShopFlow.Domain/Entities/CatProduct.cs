@@ -88,6 +88,20 @@ public class CatProduct : BaseEntity
         UpdatedAt = DateTime.UtcNow;
     }
 
+    public void Delete()
+    {
+        if (Status == ProductStatus.Discontinued)
+            throw new InvalidOperationException("Product is already discontinued");
+
+        Status = ProductStatus.Discontinued;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public bool CanBeDeleted()
+    {
+        return Status != ProductStatus.Discontinued;
+    }
+
     public void AddSku(CatSku sku)
     {
         if (sku == null) throw new ArgumentNullException(nameof(sku));

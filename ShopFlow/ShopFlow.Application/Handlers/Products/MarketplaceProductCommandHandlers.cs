@@ -417,3 +417,108 @@ public class EditProductCommandHandler : IRequestHandler<EditProductCommand, Pro
         }
     }
 }
+
+/// <summary>
+/// Handler for DeleteProductCommand - Vietnamese marketplace product deletion
+/// </summary>
+public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, ProductResponse>
+{
+    private readonly IProductRepository _productRepository;
+    private readonly ILogger<DeleteProductCommandHandler> _logger;
+
+    public DeleteProductCommandHandler(
+        IProductRepository productRepository,
+        ILogger<DeleteProductCommandHandler> logger)
+    {
+        _productRepository = productRepository;
+        _logger = logger;
+    }
+
+    public async Task<ProductResponse> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Deleting product {ProductId}", request.ProductId);
+
+        try
+        {
+            // Get the product
+            var product = await _productRepository.GetByIdAsync(request.ProductId, cancellationToken).ConfigureAwait(false);
+
+            if (product == null)
+            {
+                _logger.LogWarning("Product {ProductId} not found", request.ProductId);
+                return new ProductResponse
+                {
+                    Success = false,
+                    Message = $"Product with ID {request.ProductId} not found"
+                };
+            }
+
+            // Check if product can be deleted
+            if (!product.CanBeDeleted())
+            {
+                _logger.LogWarning("Product {ProductId} cannot be deleted - already discontinued", request.ProductId);
+                return new ProductResponse
+                {
+                    Success = false,
+                    Message = "Product is already discontinued and cannot be deleted"
+                };
+            }
+
+            // Delete the product (set to discontinued status)
+            product.Delete();
+
+            // Save changes
+            await _productRepository.UpdateAsync(product, cancellationToken).ConfigureAwait(false);
+
+            // Log admin notes if provided
+            if (!string.IsNullOrEmpty(request.AdminNotes))
+            {
+                _logger.LogInformation("Admin notes for product {ProductId} deletion: {Notes}",
+                    request.ProductId, request.AdminNotes);
+            }
+
+            // TODO: In Phase 3, implement vendor notification if requested
+            if (request.NotifyVendor)
+            {
+                _logger.LogInformation("Vendor notification for product deletion will be implemented in Phase 3");
+            }
+
+            _logger.LogInformation("Product {ProductId} successfully deleted (discontinued)", request.ProductId);
+
+            // Return success response
+            return new ProductResponse
+            {
+                Success = true,
+                Message = "Product deleted successfully",
+                Id = product.Id,
+                Name = product.Name.Value,
+                Slug = product.Slug.Value,
+                Status = (byte)product.Status,
+                ProductType = product.ProductType,
+                ReturnDays = product.ReturnDays,
+                CreatedAt = product.CreatedAt,
+                UpdatedAt = product.UpdatedAt,
+                VendorId = request.VendorId ?? 1,
+                PrimaryLanguage = "vi"
+            };
+        }
+        catch (DomainException ex)
+        {
+            _logger.LogWarning(ex, "Domain error while deleting product {ProductId}", request.ProductId);
+            return new ProductResponse
+            {
+                Success = false,
+                Message = ex.Message
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unexpected error while deleting product {ProductId}", request.ProductId);
+            return new ProductResponse
+            {
+                Success = false,
+                Message = "An unexpected error occurred while deleting the product"
+            };
+        }
+    }
+}
