@@ -74,17 +74,17 @@ public class CatProduct : BaseEntity
     {
         Name = name ?? throw new ArgumentNullException(nameof(name));
         Slug = slug ?? throw new ArgumentNullException(nameof(slug));
-        
+
         if (productType.HasValue)
             ProductType = productType.Value;
-            
+
         if (returnDays.HasValue)
         {
             if (returnDays.Value < 0)
                 throw new ArgumentException("Return days cannot be negative", nameof(returnDays));
             ReturnDays = returnDays.Value;
         }
-        
+
         UpdatedAt = DateTime.UtcNow;
     }
 

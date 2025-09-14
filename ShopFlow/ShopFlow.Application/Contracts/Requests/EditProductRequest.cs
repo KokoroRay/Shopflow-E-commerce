@@ -14,24 +14,24 @@ public class EditProductRequest
     [MinLength(2)]
     [MaxLength(255)]
     public string Name { get; set; } = string.Empty;
-    
+
     /// <summary>
     /// Short description of the product
     /// </summary>
     [MaxLength(1000)]
     public string? ShortDescription { get; set; }
-    
+
     /// <summary>
     /// Detailed description of the product  
     /// </summary>
     [MaxLength(5000)]
     public string? LongDescription { get; set; }
-    
+
     /// <summary>
     /// Product type identifier
     /// </summary>
     public byte? ProductType { get; set; }
-    
+
     /// <summary>
     /// Return policy in days
     /// </summary>

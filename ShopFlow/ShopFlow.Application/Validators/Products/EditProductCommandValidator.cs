@@ -65,7 +65,7 @@ public class EditProductCommandValidator : AbstractValidator<EditProductCommand>
         // Allow Vietnamese characters (à-ỹ, À-Ỹ), alphanumeric, spaces, and common symbols
         // This regex pattern allows most common Vietnamese product names
         var allowedPattern = @"^[a-zA-Z0-9àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđĐÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸ\s\-\.\,\(\)\[\]\/\&\+\%\$\#\@\!\?]+$";
-        
+
         return System.Text.RegularExpressions.Regex.IsMatch(name, allowedPattern);
     }
 }

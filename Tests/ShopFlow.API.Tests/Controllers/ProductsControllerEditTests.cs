@@ -59,8 +59,8 @@ public class ProductsControllerEditTests
         okResult!.Value.Should().BeEquivalentTo(expectedResponse);
 
         _mediatorMock.Verify(x => x.Send(
-            It.Is<EditProductCommand>(cmd => 
-                cmd.ProductId == productId && 
+            It.Is<EditProductCommand>(cmd =>
+                cmd.ProductId == productId &&
                 cmd.Name == request.Name &&
                 cmd.ShortDescription == request.ShortDescription &&
                 cmd.LongDescription == request.LongDescription &&
@@ -135,7 +135,7 @@ public class ProductsControllerEditTests
         EditProductRequest? request = null;
 
         // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => 
+        await Assert.ThrowsAsync<ArgumentNullException>(() =>
             _controller.UpdateProduct(productId, request!, CancellationToken.None));
     }
 }

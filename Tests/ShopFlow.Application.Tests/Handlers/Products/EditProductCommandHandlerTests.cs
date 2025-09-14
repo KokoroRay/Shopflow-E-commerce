@@ -63,7 +63,7 @@ public class EditProductCommandHandlerTests : ApplicationTestBase
 
         _productRepositoryMock.Verify(x => x.GetByIdAsync(productId, It.IsAny<CancellationToken>()), Times.Once);
         _productRepositoryMock.Verify(x => x.UpdateAsync(
-            It.Is<CatProduct>(p => p.Name.Value == "Sản phẩm đã chỉnh sửa"), 
+            It.Is<CatProduct>(p => p.Name.Value == "Sản phẩm đã chỉnh sửa"),
             It.IsAny<CancellationToken>()), Times.Once);
     }
 
@@ -188,7 +188,7 @@ public class EditProductCommandHandlerTests : ApplicationTestBase
         result.Name.Should().Be(vietnameseName);
 
         _productRepositoryMock.Verify(x => x.UpdateAsync(
-            It.Is<CatProduct>(p => p.Name.Value == vietnameseName), 
+            It.Is<CatProduct>(p => p.Name.Value == vietnameseName),
             It.IsAny<CancellationToken>()), Times.Once);
     }
 
@@ -199,10 +199,10 @@ public class EditProductCommandHandlerTests : ApplicationTestBase
         var productName = ProductName.FromDisplayName(name);
         var productSlug = ProductSlug.FromProductName(productName);
         var product = new CatProduct(productName, productSlug, 1);
-        
+
         // Set ID using reflection since it's inherited from BaseEntity
         typeof(BaseEntity).GetProperty("Id")?.SetValue(product, productId);
-        
+
         return product;
     }
 
