@@ -102,6 +102,146 @@ internal class ProductsController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Updates an existing product in the Vietnamese marketplace
+    /// </summary>
+    /// <param name="id">Product ID to update</param>
+    /// <param name="request">The edit product request</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The updated product</returns>
+    [HttpPut("{id}")]
+    [Authorize(Policy = "ProductManagement")]
+    public async Task<IActionResult> UpdateProduct(long id, [FromBody] EditProductRequest request, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+
+        // TODO: Get vendor ID from authenticated user claims
+        var vendorId = 1L; // Placeholder for authentication system
+
+        var command = new EditProductCommand(
+            ProductId: id,
+            Name: request.Name,
+            ShortDescription: request.ShortDescription,
+            LongDescription: request.LongDescription,
+            ProductType: request.ProductType,
+            ReturnDays: request.ReturnDays,
+            VendorId: vendorId
+        );
+
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+
+        if (!result.Success)
+        {
+            if (result.Message?.Contains("not found") == true)
+            {
+                return NotFound(result);
+            }
+            return BadRequest(result);
+        }
+
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Delete a product (set to discontinued status)
+    /// </summary>
+    /// <param name="id">Product ID</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>Delete operation result</returns>
+    [HttpDelete("{id:long}")]
+    [Authorize(Policy = "VendorResourcePolicy")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductResponse))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProductResponse))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProductResponse))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> DeleteProduct(long id, CancellationToken cancellationToken = default)
+    {
+        // TODO: Extract vendor ID from claims in real implementation
+        var vendorId = HttpContext.GetCurrentUserId();
+
+        var command = new DeleteProductCommand(
+            ProductId: id,
+            VendorId: vendorId,
+            AdminNotes: $"Product deleted by vendor {vendorId}",
+            NotifyVendor: false // Don't notify vendor when they delete their own product
+        );
+
+        var result = await _mediator.Send(command, cancellationToken).ConfigureAwait(false);
+
+        if (!result.Success)
+        {
+            if (result.Message?.Contains("not found") == true)
+            {
+                return NotFound(result);
+            }
+            return BadRequest(result);
+        }
+
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Get paginated list of products with filtering and search
+    /// </summary>
+    /// <param name="pageNumber">Page number (1-based)</param>
+    /// <param name="pageSize">Number of items per page</param>
+    /// <param name="searchTerm">Search term for product name</param>
+    /// <param name="status">Filter by product status</param>
+    /// <param name="productType">Filter by product type</param>
+    /// <param name="vendorId">Filter by vendor ID</param>
+    /// <param name="categoryId">Filter by category ID</param>
+    /// <param name="sortBy">Sort field (Name, CreatedAt, UpdatedAt, Status)</param>
+    /// <param name="sortDirection">Sort direction (asc, desc)</param>
+    /// <param name="includeInactive">Include inactive products</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>Paginated list of products</returns>
+    [HttpGet]
+    [AllowAnonymous] // Public endpoint for product browsing
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PagedProductResponse))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(PagedProductResponse))]
+    public async Task<IActionResult> GetProducts(
+        [FromQuery] int pageNumber = 1,
+        [FromQuery] int pageSize = 20,
+        [FromQuery] string? searchTerm = null,
+        [FromQuery] string? status = null,
+        [FromQuery] byte? productType = null,
+        [FromQuery] long? vendorId = null,
+        [FromQuery] long? categoryId = null,
+        [FromQuery] string sortBy = "CreatedAt",
+        [FromQuery] string sortDirection = "desc",
+        [FromQuery] bool includeInactive = false,
+        CancellationToken cancellationToken = default)
+    {
+        ProductStatus? productStatus = null;
+        if (!string.IsNullOrEmpty(status) && Enum.TryParse<ProductStatus>(status, true, out var parsedStatus))
+        {
+            productStatus = parsedStatus;
+        }
+
+        var query = new GetProductsQuery(
+            PageNumber: pageNumber,
+            PageSize: pageSize,
+            SearchTerm: searchTerm,
+            Status: productStatus,
+            ProductType: productType,
+            VendorId: vendorId,
+            CategoryId: categoryId,
+            SortBy: sortBy,
+            SortDirection: sortDirection,
+            IncludeInactive: includeInactive
+        );
+
+        var result = await _mediator.Send(query, cancellationToken).ConfigureAwait(false);
+
+        if (!result.Success)
+        {
+            return BadRequest(result);
+        }
+
+        return Ok(result);
+    }
+
     #region Vietnamese Marketplace Endpoints
 
     /// <summary>

@@ -5,6 +5,40 @@ using ShopFlow.Domain.Enums;
 namespace ShopFlow.Application.Commands.Products;
 
 /// <summary>
+/// Command to edit product details in Vietnamese marketplace
+/// </summary>
+/// <param name="ProductId">ID of the product to edit</param>
+/// <param name="Name">New product name</param>
+/// <param name="ShortDescription">New short description</param>
+/// <param name="LongDescription">New long description</param>
+/// <param name="ProductType">New product type</param>
+/// <param name="ReturnDays">New return policy days</param>
+/// <param name="VendorId">ID of the vendor (for authorization)</param>
+public record EditProductCommand(
+    long ProductId,
+    string Name,
+    string? ShortDescription = null,
+    string? LongDescription = null,
+    byte? ProductType = null,
+    int? ReturnDays = null,
+    long? VendorId = null
+) : IRequest<ProductResponse>;
+
+/// <summary>
+/// Command to delete (discontinue) product in Vietnamese marketplace
+/// </summary>
+/// <param name="ProductId">ID of the product to delete</param>
+/// <param name="VendorId">ID of the vendor (for authorization)</param>
+/// <param name="AdminNotes">Admin notes about the deletion</param>
+/// <param name="NotifyVendor">Whether to notify the vendor about deletion</param>
+public record DeleteProductCommand(
+    long ProductId,
+    long? VendorId = null,
+    string? AdminNotes = null,
+    bool NotifyVendor = true
+) : IRequest<ProductResponse>;
+
+/// <summary>
 /// Command to update product status in Vietnamese marketplace
 /// </summary>
 /// <param name="ProductId">ID of the product to update</param>
