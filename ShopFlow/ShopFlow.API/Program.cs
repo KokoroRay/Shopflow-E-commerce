@@ -1,4 +1,4 @@
-﻿using ShopFlow.Application;           // namespace của DI extension ở Application
+using ShopFlow.Application;           // namespace của DI extension ở Application
 using ShopFlow.Infrastructure;        // namespace của DI extension ở Infrastructure
 using ShopFlow.API.Middlewares;       // nơi đặt GlobalExceptionHandler (nếu là middleware)
 using ShopFlow.API.Extensions;        // Authentication extensions

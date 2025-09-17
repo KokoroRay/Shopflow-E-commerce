@@ -64,6 +64,8 @@ public class CategoryResponse
     /// Last update timestamp
     /// </summary>
     public DateTime? UpdatedAt { get; set; }
+
+    public List<CategoryResponse> Children { get; set; } = new();
 }
 
 /// <summary>
@@ -74,7 +76,7 @@ public class CategoryHierarchyResponse : CategoryResponse
     /// <summary>
     /// Child categories
     /// </summary>
-    public List<CategoryHierarchyResponse> Children { get; set; } = new();
+    public new List<CategoryHierarchyResponse> Children { get; set; } = new();
 
     /// <summary>
     /// Whether this category has children

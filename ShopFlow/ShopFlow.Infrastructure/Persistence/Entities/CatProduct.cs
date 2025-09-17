@@ -13,6 +13,16 @@ public partial class CatProduct
     [Column("id")]
     public long Id { get; set; }
 
+    [Required]
+    [Column("name")]
+    [StringLength(255)]
+    public string Name { get; set; }
+
+    [Required]
+    [Column("slug")]
+    [StringLength(255)]
+    public string Slug { get; set; }
+
     [Column("product_type")]
     public byte ProductType { get; set; }
 
@@ -31,7 +41,7 @@ public partial class CatProduct
     public DateTime UpdatedAt { get; set; }
 
     [InverseProperty("Product")]
-    public virtual ICollection<CatSku> CatSkus { get; set; } = new List<CatSku>();
+    public virtual ICollection<CatSku> Skus { get; set; } = new List<CatSku>();
 
     [InverseProperty("Product")]
     public virtual ICollection<CatVariantGroup> CatVariantGroups { get; set; } = new List<CatVariantGroup>();

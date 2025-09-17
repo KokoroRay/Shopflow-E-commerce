@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using ShopFlow.Infrastructure.Persistence.Entities;
+using PersistenceEntities = ShopFlow.Infrastructure.Persistence.Entities; // Added alias
 
 namespace ShopFlow.Infrastructure.Persistence;
 
@@ -16,119 +16,119 @@ public partial class ShopFlowDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Cart> Carts { get; set; }
+    public virtual DbSet<PersistenceEntities.Cart> Carts { get; set; }
 
-    public virtual DbSet<CartAppliedPromo> CartAppliedPromos { get; set; }
+    public virtual DbSet<PersistenceEntities.CartAppliedPromo> CartAppliedPromos { get; set; }
 
-    public virtual DbSet<CartItem> CartItems { get; set; }
+    public virtual DbSet<PersistenceEntities.CartItem> CartItems { get; set; }
 
-    public virtual DbSet<CatAttribute> CatAttributes { get; set; }
+    public virtual DbSet<PersistenceEntities.CatAttribute> CatAttributes { get; set; }
 
-    public virtual DbSet<CatAttributeOption> CatAttributeOptions { get; set; }
+    public virtual DbSet<PersistenceEntities.CatAttributeOption> CatAttributeOptions { get; set; }
 
-    public virtual DbSet<CatAttributeOptionI18n> CatAttributeOptionI18ns { get; set; }
+    public virtual DbSet<PersistenceEntities.CatAttributeOptionI18n> CatAttributeOptionI18ns { get; set; }
 
-    public virtual DbSet<CatCategory> CatCategories { get; set; }
+    public virtual DbSet<PersistenceEntities.CatCategory> CatCategories { get; set; }
 
-    public virtual DbSet<CatCategoryI18n> CatCategoryI18ns { get; set; }
+    public virtual DbSet<PersistenceEntities.CatCategoryI18n> CatCategoryI18ns { get; set; }
 
-    public virtual DbSet<CatProduct> CatProducts { get; set; }
+    public virtual DbSet<PersistenceEntities.CatProduct> CatProducts { get; set; }
 
-    public virtual DbSet<CatProductI18n> CatProductI18ns { get; set; }
+    public virtual DbSet<PersistenceEntities.CatProductI18n> CatProductI18ns { get; set; }
 
-    public virtual DbSet<CatSku> CatSkus { get; set; }
+    public virtual DbSet<PersistenceEntities.CatSku> CatSkus { get; set; }
 
-    public virtual DbSet<CatSkuMedium> CatSkuMedia { get; set; }
+    public virtual DbSet<PersistenceEntities.CatSkuMedium> CatSkuMedia { get; set; }
 
-    public virtual DbSet<CatSkuOptionValue> CatSkuOptionValues { get; set; }
+    public virtual DbSet<PersistenceEntities.CatSkuOptionValue> CatSkuOptionValues { get; set; }
 
-    public virtual DbSet<CatSkuPricing> CatSkuPricings { get; set; }
+    public virtual DbSet<PersistenceEntities.CatSkuPricing> CatSkuPricings { get; set; }
 
-    public virtual DbSet<CatVariantGroup> CatVariantGroups { get; set; }
+    public virtual DbSet<PersistenceEntities.CatVariantGroup> CatVariantGroups { get; set; }
 
-    public virtual DbSet<CeReview> CeReviews { get; set; }
+    public virtual DbSet<PersistenceEntities.CeReview> CeReviews { get; set; }
 
-    public virtual DbSet<CoreAddress> CoreAddresses { get; set; }
+    public virtual DbSet<PersistenceEntities.CoreAddress> CoreAddresses { get; set; }
 
-    public virtual DbSet<CorePermission> CorePermissions { get; set; }
+    public virtual DbSet<PersistenceEntities.CorePermission> CorePermissions { get; set; }
 
-    public virtual DbSet<CoreRole> CoreRoles { get; set; }
+    public virtual DbSet<PersistenceEntities.CoreRole> CoreRoles { get; set; }
 
-    public virtual DbSet<CoreUser> CoreUsers { get; set; }
+    public virtual DbSet<PersistenceEntities.CoreUser> CoreUsers { get; set; }
 
-    public virtual DbSet<CoreUserRole> CoreUserRoles { get; set; }
+    public virtual DbSet<PersistenceEntities.CoreUserRole> CoreUserRoles { get; set; }
 
-    public virtual DbSet<InvAdjustment> InvAdjustments { get; set; }
+    public virtual DbSet<PersistenceEntities.InvAdjustment> InvAdjustments { get; set; }
 
-    public virtual DbSet<InvAdjustmentLine> InvAdjustmentLines { get; set; }
+    public virtual DbSet<PersistenceEntities.InvAdjustmentLine> InvAdjustmentLines { get; set; }
 
-    public virtual DbSet<InvReservation> InvReservations { get; set; }
+    public virtual DbSet<PersistenceEntities.InvReservation> InvReservations { get; set; }
 
-    public virtual DbSet<InvStock> InvStocks { get; set; }
+    public virtual DbSet<PersistenceEntities.InvStock> InvStocks { get; set; }
 
-    public virtual DbSet<InvStockChangeLog> InvStockChangeLogs { get; set; }
+    public virtual DbSet<PersistenceEntities.InvStockChangeLog> InvStockChangeLogs { get; set; }
 
-    public virtual DbSet<InvWarehouse> InvWarehouses { get; set; }
+    public virtual DbSet<PersistenceEntities.InvWarehouse> InvWarehouses { get; set; }
 
-    public virtual DbSet<MktOffer> MktOffers { get; set; }
+    public virtual DbSet<PersistenceEntities.MktOffer> MktOffers { get; set; }
 
-    public virtual DbSet<MktVendor> MktVendors { get; set; }
+    public virtual DbSet<PersistenceEntities.MktVendor> MktVendors { get; set; }
 
-    public virtual DbSet<OrdOrder> OrdOrders { get; set; }
+    public virtual DbSet<PersistenceEntities.OrdOrder> OrdOrders { get; set; }
 
-    public virtual DbSet<OrdOrderAddress> OrdOrderAddresses { get; set; }
+    public virtual DbSet<PersistenceEntities.OrdOrderAddress> OrdOrderAddresses { get; set; }
 
-    public virtual DbSet<OrdOrderItem> OrdOrderItems { get; set; }
+    public virtual DbSet<PersistenceEntities.OrdOrderItem> OrdOrderItems { get; set; }
 
-    public virtual DbSet<OrdShipment> OrdShipments { get; set; }
+    public virtual DbSet<PersistenceEntities.OrdShipment> OrdShipments { get; set; }
 
-    public virtual DbSet<PayTransaction> PayTransactions { get; set; }
+    public virtual DbSet<PersistenceEntities.PayTransaction> PayTransactions { get; set; }
 
-    public virtual DbSet<PromoApplicationLog> PromoApplicationLogs { get; set; }
+    public virtual DbSet<PersistenceEntities.PromoApplicationLog> PromoApplicationLogs { get; set; }
 
-    public virtual DbSet<PromoCampaign> PromoCampaigns { get; set; }
+    public virtual DbSet<PersistenceEntities.PromoCampaign> PromoCampaigns { get; set; }
 
-    public virtual DbSet<PromoCoupon> PromoCoupons { get; set; }
+    public virtual DbSet<PersistenceEntities.PromoCoupon> PromoCoupons { get; set; }
 
-    public virtual DbSet<PromoRule> PromoRules { get; set; }
+    public virtual DbSet<PersistenceEntities.PromoRule> PromoRules { get; set; }
 
-    public virtual DbSet<RoleAdminProfile> RoleAdminProfiles { get; set; }
+    public virtual DbSet<PersistenceEntities.RoleAdminProfile> RoleAdminProfiles { get; set; }
 
-    public virtual DbSet<RoleCustomerProfile> RoleCustomerProfiles { get; set; }
+    public virtual DbSet<PersistenceEntities.RoleCustomerProfile> RoleCustomerProfiles { get; set; }
 
-    public virtual DbSet<RoleModeratorProfile> RoleModeratorProfiles { get; set; }
+    public virtual DbSet<PersistenceEntities.RoleModeratorProfile> RoleModeratorProfiles { get; set; }
 
-    public virtual DbSet<RoleVendorStaff> RoleVendorStaffs { get; set; }
+    public virtual DbSet<PersistenceEntities.RoleVendorStaff> RoleVendorStaffs { get; set; }
 
-    public virtual DbSet<RoleWarehouseStaff> RoleWarehouseStaffs { get; set; }
+    public virtual DbSet<PersistenceEntities.RoleWarehouseStaff> RoleWarehouseStaffs { get; set; }
 
-    public virtual DbSet<ShipConfig> ShipConfigs { get; set; }
+    public virtual DbSet<PersistenceEntities.ShipConfig> ShipConfigs { get; set; }
 
-    public virtual DbSet<ShipRate> ShipRates { get; set; }
+    public virtual DbSet<PersistenceEntities.ShipRate> ShipRates { get; set; }
 
-    public virtual DbSet<ShipZone> ShipZones { get; set; }
+    public virtual DbSet<PersistenceEntities.ShipZone> ShipZones { get; set; }
 
-    public virtual DbSet<SysExtMapping> SysExtMappings { get; set; }
+    public virtual DbSet<PersistenceEntities.SysExtMapping> SysExtMappings { get; set; }
 
-    public virtual DbSet<SysIntegration> SysIntegrations { get; set; }
+    public virtual DbSet<PersistenceEntities.SysIntegration> SysIntegrations { get; set; }
 
-    public virtual DbSet<SysStaging> SysStagings { get; set; }
+    public virtual DbSet<PersistenceEntities.SysStaging> SysStagings { get; set; }
 
-    public virtual DbSet<SysWebhookEvent> SysWebhookEvents { get; set; }
+    public virtual DbSet<PersistenceEntities.SysWebhookEvent> SysWebhookEvents { get; set; }
 
-    public virtual DbSet<TaxClass> TaxClasses { get; set; }
+    public virtual DbSet<PersistenceEntities.TaxClass> TaxClasses { get; set; }
 
-    public virtual DbSet<TaxRate> TaxRates { get; set; }
+    public virtual DbSet<PersistenceEntities.TaxRate> TaxRates { get; set; }
 
-    public virtual DbSet<TaxRateRule> TaxRateRules { get; set; }
+    public virtual DbSet<PersistenceEntities.TaxRateRule> TaxRateRules { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=ShopFlow;User Id=sa; Password=Ray013569dsdp~;Encrypt=True;TrustServerCertificate=True; ");
+        => optionsBuilder.UseSqlServer("Server=localhost;Database=ShopFlow;User Id=sa;Password=Ray013569dsdp~;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Cart>(entity =>
+        modelBuilder.Entity<PersistenceEntities.Cart>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cart__3213E83F956C75A9");
 
@@ -142,7 +142,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Warehouse).WithMany(p => p.Carts).HasConstraintName("FK_cart_wh");
         });
 
-        modelBuilder.Entity<CartAppliedPromo>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CartAppliedPromo>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cart_app__3213E83FE7D97F3A");
 
@@ -153,7 +153,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_cart_applied_rule");
         });
 
-        modelBuilder.Entity<CartItem>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CartItem>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cart_ite__3213E83FB61C73E2");
 
@@ -172,26 +172,26 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_citem_vendor");
         });
 
-        modelBuilder.Entity<CatAttribute>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatAttribute>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_attr__3213E83FC11209B2");
         });
 
-        modelBuilder.Entity<CatAttributeOption>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatAttributeOption>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_attr__3213E83F91C09407");
 
             entity.HasOne(d => d.Attribute).WithMany(p => p.CatAttributeOptions).HasConstraintName("FK_attr_opt_attr");
         });
 
-        modelBuilder.Entity<CatAttributeOptionI18n>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatAttributeOptionI18n>(entity =>
         {
             entity.Property(e => e.Lang).IsFixedLength();
 
             entity.HasOne(d => d.Option).WithMany().HasConstraintName("FK_attr_opt_i18n_opt");
         });
 
-        modelBuilder.Entity<CatCategory>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatCategory>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_cate__3213E83F8BF3B064");
 
@@ -200,14 +200,14 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Parent).WithMany(p => p.InverseParent).HasConstraintName("FK_cat_parent");
         });
 
-        modelBuilder.Entity<CatCategoryI18n>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatCategoryI18n>(entity =>
         {
-            entity.Property(e => e.Lang).IsFixedLength();
+            entity.Property(e => e.Language).IsFixedLength();
 
             entity.HasOne(d => d.Category).WithMany().HasConstraintName("FK_cat_i18n_cat");
         });
 
-        modelBuilder.Entity<CatProduct>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatProduct>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_prod__3213E83F56E7CF86");
 
@@ -218,10 +218,10 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasMany(d => d.Categories).WithMany(p => p.Products)
                 .UsingEntity<Dictionary<string, object>>(
                     "CatProductCategory",
-                    r => r.HasOne<CatCategory>().WithMany()
+                    r => r.HasOne<PersistenceEntities.CatCategory>().WithMany()
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_prodcat_cat"),
-                    l => l.HasOne<CatProduct>().WithMany()
+                    l => l.HasOne<PersistenceEntities.CatProduct>().WithMany()
                         .HasForeignKey("ProductId")
                         .HasConstraintName("FK_prodcat_prod"),
                     j =>
@@ -233,14 +233,14 @@ public partial class ShopFlowDbContext : DbContext
                     });
         });
 
-        modelBuilder.Entity<CatProductI18n>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatProductI18n>(entity =>
         {
             entity.Property(e => e.Lang).IsFixedLength();
 
             entity.HasOne(d => d.Product).WithMany().HasConstraintName("FK_prod_i18n_prod");
         });
 
-        modelBuilder.Entity<CatSku>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatSku>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_sku__3213E83FF65F819C");
 
@@ -255,7 +255,7 @@ public partial class ShopFlowDbContext : DbContext
 
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.CatSkuCreatedByNavigations).HasConstraintName("FK_cat_sku_created_by");
 
-            entity.HasOne(d => d.Product).WithMany(p => p.CatSkus)
+            entity.HasOne(d => d.Product).WithMany(p => p.Skus)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_sku_product");
 
@@ -264,11 +264,11 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasMany(d => d.TaxClasses).WithMany(p => p.Skus)
                 .UsingEntity<Dictionary<string, object>>(
                     "TaxMapping",
-                    r => r.HasOne<TaxClass>().WithMany()
+                    r => r.HasOne<PersistenceEntities.TaxClass>().WithMany()
                         .HasForeignKey("TaxClassId")
                         .OnDelete(DeleteBehavior.ClientSetNull)
                         .HasConstraintName("FK_taxmap_class"),
-                    l => l.HasOne<CatSku>().WithMany()
+                    l => l.HasOne<PersistenceEntities.CatSku>().WithMany()
                         .HasForeignKey("SkuId")
                         .HasConstraintName("FK_taxmap_sku"),
                     j =>
@@ -280,14 +280,14 @@ public partial class ShopFlowDbContext : DbContext
                     });
         });
 
-        modelBuilder.Entity<CatSkuMedium>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatSkuMedium>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_sku___3213E83F0F000CE6");
 
             entity.HasOne(d => d.Sku).WithMany(p => p.CatSkuMedia).HasConstraintName("FK_skumedia_sku");
         });
 
-        modelBuilder.Entity<CatSkuOptionValue>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatSkuOptionValue>(entity =>
         {
             entity.HasKey(e => new { e.SkuId, e.AttributeId }).HasName("PK__cat_sku___43C05FEE046E459F");
 
@@ -302,7 +302,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Sku).WithMany(p => p.CatSkuOptionValues).HasConstraintName("FK_skuopt_sku");
         });
 
-        modelBuilder.Entity<CatSkuPricing>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatSkuPricing>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_sku___3213E83F3E9BD49E");
 
@@ -314,7 +314,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Sku).WithMany(p => p.CatSkuPricings).HasConstraintName("FK__cat_sku_p__sku_i__7908F585");
         });
 
-        modelBuilder.Entity<CatVariantGroup>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CatVariantGroup>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__cat_vari__3213E83F1E75BC8B");
 
@@ -326,7 +326,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Product).WithMany(p => p.CatVariantGroups).HasConstraintName("FK__cat_varia__produ__73501C2F");
         });
 
-        modelBuilder.Entity<CeReview>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CeReview>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ce_revie__3213E83FACA0E075");
 
@@ -351,7 +351,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Vendor).WithMany(p => p.CeReviews).HasConstraintName("FK_review_vendor");
         });
 
-        modelBuilder.Entity<CoreAddress>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CoreAddress>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__core_add__3213E83F0C72B62C");
 
@@ -364,22 +364,22 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.CoreAddresses).HasConstraintName("FK_address_user");
         });
 
-        modelBuilder.Entity<CorePermission>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CorePermission>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__core_per__3213E83F8AFB48FF");
         });
 
-        modelBuilder.Entity<CoreRole>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CoreRole>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__core_rol__3213E83F75355160");
 
             entity.HasMany(d => d.Permissions).WithMany(p => p.Roles)
                 .UsingEntity<Dictionary<string, object>>(
                     "CoreRolePermission",
-                    r => r.HasOne<CorePermission>().WithMany()
+                    r => r.HasOne<PersistenceEntities.CorePermission>().WithMany()
                         .HasForeignKey("PermissionId")
                         .HasConstraintName("FK_roleperm_perm"),
-                    l => l.HasOne<CoreRole>().WithMany()
+                    l => l.HasOne<PersistenceEntities.CoreRole>().WithMany()
                         .HasForeignKey("RoleId")
                         .HasConstraintName("FK_roleperm_role"),
                     j =>
@@ -391,7 +391,7 @@ public partial class ShopFlowDbContext : DbContext
                     });
         });
 
-        modelBuilder.Entity<CoreUser>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CoreUser>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__core_use__3213E83F69E8B078");
 
@@ -400,7 +400,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.Property(e => e.UpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
         });
 
-        modelBuilder.Entity<CoreUserRole>(entity =>
+        modelBuilder.Entity<PersistenceEntities.CoreUserRole>(entity =>
         {
             entity.HasKey(e => new { e.UserId, e.RoleId }).HasName("PK__core_use__6EDEA15378A5A4FA");
 
@@ -409,7 +409,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.CoreUserRoles).HasConstraintName("FK_userrole_user");
         });
 
-        modelBuilder.Entity<InvAdjustment>(entity =>
+        modelBuilder.Entity<PersistenceEntities.InvAdjustment>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__inv_adju__3213E83FDB88AD09");
 
@@ -426,7 +426,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_adj_wh");
         });
 
-        modelBuilder.Entity<InvAdjustmentLine>(entity =>
+        modelBuilder.Entity<PersistenceEntities.InvAdjustmentLine>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__inv_adju__3213E83FE32B0D2B");
 
@@ -437,7 +437,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_adjline_sku");
         });
 
-        modelBuilder.Entity<InvReservation>(entity =>
+        modelBuilder.Entity<PersistenceEntities.InvReservation>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__inv_rese__3213E83F14DC6098");
 
@@ -464,7 +464,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_resv_wh");
         });
 
-        modelBuilder.Entity<InvStock>(entity =>
+        modelBuilder.Entity<PersistenceEntities.InvStock>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__inv_stoc__3213E83F38761265");
 
@@ -486,7 +486,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_stock_wh");
         });
 
-        modelBuilder.Entity<InvStockChangeLog>(entity =>
+        modelBuilder.Entity<PersistenceEntities.InvStockChangeLog>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__inv_stoc__3213E83FA462797F");
 
@@ -507,14 +507,14 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK__inv_stock__wareh__6ABAD62E");
         });
 
-        modelBuilder.Entity<InvWarehouse>(entity =>
+        modelBuilder.Entity<PersistenceEntities.InvWarehouse>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__inv_ware__3213E83FD1082020");
 
             entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
 
-        modelBuilder.Entity<MktOffer>(entity =>
+        modelBuilder.Entity<PersistenceEntities.MktOffer>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__mkt_offe__3213E83FE1303B0F");
 
@@ -531,7 +531,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_offer_vendor");
         });
 
-        modelBuilder.Entity<MktVendor>(entity =>
+        modelBuilder.Entity<PersistenceEntities.MktVendor>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__mkt_vend__3213E83FEA735B50");
 
@@ -540,7 +540,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.Property(e => e.UpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
         });
 
-        modelBuilder.Entity<OrdOrder>(entity =>
+        modelBuilder.Entity<PersistenceEntities.OrdOrder>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ord_orde__3213E83F8035F048");
 
@@ -556,7 +556,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_order_wh");
         });
 
-        modelBuilder.Entity<OrdOrderAddress>(entity =>
+        modelBuilder.Entity<PersistenceEntities.OrdOrderAddress>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ord_orde__3213E83FED20FEF9");
 
@@ -565,7 +565,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Order).WithMany(p => p.OrdOrderAddresses).HasConstraintName("FK_oaddr_order");
         });
 
-        modelBuilder.Entity<OrdOrderItem>(entity =>
+        modelBuilder.Entity<PersistenceEntities.OrdOrderItem>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ord_orde__3213E83FD6570F7E");
 
@@ -586,7 +586,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_oitm_vendor");
         });
 
-        modelBuilder.Entity<OrdShipment>(entity =>
+        modelBuilder.Entity<PersistenceEntities.OrdShipment>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ord_ship__3213E83FB377F69D");
 
@@ -597,7 +597,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_ship_wh");
         });
 
-        modelBuilder.Entity<PayTransaction>(entity =>
+        modelBuilder.Entity<PersistenceEntities.PayTransaction>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__pay_tran__3213E83F4BA24808");
 
@@ -607,7 +607,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Order).WithMany(p => p.PayTransactions).HasConstraintName("FK_pay_order");
         });
 
-        modelBuilder.Entity<PromoApplicationLog>(entity =>
+        modelBuilder.Entity<PersistenceEntities.PromoApplicationLog>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__promo_ap__3213E83F5FC3E67C");
 
@@ -626,7 +626,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_palog_rule");
         });
 
-        modelBuilder.Entity<PromoCampaign>(entity =>
+        modelBuilder.Entity<PersistenceEntities.PromoCampaign>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__promo_ca__3213E83F54F9CB3F");
 
@@ -635,7 +635,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.Property(e => e.UpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
         });
 
-        modelBuilder.Entity<PromoCoupon>(entity =>
+        modelBuilder.Entity<PersistenceEntities.PromoCoupon>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__promo_co__3213E83F423F95A3");
 
@@ -644,7 +644,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Campaign).WithMany(p => p.PromoCoupons).HasConstraintName("FK_coupon_campaign");
         });
 
-        modelBuilder.Entity<PromoRule>(entity =>
+        modelBuilder.Entity<PersistenceEntities.PromoRule>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__promo_ru__3213E83F323AC90F");
 
@@ -653,7 +653,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Campaign).WithMany(p => p.PromoRules).HasConstraintName("FK_rule_campaign");
         });
 
-        modelBuilder.Entity<RoleAdminProfile>(entity =>
+        modelBuilder.Entity<PersistenceEntities.RoleAdminProfile>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__role_adm__B9BE370FFA559683");
 
@@ -668,7 +668,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_admin_userrole");
         });
 
-        modelBuilder.Entity<RoleCustomerProfile>(entity =>
+        modelBuilder.Entity<PersistenceEntities.RoleCustomerProfile>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__role_cus__B9BE370FC237D2CA");
 
@@ -683,7 +683,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_customer_userrole");
         });
 
-        modelBuilder.Entity<RoleModeratorProfile>(entity =>
+        modelBuilder.Entity<PersistenceEntities.RoleModeratorProfile>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__role_mod__B9BE370FD06DE732");
 
@@ -697,7 +697,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_rmod_userrole");
         });
 
-        modelBuilder.Entity<RoleVendorStaff>(entity =>
+        modelBuilder.Entity<PersistenceEntities.RoleVendorStaff>(entity =>
         {
             entity.HasKey(e => new { e.VendorId, e.UserId }).HasName("PK__role_ven__E4E6C80848B8C30B");
 
@@ -713,7 +713,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_rvs_userrole");
         });
 
-        modelBuilder.Entity<RoleWarehouseStaff>(entity =>
+        modelBuilder.Entity<PersistenceEntities.RoleWarehouseStaff>(entity =>
         {
             entity.HasKey(e => new { e.WarehouseId, e.UserId }).HasName("PK__role_war__98D405CFF1721872");
 
@@ -728,7 +728,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_rwh_userrole");
         });
 
-        modelBuilder.Entity<ShipConfig>(entity =>
+        modelBuilder.Entity<PersistenceEntities.ShipConfig>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ship_con__3213E83FC069C866");
 
@@ -738,14 +738,14 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Warehouse).WithOne(p => p.ShipConfig).HasConstraintName("FK_shipcfg_wh");
         });
 
-        modelBuilder.Entity<ShipRate>(entity =>
+        modelBuilder.Entity<PersistenceEntities.ShipRate>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ship_rat__3213E83F710EA2B6");
 
             entity.HasOne(d => d.Zone).WithMany(p => p.ShipRates).HasConstraintName("FK_shiprate_zone");
         });
 
-        modelBuilder.Entity<ShipZone>(entity =>
+        modelBuilder.Entity<PersistenceEntities.ShipZone>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__ship_zon__3213E83F0B9E46FD");
 
@@ -754,7 +754,7 @@ public partial class ShopFlowDbContext : DbContext
                 .IsFixedLength();
         });
 
-        modelBuilder.Entity<SysExtMapping>(entity =>
+        modelBuilder.Entity<PersistenceEntities.SysExtMapping>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__sys_ext___3213E83F46BBC71F");
 
@@ -763,7 +763,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_extmap_vendor");
         });
 
-        modelBuilder.Entity<SysIntegration>(entity =>
+        modelBuilder.Entity<PersistenceEntities.SysIntegration>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__sys_inte__3213E83F8C3CB34E");
 
@@ -776,7 +776,7 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_sint_vendor");
         });
 
-        modelBuilder.Entity<SysStaging>(entity =>
+        modelBuilder.Entity<PersistenceEntities.SysStaging>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__sys_stag__3213E83FDF3600D8");
 
@@ -785,7 +785,7 @@ public partial class ShopFlowDbContext : DbContext
             entity.HasOne(d => d.Integration).WithMany(p => p.SysStagings).HasConstraintName("FK_stg_integration");
         });
 
-        modelBuilder.Entity<SysWebhookEvent>(entity =>
+        modelBuilder.Entity<PersistenceEntities.SysWebhookEvent>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__sys_webh__3213E83FAD51FF46");
 
@@ -812,19 +812,19 @@ public partial class ShopFlowDbContext : DbContext
                 .HasConstraintName("FK_webhook_vendor");
         });
 
-        modelBuilder.Entity<TaxClass>(entity =>
+        modelBuilder.Entity<PersistenceEntities.TaxClass>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__tax_clas__3213E83F50BB2908");
         });
 
-        modelBuilder.Entity<TaxRate>(entity =>
+        modelBuilder.Entity<PersistenceEntities.TaxRate>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__tax_rate__3213E83F1660E669");
 
             entity.Property(e => e.Country).IsFixedLength();
         });
 
-        modelBuilder.Entity<TaxRateRule>(entity =>
+        modelBuilder.Entity<PersistenceEntities.TaxRateRule>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__tax_rate__3213E83F7FF7CAFC");
 

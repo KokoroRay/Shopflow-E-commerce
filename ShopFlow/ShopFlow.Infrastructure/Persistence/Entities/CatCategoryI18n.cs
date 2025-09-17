@@ -1,41 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace ShopFlow.Infrastructure.Persistence.Entities;
 
-[Keyless]
 [Table("cat_category_i18n")]
-[Index("CategoryId", "Lang", Name = "UQ_cat_category_i18n", IsUnique = true)]
-[Index("Lang", "Slug", Name = "UQ_cat_category_slug", IsUnique = true)]
+[PrimaryKey("CategoryId", "Language")]
 public partial class CatCategoryI18n
 {
     [Column("category_id")]
     public long CategoryId { get; set; }
 
-    [Column("lang")]
-    [StringLength(2)]
-    [Unicode(false)]
-    public string Lang { get; set; } = null!;
+    [Column("language")]
+    [StringLength(10)]
+    public string Language { get; set; }
 
+    [Required]
     [Column("name")]
     [StringLength(255)]
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
+    [Required]
     [Column("slug")]
     [StringLength(255)]
-    public string Slug { get; set; } = null!;
+    public string Slug { get; set; }
 
     [Column("meta_title")]
     [StringLength(255)]
     public string? MetaTitle { get; set; }
 
-    [Column("meta_desc")]
-    [StringLength(500)]
-    public string? MetaDesc { get; set; }
+    [Column("meta_description")]
+    public string? MetaDescription { get; set; }
+
+    [Column("meta_keywords")]
+    public string? MetaKeywords { get; set; }
+
+    [Column("created_at")]
+    public DateTime CreatedAt { get; set; }
+
+    [Column("updated_at")]
+    public DateTime UpdatedAt { get; set; }
 
     [ForeignKey("CategoryId")]
+    [InverseProperty("Translations")]
     public virtual CatCategory Category { get; set; } = null!;
 }
