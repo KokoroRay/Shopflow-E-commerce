@@ -20,3 +20,5 @@ D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Infrastructure\obj\Debug\net9.0\
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Infrastructure\obj\Debug\net9.0\ShopFlow.Infrastructure.xml
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Infrastructure\obj\Debug\net9.0\ShopFlow.Infrastructure.pdb
 D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Infrastructure\obj\Debug\net9.0\ref\ShopFlow.Infrastructure.dll
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Infrastructure\bin\Debug\net9.0\ShopFlow.Infrastructure.runtimeconfig.json
+D:\Code\.Net\project_shopflow\ShopFlow\ShopFlow.Infrastructure\obj\Debug\net9.0\ShopFlow.Infrastructure.genruntimeconfig.cache

@@ -54,13 +54,7 @@ public interface ICategoryRepository
     /// <returns>Collection of categories with hierarchy</returns>
     Task<IEnumerable<CatCategory>> GetCategoryHierarchyAsync(CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// Finds categories based on specification
-    /// </summary>
-    /// <param name="specification">The specification to apply</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>Collection of categories matching the specification</returns>
-    Task<IEnumerable<CatCategory>> FindAsync(ISpecification<CatCategory> specification, CancellationToken cancellationToken = default);
+    
 
     /// <summary>
     /// Checks if a category with the specified slug exists

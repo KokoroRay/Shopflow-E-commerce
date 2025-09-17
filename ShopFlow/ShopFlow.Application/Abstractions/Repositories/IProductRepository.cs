@@ -19,8 +19,7 @@ public interface IProductRepository
     /// <summary>Gets products by category</summary>
     Task<IEnumerable<CatProduct>> GetByCategoryAsync(long categoryId, CancellationToken cancellationToken = default);
 
-    /// <summary>Finds products using specification pattern</summary>
-    Task<IEnumerable<CatProduct>> FindAsync(ISpecification<CatProduct> specification, CancellationToken cancellationToken = default);
+    
 
     /// <summary>Adds a new product</summary>
     Task<CatProduct> AddAsync(CatProduct product, CancellationToken cancellationToken = default);
