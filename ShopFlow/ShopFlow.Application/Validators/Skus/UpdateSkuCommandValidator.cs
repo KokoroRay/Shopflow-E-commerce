@@ -125,10 +125,10 @@ public class UpdateSkuCommandValidator : AbstractValidator<UpdateSkuCommand>
     private static bool BeValidVietnameseName(string name)
     {
         if (string.IsNullOrWhiteSpace(name)) return false;
-        
+
         // Allow Vietnamese characters, letters, numbers, spaces, and common punctuation
         var vietnamesePattern = @"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵýỷỹ0-9\s\-_.,()&]+$";
-        
+
         return System.Text.RegularExpressions.Regex.IsMatch(name, vietnamesePattern);
     }
 
@@ -167,12 +167,12 @@ public class UpdateSkuCommandValidator : AbstractValidator<UpdateSkuCommand>
     {
         // For update commands, we can only do basic validation since we don't have all values
         // Full validation should be done in the handler with current SKU data
-        
+
         // If updating weight, ensure it's reasonable
         if (command.WeightGrams.HasValue)
         {
             var weightKg = command.WeightGrams.Value / 1000m;
-            
+
             // Basic weight sanity check
             if (weightKg > 30) return false; // Over 30kg not allowed for postal service
             if (weightKg < 0.001m) return false; // Less than 1g is suspicious

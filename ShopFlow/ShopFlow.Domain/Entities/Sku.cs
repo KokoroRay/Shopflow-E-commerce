@@ -96,7 +96,7 @@ public sealed class Sku : BaseEntity
     public IReadOnlyList<SkuOptionValue> OptionValues => _optionValues.AsReadOnly();
 
     // Private constructor for Entity Framework
-    private Sku() 
+    private Sku()
     {
         Code = null!; // Will be set by EF or factory methods
     }
@@ -419,9 +419,9 @@ public sealed class Sku : BaseEntity
     /// <param name="optionId">Option ID</param>
     public void RemoveOptionValue(long attributeId, long optionId)
     {
-        var optionValue = _optionValues.Find(ov => 
+        var optionValue = _optionValues.Find(ov =>
             ov.AttributeId == attributeId && ov.OptionId == optionId);
-        
+
         if (optionValue != null)
         {
             _optionValues.Remove(optionValue);
@@ -442,8 +442,8 @@ public sealed class Sku : BaseEntity
             .Select(ov => $"{ov.Attribute?.Code}: {ov.Option?.Code}")
             .Where(text => !string.IsNullOrEmpty(text)));
 
-        return string.IsNullOrEmpty(variantText) 
-            ? Code.Value 
+        return string.IsNullOrEmpty(variantText)
+            ? Code.Value
             : $"{Code.Value} ({variantText})";
     }
 
@@ -480,27 +480,27 @@ public class SkuMedia
     /// Media ID
     /// </summary>
     public long Id { get; set; }
-    
+
     /// <summary>
     /// SKU ID this media belongs to
     /// </summary>
     public long SkuId { get; set; }
-    
+
     /// <summary>
     /// Type of media (image, video, etc.)
     /// </summary>
     public string MediaType { get; set; } = null!;
-    
+
     /// <summary>
     /// Media URL
     /// </summary>
     public Uri Url { get; set; } = null!;
-    
+
     /// <summary>
     /// Display order for sorting
     /// </summary>
     public int DisplayOrder { get; set; }
-    
+
     /// <summary>
     /// Whether this is the default media
     /// </summary>
@@ -516,22 +516,22 @@ public class SkuOptionValue
     /// SKU ID
     /// </summary>
     public long SkuId { get; set; }
-    
+
     /// <summary>
     /// Attribute ID
     /// </summary>
     public long AttributeId { get; set; }
-    
+
     /// <summary>
     /// Option ID
     /// </summary>
     public long OptionId { get; set; }
-    
+
     /// <summary>
     /// Related attribute entity
     /// </summary>
     public CatAttribute? Attribute { get; set; }
-    
+
     /// <summary>
     /// Related option entity
     /// </summary>

@@ -11,7 +11,7 @@ public sealed class Barcode : IEquatable<Barcode>
     /// Gets the barcode value
     /// </summary>
     public string Value { get; }
-    
+
     /// <summary>
     /// Gets the barcode type
     /// </summary>
@@ -64,17 +64,17 @@ public sealed class Barcode : IEquatable<Barcode>
 
         // Vietnam country code: 893
         var countryCode = "893";
-        
+
         // Pad company prefix to fit EAN13 format
         var maxItemDigits = 12 - countryCode.Length - companyPrefix.Length;
         var itemRefStr = itemReference.ToString(CultureInfo.InvariantCulture).PadLeft(maxItemDigits, '0');
-        
+
         if (itemRefStr.Length > maxItemDigits)
             throw new ArgumentException($"Item reference too large for company prefix length", nameof(itemReference));
 
         // Build 12-digit code without checksum
         var code12 = countryCode + companyPrefix + itemRefStr;
-        
+
         // Calculate and append checksum
         var checksum = CalculateEan13Checksum(code12);
         var ean13 = code12 + checksum;
@@ -133,11 +133,11 @@ public sealed class Barcode : IEquatable<Barcode>
     private static bool IsValidEan13Checksum(string ean13)
     {
         if (ean13.Length != 13) return false;
-        
+
         var code12 = ean13[..12];
         var expectedChecksum = CalculateEan13Checksum(code12);
         var actualChecksum = ean13[12].ToString();
-        
+
         return expectedChecksum == actualChecksum;
     }
 
@@ -149,7 +149,7 @@ public sealed class Barcode : IEquatable<Barcode>
             var digit = int.Parse(code12[i].ToString(), CultureInfo.InvariantCulture);
             sum += i % 2 == 0 ? digit : digit * 3;
         }
-        
+
         var checksum = (10 - (sum % 10)) % 10;
         return checksum.ToString(CultureInfo.InvariantCulture);
     }
@@ -157,28 +157,28 @@ public sealed class Barcode : IEquatable<Barcode>
     private static bool IsValidEan8Checksum(string ean8)
     {
         if (ean8.Length != 8) return false;
-        
+
         var sum = 0;
         for (int i = 0; i < 7; i++)
         {
             var digit = int.Parse(ean8[i].ToString(), CultureInfo.InvariantCulture);
             sum += i % 2 == 0 ? digit * 3 : digit;
         }
-        
+
         var expectedChecksum = (10 - (sum % 10)) % 10;
         var actualChecksum = int.Parse(ean8[7].ToString(), CultureInfo.InvariantCulture);
-        
+
         return expectedChecksum == actualChecksum;
     }
 
     private static bool IsValidUpcChecksum(string upc)
     {
         if (upc.Length != 12) return false;
-        
+
         var code11 = upc[..11];
         var expectedChecksum = CalculateUpcChecksum(code11);
         var actualChecksum = upc[11].ToString();
-        
+
         return expectedChecksum == actualChecksum;
     }
 
@@ -190,7 +190,7 @@ public sealed class Barcode : IEquatable<Barcode>
             var digit = int.Parse(code11[i].ToString(), CultureInfo.InvariantCulture);
             sum += i % 2 == 0 ? digit * 3 : digit;
         }
-        
+
         var checksum = (10 - (sum % 10)) % 10;
         return checksum.ToString(CultureInfo.InvariantCulture);
     }
@@ -242,7 +242,7 @@ public sealed class Barcode : IEquatable<Barcode>
     /// <param name="barcode">The Barcode to convert</param>
     /// <returns>The barcode value as a string</returns>
     /// <exception cref="ArgumentNullException">When barcode is null</exception>
-    public static implicit operator string(Barcode barcode) 
+    public static implicit operator string(Barcode barcode)
     {
         ArgumentNullException.ThrowIfNull(barcode);
         return barcode.Value;
@@ -280,27 +280,27 @@ public enum BarcodeType
     /// EAN-13 barcode (most common in Vietnam)
     /// </summary>
     EAN13,
-    
+
     /// <summary>
     /// EAN-8 compact barcode
     /// </summary>
     EAN8,
-    
+
     /// <summary>
     /// Universal Product Code A
     /// </summary>
     UPCA,
-    
+
     /// <summary>
     /// Universal Product Code E (compact)
     /// </summary>
     UPCE,
-    
+
     /// <summary>
     /// Code 128 with alphanumeric support
     /// </summary>
     CODE128,
-    
+
     /// <summary>
     /// Code 39 for legacy support
     /// </summary>

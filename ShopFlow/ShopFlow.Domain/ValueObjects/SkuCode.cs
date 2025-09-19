@@ -10,7 +10,7 @@ public sealed class SkuCode : IEquatable<SkuCode>
 {
     private const int MinLength = 3;
     private const int MaxLength = 50;
-    
+
     /// <summary>
     /// Gets the SKU code value
     /// </summary>
@@ -59,7 +59,7 @@ public sealed class SkuCode : IEquatable<SkuCode>
 
         var sanitized = SanitizeForSku(productName);
         var prefix = sanitized.Length > 8 ? sanitized[..8] : sanitized;
-        
+
         var variantPart = string.Empty;
         if (variantOptions?.Count > 0)
         {
@@ -80,7 +80,7 @@ public sealed class SkuCode : IEquatable<SkuCode>
         var normalized = input.Normalize(NormalizationForm.FormD);
         var chars = normalized.Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark);
         var ascii = new string(chars.ToArray());
-        
+
         // Keep only alphanumeric and convert to uppercase
         return new string(ascii.Where(c => char.IsLetterOrDigit(c)).ToArray()).ToUpperInvariant();
     }
@@ -131,7 +131,7 @@ public sealed class SkuCode : IEquatable<SkuCode>
     /// <param name="skuCode">The SkuCode to convert</param>
     /// <returns>The SKU code value as a string</returns>
     /// <exception cref="ArgumentNullException">When skuCode is null</exception>
-    public static implicit operator string(SkuCode skuCode) 
+    public static implicit operator string(SkuCode skuCode)
     {
         ArgumentNullException.ThrowIfNull(skuCode);
         return skuCode.Value;

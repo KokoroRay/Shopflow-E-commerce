@@ -12,12 +12,12 @@ public class GetSkuByIdQuery : IRequest<GetSkuResponse>
     /// Gets or sets the SKU ID
     /// </summary>
     public long Id { get; set; }
-    
+
     /// <summary>
     /// Gets or sets whether to include related entities (Product, Media, etc.)
     /// </summary>
     public bool IncludeRelated { get; set; } = true;
-    
+
     /// <summary>
     /// Initializes a new instance of the GetSkuByIdQuery class
     /// </summary>
@@ -37,12 +37,12 @@ public class GetSkuByCodeQuery : IRequest<GetSkuResponse>
     /// Gets or sets the SKU code
     /// </summary>
     public string Code { get; set; } = null!;
-    
+
     /// <summary>
     /// Gets or sets whether to include related entities
     /// </summary>
     public bool IncludeRelated { get; set; } = true;
-    
+
     /// <summary>
     /// Initializes a new instance of the GetSkuByCodeQuery class
     /// </summary>
@@ -62,12 +62,12 @@ public class GetSkuByBarcodeQuery : IRequest<GetSkuResponse>
     /// Gets or sets the barcode
     /// </summary>
     public string Barcode { get; set; } = null!;
-    
+
     /// <summary>
     /// Gets or sets whether to include related entities
     /// </summary>
     public bool IncludeRelated { get; set; } = true;
-    
+
     /// <summary>
     /// Initializes a new instance of the GetSkuByBarcodeQuery class
     /// </summary>
@@ -87,47 +87,47 @@ public class GetSkusQuery : IRequest<GetSkusResponse>
     /// Gets or sets the product ID to filter by
     /// </summary>
     public long? ProductId { get; set; }
-    
+
     /// <summary>
     /// Gets or sets whether to include only active SKUs
     /// </summary>
     public bool? IsActive { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the minimum price filter
     /// </summary>
     public decimal? MinPrice { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the maximum price filter
     /// </summary>
     public decimal? MaxPrice { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the search term for SKU code or name
     /// </summary>
     public string? SearchTerm { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the page number (1-based)
     /// </summary>
     public int Page { get; set; } = 1;
-    
+
     /// <summary>
     /// Gets or sets the page size
     /// </summary>
     public int PageSize { get; set; } = 20;
-    
+
     /// <summary>
     /// Gets or sets the sort field
     /// </summary>
     public string? SortBy { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the sort direction
     /// </summary>
     public string SortDirection { get; set; } = "asc";
-    
+
     /// <summary>
     /// Gets or sets whether to include related entities
     /// </summary>
@@ -143,17 +143,17 @@ public class GetSkusByProductIdQuery : IRequest<GetSkusResponse>
     /// Gets or sets the product ID
     /// </summary>
     public long ProductId { get; set; }
-    
+
     /// <summary>
     /// Gets or sets whether to include only active SKUs
     /// </summary>
     public bool? IsActive { get; set; }
-    
+
     /// <summary>
     /// Gets or sets whether to include related entities
     /// </summary>
     public bool IncludeRelated { get; set; } = true;
-    
+
     /// <summary>
     /// Initializes a new instance of the GetSkusByProductIdQuery class
     /// </summary>
@@ -173,17 +173,17 @@ public class SearchSkusQuery : IRequest<GetSkusResponse>
     /// Gets or sets the search term
     /// </summary>
     public string SearchTerm { get; set; } = null!;
-    
+
     /// <summary>
     /// Gets or sets the search fields to include
     /// </summary>
     public ICollection<string> SearchFields { get; set; } = new List<string> { "code", "name", "description", "barcode" };
-    
+
     /// <summary>
     /// Gets or sets additional filters
     /// </summary>
     public GetSkusQuery Filters { get; set; } = new();
-    
+
     /// <summary>
     /// Initializes a new instance of the SearchSkusQuery class
     /// </summary>
@@ -203,12 +203,12 @@ public class GetSkuInventoryQuery : IRequest<SkuInventoryResponse>
     /// Gets or sets the SKU ID
     /// </summary>
     public long SkuId { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the warehouse ID (optional)
     /// </summary>
     public long? WarehouseId { get; set; }
-    
+
     /// <summary>
     /// Initializes a new instance of the GetSkuInventoryQuery class
     /// </summary>
@@ -228,22 +228,22 @@ public class SkuInventoryResponse
     /// Gets or sets the SKU ID
     /// </summary>
     public long SkuId { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the total available stock
     /// </summary>
     public decimal TotalStock { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the reserved stock
     /// </summary>
     public decimal ReservedStock { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the available stock for sale
     /// </summary>
     public decimal AvailableStock => TotalStock - ReservedStock;
-    
+
     /// <summary>
     /// Gets or sets the stock per warehouse
     /// </summary>
@@ -259,22 +259,22 @@ public class WarehouseStockInfo
     /// Gets or sets the warehouse ID
     /// </summary>
     public long WarehouseId { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the warehouse name
     /// </summary>
     public string WarehouseName { get; set; } = null!;
-    
+
     /// <summary>
     /// Gets or sets the stock quantity
     /// </summary>
     public decimal Stock { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the reserved quantity
     /// </summary>
     public decimal Reserved { get; set; }
-    
+
     /// <summary>
     /// Gets the available quantity
     /// </summary>

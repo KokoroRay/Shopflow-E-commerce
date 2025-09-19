@@ -42,7 +42,7 @@ public class SearchSkusQueryHandler : IRequestHandler<SearchSkusQuery, GetSkusRe
 
         var skuList = skus.ToList();
         var totalCount = skuList.Count; // For simple implementation
-        
+
         var skuDtos = skuList.Select(MapToDto).ToList();
 
         return new GetSkusResponse

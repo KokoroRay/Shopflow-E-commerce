@@ -279,22 +279,22 @@ public enum WeightCategory
     /// Light weight items (up to 500g) - letters, small accessories
     /// </summary>
     Light,
-    
+
     /// <summary>
     /// Medium weight items (500g - 2kg) - books, electronics, clothing
     /// </summary>
     Medium,
-    
+
     /// <summary>
     /// Heavy items (2kg - 10kg) - appliances, multiple items
     /// </summary>
     Heavy,
-    
+
     /// <summary>
     /// Bulk standard items (10kg - 30kg) - furniture, large appliances
     /// </summary>
     BulkStandard,
-    
+
     /// <summary>
     /// Oversized bulk items (over 30kg) - industrial equipment, vehicles
     /// </summary>

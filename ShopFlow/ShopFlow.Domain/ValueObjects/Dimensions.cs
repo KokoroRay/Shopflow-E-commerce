@@ -14,12 +14,12 @@ public sealed class Dimensions : IEquatable<Dimensions>
     /// Gets the length in millimeters
     /// </summary>
     public int LengthMm { get; }
-    
+
     /// <summary>
     /// Gets the width in millimeters
     /// </summary>
     public int WidthMm { get; }
-    
+
     /// <summary>
     /// Gets the height in millimeters
     /// </summary>
@@ -85,7 +85,7 @@ public sealed class Dimensions : IEquatable<Dimensions>
     public static Dimensions FromInches(decimal lengthIn, decimal widthIn, decimal heightIn)
     {
         const decimal InchesToMm = 25.4m;
-        
+
         var lengthMm = (int)Math.Round(lengthIn * InchesToMm);
         var widthMm = (int)Math.Round(widthIn * InchesToMm);
         var heightMm = (int)Math.Round(heightIn * InchesToMm);
@@ -142,9 +142,9 @@ public sealed class Dimensions : IEquatable<Dimensions>
             (500, 400, 300),   // Extra large box
         };
 
-        return standardSizes.Any(size => 
-            LengthMm <= size.Item1 && 
-            WidthMm <= size.Item2 && 
+        return standardSizes.Any(size =>
+            LengthMm <= size.Item1 &&
+            WidthMm <= size.Item2 &&
             HeightMm <= size.Item3);
     }
 
@@ -164,9 +164,9 @@ public sealed class Dimensions : IEquatable<Dimensions>
     /// <returns>true if the specified Dimensions is equal to the current Dimensions; otherwise, false</returns>
     public bool Equals(Dimensions? other)
     {
-        return other is not null && 
-               LengthMm == other.LengthMm && 
-               WidthMm == other.WidthMm && 
+        return other is not null &&
+               LengthMm == other.LengthMm &&
+               WidthMm == other.WidthMm &&
                HeightMm == other.HeightMm;
     }
 

@@ -153,10 +153,10 @@ public class CreateSkuCommandValidator : AbstractValidator<CreateSkuCommand>
     private static bool BeValidVietnameseName(string name)
     {
         if (string.IsNullOrWhiteSpace(name)) return false;
-        
+
         // Allow Vietnamese characters, letters, numbers, spaces, and common punctuation
         var vietnamesePattern = @"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵýỷỹ0-9\s\-_.,()&]+$";
-        
+
         return System.Text.RegularExpressions.Regex.IsMatch(name, vietnamesePattern);
     }
 

@@ -40,7 +40,7 @@ public class DeleteSkuCommandHandler : IRequestHandler<DeleteSkuCommand, DeleteS
             // Validate if SKU can be deleted
             var validationResult = await _skuRepository.ValidateDeleteAsync(request.Id, cancellationToken)
                 .ConfigureAwait(false);
-            
+
             if (!validationResult.CanDelete)
             {
                 throw new ValidationException($"Không thể xóa SKU: {string.Join(", ", validationResult.ValidationErrors)}");
