@@ -43,7 +43,7 @@ public class DeleteSkuCommandHandler : IRequestHandler<DeleteSkuCommand, DeleteS
 
             if (!validationResult.CanDelete)
             {
-                throw new ValidationException($"Không thể xóa SKU: {string.Join(", ", validationResult.ValidationErrors)}");
+                throw new ValidationException($"Không thể xóa SKU: {string.Join(", ", validationResult.BlockingReasons)}");
             }
 
             // Perform deletion
