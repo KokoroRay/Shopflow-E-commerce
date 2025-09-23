@@ -46,7 +46,7 @@ public class UpdateSkuResponse
     /// <summary>
     /// Gets or sets the list of fields that were updated
     /// </summary>
-    public ICollection<string> UpdatedFields { get; set; } = new List<string>();
+    public ICollection<string> UpdatedFields { get; } = new List<string>();
 }
 
 /// <summary>
@@ -68,7 +68,7 @@ public class GetSkusResponse
     /// <summary>
     /// Gets or sets the list of SKUs
     /// </summary>
-    public ICollection<SkuDto> Skus { get; set; } = new List<SkuDto>();
+    public ICollection<SkuDto> Skus { get; } = new List<SkuDto>();
 
     /// <summary>
     /// Gets or sets the total count of SKUs
@@ -102,22 +102,6 @@ public class GetSkusResponse
 }
 
 /// <summary>
-/// Response for SKU deletion
-/// </summary>
-public class DeleteSkuResponse
-{
-    /// <summary>
-    /// Gets or sets the success message
-    /// </summary>
-    public string Message { get; set; } = null!;
-
-    /// <summary>
-    /// Gets or sets the ID of the deleted SKU
-    /// </summary>
-    public long DeletedSkuId { get; set; }
-}
-
-/// <summary>
 /// Response for bulk SKU operations
 /// </summary>
 public class BulkSkuOperationResponse
@@ -135,7 +119,7 @@ public class BulkSkuOperationResponse
     /// <summary>
     /// Gets or sets the list of error messages for failed operations
     /// </summary>
-    public ICollection<string> Errors { get; set; } = new List<string>();
+    public ICollection<string> Errors { get; } = new List<string>();
 
     /// <summary>
     /// Gets or sets the success message
@@ -167,4 +151,154 @@ public class GenerateBarcodeResponse
     /// Gets or sets success message
     /// </summary>
     public string Message { get; set; } = null!;
+}
+
+/// <summary>
+/// SKU inventory response with warehouse breakdown
+/// </summary>
+public class SkuInventoryResponse
+{
+    /// <summary>
+    /// SKU ID
+    /// </summary>
+    public long SkuId { get; set; }
+
+    /// <summary>
+    /// SKU code
+    /// </summary>
+    public string SkuCode { get; set; } = null!;
+
+    /// <summary>
+    /// Total stock across all warehouses
+    /// </summary>
+    public decimal TotalStock { get; set; }
+
+    /// <summary>
+    /// Total reserved stock
+    /// </summary>
+    public decimal TotalReserved { get; set; }
+
+    /// <summary>
+    /// Available stock (total - reserved)
+    /// </summary>
+    public decimal AvailableStock => TotalStock - TotalReserved;
+
+    /// <summary>
+    /// Warehouse stock breakdown
+    /// </summary>
+    public List<WarehouseStock> WarehouseStocks { get; set; } = new();
+}
+
+/// <summary>
+/// Warehouse stock information
+/// </summary>
+public class WarehouseStock
+{
+    /// <summary>
+    /// Warehouse ID
+    /// </summary>
+    public long WarehouseId { get; set; }
+
+    /// <summary>
+    /// Warehouse name
+    /// </summary>
+    public string WarehouseName { get; set; } = null!;
+
+    /// <summary>
+    /// Stock quantity in this warehouse
+    /// </summary>
+    public decimal Stock { get; set; }
+
+    /// <summary>
+    /// Reserved quantity in this warehouse
+    /// </summary>
+    public decimal Reserved { get; set; }
+
+    /// <summary>
+    /// Available quantity in this warehouse
+    /// </summary>
+    public decimal Available => Stock - Reserved;
+}
+
+/// <summary>
+/// Postal compliance validation response
+/// </summary>
+public class PostalComplianceResponse
+{
+    /// <summary>
+    /// SKU ID
+    /// </summary>
+    public long SkuId { get; set; }
+
+    /// <summary>
+    /// Whether the SKU meets postal compliance requirements
+    /// </summary>
+    public bool IsCompliant { get; set; }
+
+    /// <summary>
+    /// Validation messages
+    /// </summary>
+    public List<string> Messages { get; set; } = new();
+
+    /// <summary>
+    /// Maximum allowed dimensions for the postal code
+    /// </summary>
+    public PostalLimits? PostalLimits { get; set; }
+
+    /// <summary>
+    /// SKU actual dimensions
+    /// </summary>
+    public SkuDimensions? SkuDimensions { get; set; }
+}
+
+/// <summary>
+/// Postal service limits
+/// </summary>
+public class PostalLimits
+{
+    /// <summary>
+    /// Maximum length in millimeters
+    /// </summary>
+    public int MaxLengthMm { get; set; }
+
+    /// <summary>
+    /// Maximum width in millimeters
+    /// </summary>
+    public int MaxWidthMm { get; set; }
+
+    /// <summary>
+    /// Maximum height in millimeters
+    /// </summary>
+    public int MaxHeightMm { get; set; }
+
+    /// <summary>
+    /// Maximum weight in grams
+    /// </summary>
+    public int MaxWeightGrams { get; set; }
+}
+
+/// <summary>
+/// SKU dimensions
+/// </summary>
+public class SkuDimensions
+{
+    /// <summary>
+    /// Length in millimeters
+    /// </summary>
+    public int LengthMm { get; set; }
+
+    /// <summary>
+    /// Width in millimeters
+    /// </summary>
+    public int WidthMm { get; set; }
+
+    /// <summary>
+    /// Height in millimeters
+    /// </summary>
+    public int HeightMm { get; set; }
+
+    /// <summary>
+    /// Weight in grams
+    /// </summary>
+    public int WeightGrams { get; set; }
 }

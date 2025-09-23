@@ -1141,23 +1141,20 @@
             <param name="heightIn">Height in inches</param>
             <returns>Dimensions instance</returns>
         </member>
-        <member name="M:ShopFlow.Domain.ValueObjects.Dimensions.GetLengthCm">
+        <member name="P:ShopFlow.Domain.ValueObjects.Dimensions.LengthCm">
             <summary>
             Gets length in centimeters
             </summary>
-            <returns>Length in centimeters</returns>
         </member>
-        <member name="M:ShopFlow.Domain.ValueObjects.Dimensions.GetWidthCm">
+        <member name="P:ShopFlow.Domain.ValueObjects.Dimensions.WidthCm">
             <summary>
             Gets width in centimeters
             </summary>
-            <returns>Width in centimeters</returns>
         </member>
-        <member name="M:ShopFlow.Domain.ValueObjects.Dimensions.GetHeightCm">
+        <member name="P:ShopFlow.Domain.ValueObjects.Dimensions.HeightCm">
             <summary>
             Gets height in centimeters
             </summary>
-            <returns>Height in centimeters</returns>
         </member>
         <member name="M:ShopFlow.Domain.ValueObjects.Dimensions.IsWithinPostalLimits">
             <summary>

@@ -42,6 +42,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ISkuRepository, SkuRepository>();
         // Repositories
         services.AddScoped<IPasswordResetTokenRepository, PasswordResetTokenInMemoryRepository>();
 

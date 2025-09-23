@@ -9,6 +9,9 @@ namespace ShopFlow.Application.Validators.Skus;
 /// </summary>
 public class CreateSkuCommandValidator : AbstractValidator<CreateSkuCommand>
 {
+    /// <summary>
+    /// Initializes a new instance of the CreateSkuCommandValidator class
+    /// </summary>
     public CreateSkuCommandValidator()
     {
         // SKU Code validation
@@ -163,7 +166,7 @@ public class CreateSkuCommandValidator : AbstractValidator<CreateSkuCommand>
     /// <summary>
     /// Validates barcode format
     /// </summary>
-    private static bool BeValidBarcode(string barcode)
+    private static bool BeValidBarcode(string? barcode)
     {
         if (string.IsNullOrWhiteSpace(barcode)) return true;
 
@@ -189,7 +192,7 @@ public class CreateSkuCommandValidator : AbstractValidator<CreateSkuCommand>
     /// <summary>
     /// Validates barcode type
     /// </summary>
-    private static bool BeValidBarcodeType(string barcodeType)
+    private static bool BeValidBarcodeType(string? barcodeType)
     {
         var validTypes = new[] { "EAN13", "EAN8", "UPC-A", "UPC-E", "CODE128", "CODE39" };
         return validTypes.Contains(barcodeType?.ToUpperInvariant());
@@ -255,7 +258,7 @@ public class CreateSkuCommandValidator : AbstractValidator<CreateSkuCommand>
     private static bool ValidateCode128(string barcode)
     {
         // Basic validation for CODE128 - alphanumeric characters
-        return barcode.All(c => char.IsLetterOrDigit(c) || "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".Contains(c));
+        return barcode.All(c => char.IsLetterOrDigit(c) || "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".Contains(c, StringComparison.Ordinal));
     }
 
     /// <summary>

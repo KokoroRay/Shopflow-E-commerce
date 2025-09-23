@@ -45,14 +45,20 @@ public class SearchSkusQueryHandler : IRequestHandler<SearchSkusQuery, GetSkusRe
 
         var skuDtos = skuList.Select(MapToDto).ToList();
 
-        return new GetSkusResponse
+        var response = new GetSkusResponse
         {
-            Skus = skuDtos,
             TotalCount = totalCount,
             Page = request.Filters.Page,
             PageSize = request.Filters.PageSize,
             TotalPages = (int)Math.Ceiling((double)totalCount / request.Filters.PageSize)
         };
+
+        foreach (var skuDto in skuDtos)
+        {
+            response.Skus.Add(skuDto);
+        }
+
+        return response;
     }
 
     /// <summary>
@@ -60,7 +66,7 @@ public class SearchSkusQueryHandler : IRequestHandler<SearchSkusQuery, GetSkusRe
     /// </summary>
     private static SkuDto MapToDto(Sku sku)
     {
-        return new SkuDto
+        var skuDto = new SkuDto
         {
             Id = sku.Id,
             Code = sku.Code.Value,
@@ -84,24 +90,36 @@ public class SearchSkusQueryHandler : IRequestHandler<SearchSkusQuery, GetSkusRe
                 Grams = sku.WeightValue?.Grams ?? 0
             },
             CreatedAt = sku.CreatedAt,
-            UpdatedAt = sku.UpdatedAt,
-            Media = sku.Media.Select(m => new SkuMediaDto
+            UpdatedAt = sku.UpdatedAt
+        };
+
+        // Add media items to the collection
+        foreach (var m in sku.Media)
+        {
+            skuDto.Media.Add(new SkuMediaDto
             {
                 Id = m.Id,
                 SkuId = m.SkuId,
                 MediaType = m.MediaType,
-                Url = m.Url.ToString(),
+                Url = new Uri(m.Url.ToString()),
                 DisplayOrder = m.DisplayOrder,
                 IsDefault = m.IsDefault
-            }).ToList(),
-            OptionValues = sku.OptionValues.Select(ov => new SkuOptionValueDto
+            });
+        }
+
+        // Add option values to the collection
+        foreach (var ov in sku.OptionValues)
+        {
+            skuDto.OptionValues.Add(new SkuOptionValueDto
             {
                 SkuId = ov.SkuId,
                 AttributeId = ov.AttributeId,
                 OptionId = ov.OptionId,
                 AttributeName = ov.Attribute?.Code ?? string.Empty,
                 OptionValue = ov.Option?.Code ?? string.Empty
-            }).ToList()
-        };
+            });
+        }
+
+        return skuDto;
     }
 }

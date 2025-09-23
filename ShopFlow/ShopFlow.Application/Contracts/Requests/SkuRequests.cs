@@ -68,7 +68,7 @@ public class CreateSkuRequest
     /// <summary>
     /// Gets or sets the option values that define this variant
     /// </summary>
-    public ICollection<CreateSkuOptionValueRequest> OptionValues { get; set; } = new List<CreateSkuOptionValueRequest>();
+    public ICollection<CreateSkuOptionValueRequest> OptionValues { get; } = new List<CreateSkuOptionValueRequest>();
 }
 
 /// <summary>
@@ -251,4 +251,20 @@ public class GetSkusRequest
     /// Gets or sets the sort direction
     /// </summary>
     public string SortDirection { get; set; } = "asc";
+}
+
+/// <summary>
+/// Request to bulk update SKU status
+/// </summary>
+public class BulkUpdateSkuStatusRequest
+{
+    /// <summary>
+    /// Gets or sets the list of SKU IDs to update
+    /// </summary>
+    public ICollection<long> SkuIds { get; } = new List<long>();
+
+    /// <summary>
+    /// Gets or sets the new active status
+    /// </summary>
+    public bool IsActive { get; set; }
 }

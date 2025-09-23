@@ -36,7 +36,7 @@ public class GetSkuByCodeQuery : IRequest<GetSkuResponse>
     /// <summary>
     /// Gets or sets the SKU code
     /// </summary>
-    public string Code { get; set; } = null!;
+    public string Code { get; set; }
 
     /// <summary>
     /// Gets or sets whether to include related entities
@@ -61,7 +61,7 @@ public class GetSkuByBarcodeQuery : IRequest<GetSkuResponse>
     /// <summary>
     /// Gets or sets the barcode
     /// </summary>
-    public string Barcode { get; set; } = null!;
+    public string Barcode { get; set; }
 
     /// <summary>
     /// Gets or sets whether to include related entities
@@ -131,7 +131,7 @@ public class GetSkusQuery : IRequest<GetSkusResponse>
     /// <summary>
     /// Gets or sets whether to include related entities
     /// </summary>
-    public bool IncludeRelated { get; set; } = false;
+    public bool IncludeRelated { get; set; }
 }
 
 /// <summary>
@@ -172,12 +172,12 @@ public class SearchSkusQuery : IRequest<GetSkusResponse>
     /// <summary>
     /// Gets or sets the search term
     /// </summary>
-    public string SearchTerm { get; set; } = null!;
+    public string SearchTerm { get; set; }
 
     /// <summary>
     /// Gets or sets the search fields to include
     /// </summary>
-    public ICollection<string> SearchFields { get; set; } = new List<string> { "code", "name", "description", "barcode" };
+    public ICollection<string> SearchFields { get; } = new List<string> { "code", "name", "description", "barcode" };
 
     /// <summary>
     /// Gets or sets additional filters
@@ -247,7 +247,7 @@ public class SkuInventoryResponse
     /// <summary>
     /// Gets or sets the stock per warehouse
     /// </summary>
-    public ICollection<WarehouseStockInfo> WarehouseStocks { get; set; } = new List<WarehouseStockInfo>();
+    public ICollection<WarehouseStockInfo> WarehouseStocks { get; } = new List<WarehouseStockInfo>();
 }
 
 /// <summary>
