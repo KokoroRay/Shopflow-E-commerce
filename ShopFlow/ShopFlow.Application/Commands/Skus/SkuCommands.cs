@@ -81,7 +81,7 @@ public class CreateSkuCommand : IRequest<CreateSkuResponse>
     /// <summary>
     /// Gets or sets the option values that define this variant
     /// </summary>
-    public ICollection<CreateSkuOptionValueCommand> OptionValues { get; set; } = new List<CreateSkuOptionValueCommand>();
+    public ICollection<CreateSkuOptionValueCommand> OptionValues { get; } = new List<CreateSkuOptionValueCommand>();
 }
 
 /// <summary>
@@ -174,7 +174,7 @@ public class DeleteSkuCommand : IRequest<DeleteSkuResponse>
     /// <summary>
     /// Gets or sets whether to force delete even if SKU has dependencies
     /// </summary>
-    public bool ForceDelete { get; set; } = false;
+    public bool ForceDelete { get; set; }
 }
 
 /// <summary>
@@ -185,7 +185,7 @@ public class BulkUpdateSkuStatusCommand : IRequest<BulkSkuOperationResponse>
     /// <summary>
     /// Gets or sets the list of SKU IDs to update
     /// </summary>
-    public ICollection<long> SkuIds { get; set; } = new List<long>();
+    public ICollection<long> SkuIds { get; } = new List<long>();
 
     /// <summary>
     /// Gets or sets the new active status

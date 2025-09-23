@@ -96,20 +96,17 @@ public sealed class Dimensions : IEquatable<Dimensions>
     /// <summary>
     /// Gets length in centimeters
     /// </summary>
-    /// <returns>Length in centimeters</returns>
-    public decimal GetLengthCm() => LengthMm / 10m;
+    public decimal LengthCm => LengthMm / 10m;
 
     /// <summary>
     /// Gets width in centimeters
     /// </summary>
-    /// <returns>Width in centimeters</returns>
-    public decimal GetWidthCm() => WidthMm / 10m;
+    public decimal WidthCm => WidthMm / 10m;
 
     /// <summary>
     /// Gets height in centimeters
     /// </summary>
-    /// <returns>Height in centimeters</returns>
-    public decimal GetHeightCm() => HeightMm / 10m;
+    public decimal HeightCm => HeightMm / 10m;
 
     /// <summary>
     /// Checks if dimensions exceed Vietnamese postal service limits
@@ -142,7 +139,7 @@ public sealed class Dimensions : IEquatable<Dimensions>
             (500, 400, 300),   // Extra large box
         };
 
-        return standardSizes.Any(size =>
+        return Array.Exists(standardSizes, size =>
             LengthMm <= size.Item1 &&
             WidthMm <= size.Item2 &&
             HeightMm <= size.Item3);
@@ -195,7 +192,7 @@ public sealed class Dimensions : IEquatable<Dimensions>
     /// <returns>The dimensions formatted as "L×W×H cm"</returns>
     public override string ToString()
     {
-        return $"{GetLengthCm().ToString("0.#", CultureInfo.InvariantCulture)}×{GetWidthCm().ToString("0.#", CultureInfo.InvariantCulture)}×{GetHeightCm().ToString("0.#", CultureInfo.InvariantCulture)} cm";
+        return $"{LengthCm.ToString("0.#", CultureInfo.InvariantCulture)}×{WidthCm.ToString("0.#", CultureInfo.InvariantCulture)}×{HeightCm.ToString("0.#", CultureInfo.InvariantCulture)} cm";
     }
 
     /// <summary>

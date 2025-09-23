@@ -15,6 +15,11 @@ public class DeleteSkuCommandHandler : IRequestHandler<DeleteSkuCommand, DeleteS
     private readonly ISkuRepository _skuRepository;
     private readonly ILogger<DeleteSkuCommandHandler> _logger;
 
+    /// <summary>
+    /// Initializes a new instance of the DeleteSkuCommandHandler class
+    /// </summary>
+    /// <param name="skuRepository">The SKU repository</param>
+    /// <param name="logger">The logger</param>
     public DeleteSkuCommandHandler(
         ISkuRepository skuRepository,
         ILogger<DeleteSkuCommandHandler> logger)
@@ -23,6 +28,12 @@ public class DeleteSkuCommandHandler : IRequestHandler<DeleteSkuCommand, DeleteS
         _logger = logger;
     }
 
+    /// <summary>
+    /// Handles the DeleteSkuCommand to delete an existing SKU
+    /// </summary>
+    /// <param name="request">The delete SKU command</param>
+    /// <param name="cancellationToken">The cancellation token</param>
+    /// <returns>The delete SKU response</returns>
     public async Task<DeleteSkuResponse> Handle(DeleteSkuCommand request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
@@ -58,7 +69,7 @@ public class DeleteSkuCommandHandler : IRequestHandler<DeleteSkuCommand, DeleteS
             var response = new DeleteSkuResponse
             {
                 IsSuccess = true,
-                Message = $"SKU '{sku.Code.Value}' đã được xóa thành công",
+                ResultMessage = $"SKU '{sku.Code.Value}' đã được xóa thành công",
                 DeletedId = request.Id
             };
 

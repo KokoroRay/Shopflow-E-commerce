@@ -80,12 +80,12 @@ public class SkuDto
     /// <summary>
     /// Gets or sets the media items for this SKU
     /// </summary>
-    public ICollection<SkuMediaDto> Media { get; set; } = new List<SkuMediaDto>();
+    public ICollection<SkuMediaDto> Media { get; } = new List<SkuMediaDto>();
 
     /// <summary>
     /// Gets or sets the option values that define this variant
     /// </summary>
-    public ICollection<SkuOptionValueDto> OptionValues { get; set; } = new List<SkuOptionValueDto>();
+    public ICollection<SkuOptionValueDto> OptionValues { get; } = new List<SkuOptionValueDto>();
 
     /// <summary>
     /// Gets or sets the creation timestamp
@@ -185,7 +185,7 @@ public class SkuMediaDto
     /// <summary>
     /// Gets or sets the media URL
     /// </summary>
-    public string Url { get; set; } = null!;
+    public Uri Url { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the display order

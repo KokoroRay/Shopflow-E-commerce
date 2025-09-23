@@ -9,6 +9,9 @@ namespace ShopFlow.Application.Validators.Skus;
 /// </summary>
 public class UpdateSkuCommandValidator : AbstractValidator<UpdateSkuCommand>
 {
+    /// <summary>
+    /// Initializes a new instance of the UpdateSkuCommandValidator class
+    /// </summary>
     public UpdateSkuCommandValidator()
     {
         // ID validation
